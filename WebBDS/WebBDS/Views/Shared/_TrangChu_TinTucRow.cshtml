@@ -1,0 +1,107 @@
+﻿<!--@model  WebBDS.Models.TrangchuModel
+@{
+    List<WebBDS.Models.BDS> listTinTuc = new List<WebBDS.Models.BDS>();
+    listTinTuc = Model.BDS;
+}
+
+
+<div class="row bietthuRow tintucRow">
+    <div class="danhmucnoibat tintuc">
+        <div class="danmucnoibat__start tintuc__start">
+        </div>
+    </div>
+    <div class="danhmucnoibat__title">
+        <i class="fas fa-newspaper"></i>
+        <h2>TIN TỨC MỚI</h2>
+    </div>
+    <div class="tintucItem">-->
+        @*@for (int i = 0; i < listTinTuc.Count; i++)
+        {
+            int tam = -1;
+            if (i < 4)
+            {*@
+                <!--<div class="row tintucItemRow">-->
+                    @*@for (int j = i; j < listTinTuc.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            break;
+                        }*@
+                        <!--<div class="tintucItem__left col l-6 m-12 c-12">
+                            <div class="tintucItem__leftItem">
+                                <a href="@*@Common.MapLink("chi-tiet-tin-tuc-trang-chu", "id", listTinTuc[j][Connection.KEY_DOCUMENT_ID])*@" class="listing-img-container">
+                                    <img src="@*@listTinTuc[j].getValue("anhTrangChu")*@" alt="">
+                                </a>
+                                <div class="tintucItem__Infor">
+                                    <a href="@*@Common.MapLink("chi-tiet-tin-tuc-trang-chu", "id", listTinTuc[j][Connection.KEY_DOCUMENT_ID])*@" class="listing-img-container">
+                                        <h3>-->
+                                            @*@listTinTuc[j].getValue("tenTinTuc")*@
+                                        <!--</h3>
+                                    </a>
+                                    <div class="tintucItem__InforFooter">
+                                        <div class="tintucItem__InforFooter--time">
+                                            <i class="far fa-clock"></i>
+                                            <p></p>
+                                        </div>
+                                        <div class="tintucItem__InforFooter--share">
+                                            <i class="far fa-heart"></i>
+                                            <i class="fas fa-share-alt"></i>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="row tintucItemRow rowTintucMore">-->
+                    @*@for (int j = i; j < listTinTuc.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            break;
+                        }*@
+                        <!--<div class="tintucItem__left col l-6 m-12 c-12">
+                            <div class="tintucItem__leftItem">
+                                <a href="@*@Common.MapLink("chi-tiet-tin-tuc-trang-chu", "id", listTinTuc[j][Connection.KEY_DOCUMENT_ID])*@" class="listing-img-container">
+                                    <img src="@*@listTinTuc[j].getValue("anhTrangChu")*@" alt="">
+                                </a>
+                                <div class="tintucItem__Infor">
+                                    <a href="@*@Common.MapLink("chi-tiet-tin-tuc-trang-chu", "id", listTinTuc[j][Connection.KEY_DOCUMENT_ID])*@" class="listing-img-container">
+                                        <h3>-->
+                                            @*@listTinTuc[j].getValue("tenTinTuc")*@
+                                        <!--</h3>
+                                    </a>
+                                    <div class="tintucItem__InforFooter">
+                                        <div class="tintucItem__InforFooter--time">
+                                            <i class="far fa-clock"></i>
+                                            <p></p>
+                                        </div>
+                                        <div class="tintucItem__InforFooter--share">
+                                            <i class="far fa-heart"></i>
+                                            <i class="fas fa-share-alt"></i>
+                                            <i class="fas fa-ellipsis-v"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            i += 1;
+        }
+    </div>
+    <div class="btnMore btnMoreTinTuc col l-6 m-6 c-12">
+        <div class="btnMore__des btnMore__desTinTuc">
+            XEM THÊM <p></p>
+        </div>
+        <i class="fas fa-caret-up iconUp"></i>
+        <i class="fas fa-caret-down iconDown"></i>
+    </div>
+</div>-->

@@ -1,0 +1,324 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseLayout_Empty_Trangchu.cshtml";
+}
+
+@model  WebBDS.Models.BDS
+@{
+    var bds = Model;
+    var kinhdo = bds.KinhDo;
+    var vido = bds.ViDo;
+    var j = 0;
+}
+<script>
+    var kinhdo = parseInt('@kinhdo');
+
+    var vido = parseInt('@vido');
+    function initMap() {
+
+        // The location of Uluru
+        const uluru = { lat: kinhdo, lng: vido };
+        // The map, centered at Uluru
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+            position: uluru,
+            map: map,
+        });
+    }
+</script>
+
+@Html.Partial("_TrangChu_MenuRow")
+<!-- main -->
+<div class="main" id="_TrangChu_Banner">
+        <div class="swiper-container mySwiper sliderHead">
+            <div class="swiper-wrapper">
+                @foreach (var item in bds.Image)
+                {
+                    <div class="swiper-slide item">
+                        <img src="@item" alt="">
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+</div>
+
+
+
+
+    <!-- list -->
+<div class="content">
+    <div class="row bietthuRow bdsKCNrow loaiBDSrow">
+        <div class="SelectaName">
+            <div class="TitleBlock">
+                <div class="danhmucnoibat__title">
+                    <i class="fas fa-industry"></i>
+                    <h2>@bds.Name</h2>
+                </div>
+            </div>
+        </div>
+        <div class="bietthuItem bdsKCNItem kcnMua">
+            <div class="row">
+                <div class="bietthuItem__item bdsKCNItem__item col l-12 m-12 c-12">
+                    <div class="bietthuItem__itemImgBlock">
+                        <div id="map" style="height:400px;width:100%"></div>
+                        <div class="bietthuItem__itemImgBlock--description" style="width:20%">
+                            <div class="item">
+                                <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                <p>@bds.Dientich m2</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bdsKCNItem__itemContent row">
+                        <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                            <a href="" class="listing-img-container">
+                                <p class="bietthuItem__item--title"> @bds.Name</p>
+                            </a>
+                            <p class="bietthuItem__item--des">
+                                @bds.Mota
+                                <br />
+                                <br />
+                                Trạng thái: Được @bds.Status
+                            </p>
+                        </div>
+                        <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                            <h1>@bds.Gia </h1>
+                        </div>
+                    </div>
+                    <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                        <div class="bietthuItem__item--location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>@bds.Vitri</p>
+                        </div>
+                        <div class="btnDetail">
+                            <a href="/Lich/CreateLich" class="listing-img-container">
+                                <p>Hẹn Lịch</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bietthuItem bdsKCNItem kcnThue">
+
+        </div>
+    </div>
+    
+
+
+    <div class="row contentFooter col l-4 m-4 c-12"></div>
+    <div class="khachhang">
+        <h2>KHÁCH HÀNG VÀ ĐỐI TÁC</h2>
+        <p>Rất nhiều người đã dự đoán Công Phượng sẽ được điền tên trong đội hình chính thức.</p>
+    </div>
+    <div class="sliderFooter">
+        <div class="owl-carousel slider2">
+            <img src="~/images/trangchu/img/sliderEnd1.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd2.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd3.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd4.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd5.png" alt="">
+        </div>
+    </div>
+
+    <div class="endBody">
+        <div class="endBody__vien">
+            <div class="endBody__vien--item">
+            </div>
+        </div>
+        <div class="imgFooter">
+            <img src="~/images/trangchu/img/footer.png" alt="">
+        </div>
+    </div>
+</div>
+
+    @Html.Partial("_TrangChu_FooterRow")
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3gIi0RSsSqFQHqlW_dICB5idZj7xIaI&callback=initMap&libraries=&v=weekly"
+        async></script>
+
+    <script>
+        $(document).ready(function () {
+            // click mua thuê biethtu
+            const blockThue = $('.thue');
+            const blockMua = $('.mua');
+            blockThue.hide();
+            const btnThue = $('.thueBietthu');
+            const btnMua = $('.muaBietthu');
+            btnThue.click(() => {
+                blockMua.hide();
+                blockThue.show();
+                btnThue.css("background-color", "#E59933");
+                btnMua.css("background-color", "#fff");
+            })
+            btnMua.click(() => {
+                blockThue.hide();
+                blockMua.show();
+                btnMua.css("background-color", "#E59933");
+                btnThue.css("background-color", "#fff");
+            })
+            // click mua thuê BDS KCN
+            const blockThueKCN = $('.kcnThue');
+            const blockMuaKCN = $('.kcnMua');
+            blockThueKCN.hide();
+            const btnThueKCN = $('.thueKCN');
+            const btnMuaKCN = $('.muaKCN');
+            btnThueKCN.click(() => {
+                blockMuaKCN.hide();
+                blockThueKCN.show();
+                btnThueKCN.css("background-color", "#E59933");
+                btnMuaKCN.css("background-color", "#fff");
+          kinhdo })
+            btnMuaKCN.click(() => {
+                blockThueKCN.hide();
+                blockMuaKCN.show();
+                btnMuaKCN.css("background-color", "#E59933");
+                btnThueKCN.css("background-color", "#fff");
+            })
+            // click heart
+            const heart = $('.fa-heart');
+            $(document).on("click", ".fa-heart", function (e) {
+                if (event.target.classList.contains('clickHeart')) {
+                    $(this).removeClass('clickHeart');
+                }
+                else {
+                    e.currentTarget.classList.add("clickHeart");
+                }
+            });
+            // show more tin tuc
+            $(".rowTintucMore").hide();
+            $(".iconUp").hide();
+            var btnXemThem = $(".btnMoreTinTuc");
+            btnXemThem.click(() => {
+                if ($('.btnMoreTinTuc .iconUp').css('display') == 'none') {
+                    $(".btnMoreTinTuc .iconUp").show();
+                    $(".btnMoreTinTuc .iconDown").hide();
+                    $(".btnMoreTinTuc .btnMore__des").text("Thu Gọn");
+                }
+                else {
+                    $(".btnMoreTinTuc .iconUp").hide();
+                    $(".btnMoreTinTuc .iconDown").show();
+                    $(".btnMoreTinTuc .btnMore__des").text("Xem Thêm");
+                }
+                $(".rowTintucMore").toggle();
+            })
+            // show more bds KCN
+            $(".rowKCNmore").hide();
+            var btnXemThemKCN = $(".btnMoreKCN");
+            btnXemThemKCN.click(() => {
+                if ($('.btnMoreKCN .iconUp').css('display') == 'none') {
+                    $(".btnMoreKCN .iconUp").show();
+                    $(".btnMoreKCN .iconDown").hide();
+                    $(".btnMoreKCN .btnMore__des").text("Thu Gọn");
+                }
+                else {
+                    $(".btnMoreKCN .iconUp").hide();
+                    $(".btnMoreKCN .iconDown").show();
+                    $(".btnMoreKCN .btnMore__des").text("Xem Thêm");
+                }
+                $(".rowKCNmore").toggle();
+            })
+            //show more biệt thự
+            $(".rowBietThumore").hide();
+            var btnXemThemBT = $(".btnMoreBietThu");
+            btnXemThemBT.click(() => {
+                if ($('.btnMoreBietThu .iconUp').css('display') == 'none') {
+                    $(".btnMoreBietThu .iconUp").show();
+                    $(".btnMoreBietThu .iconDown").hide();
+                    $(".btnMoreBietThu .btnMore__des").text("Thu Gọn");
+                }
+                else {
+                    $(".btnMoreBietThu .iconUp").hide();
+                    $(".btnMoreBietThu .iconDown").show();
+                    $(".btnMoreBietThu .btnMore__des").text("Xem Thêm");
+                }
+                $(".rowBietThumore").toggle();
+            })
+            //show more Duan
+            $(".rowDuanmore").hide();
+            var btnXemThemDA = $(".btnMoreDuan");
+            btnXemThemDA.click(() => {
+                if ($('.btnMoreDuan .iconUp').css('display') == 'none') {
+                    $(".btnMoreDuan .iconUp").show();
+                    $(".btnMoreDuan .iconDown").hide();
+                    $(".btnMoreDuan .btnMore__des").text("Thu Gọn");
+                }
+                else {
+                    $(".btnMoreDuan .iconUp").hide();
+                    $(".btnMoreDuan .iconDown").show();
+                    $(".btnMoreDuan .btnMore__des").text("Xem Thêm");
+                }
+                $(".rowDuanmore").toggle();
+            })
+            //
+            const nextIcon = '<i class="fas fa-caret-right"></i>';
+            const prevIcon = '<i class="fas fa-caret-left"></i>';
+
+            var swiper = new Swiper(".mySwiper", {
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        return '<span class="' + className + '">' + (index + 1) + "</span>";
+                    },
+                },
+            });
+            //
+            $('.slider2').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: [
+                    prevIcon,
+                    nextIcon
+                ],
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 4
+                    }
+                }
+            })
+            $('.slider3').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                navText: [
+                    prevIcon,
+                    nextIcon
+                ],
+                responsive: {
+                    0: {
+                        items: 3
+                    },
+                    600: {
+                        items: 5
+                    },
+                    1000: {
+                        items: 7
+                    }
+                }
+            })
+        });
+    </script>
+
+
+
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

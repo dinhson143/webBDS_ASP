@@ -1,0 +1,142 @@
+﻿
+
+@{
+    Layout = null;
+    string mess = ViewData["mess"]?.ToString();
+    var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+    var min = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Đặt Lịch Hẹn</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/images/favicon.ico">
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/fonts/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/vendor/animate/animate.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/vendor/select2/select2.min.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+    <link href="~/Content/custom/Form/css/util.css" rel="stylesheet" />
+    <link href="~/Content/custom/Form/css/main.css" rel="stylesheet" />
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="bg-contact100" style="background-image: url('images/bg-01.jpg');">
+        <div class="container-contact100">
+            <div class="wrap-contact100">
+                <div class="contact100-pic js-tilt" data-tilt>
+                    <img src="~/Content/custom/Form/images/img-01.png" alt="IMG">
+                </div>
+
+                <form class="contact100-form validate-form" method="post">
+                    <span class="contact100-form-title" style="color:red">
+                        @mess
+                    </span>
+                    <span class="contact100-form-title">
+                        Điền thông tin để đặt lịch với chúng tôi
+                    </span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Name is required">
+                        <input class="input100" type="text" name="Name" placeholder="Name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-user" aria-hidden="true"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="text" name="Email" placeholder="Email">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input pattern="[0][0-9]{9}" class="input100" type="text" name="Sdt" placeholder="SDT" title="Phone number with 0 and remaing 9 digit with 0-9">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fas fa-phone-square-alt"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                        <input class="input100" type="datetime-local" name="Date" value="@min" min="@min" max="" placeholder="Date">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fas fa-calendar-alt"></i>
+                        </span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Message is required">
+                        <textarea class="input100" name="Message" placeholder="Message"></textarea>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="container-contact100-form-btn">
+                        <input type="submit" class="contact100-form-btn" value="Send">
+                    </div>
+
+                    <a class="container-contact100-form-btn" href="/Trangchu/Index">
+                         <input type="button" class="contact100-form-btn" value="Trở về">
+                    </a>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--===============================================================================================-->
+    <script src="~/Content/custom/Form/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/custom/Form/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/custom/Form/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/custom/Form/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/custom/Form/vendor/tilt/tilt.jquery.min.js"></script>
+    <script>
+        $('.js-tilt').tilt({
+            scale: 1.1
+        })
+    </script>
+    <!--===============================================================================================-->
+    <script src="~/Content/custom/Form/js/main.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        var mess = '@mess';
+
+
+
+
+
+
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+
+</body>
+</html>
+

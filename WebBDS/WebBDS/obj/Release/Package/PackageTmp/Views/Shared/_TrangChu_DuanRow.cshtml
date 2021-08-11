@@ -1,0 +1,192 @@
+﻿
+@model  WebBDS.Models.TrangchuModel
+@{
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.LoaiBDS> listLBDS = new List<WebBDS.Models.LoaiBDS>();
+    listBDS = Model.BDS;
+    listLBDS = Model.loaiBDS;
+    int dem = 0;
+    List<WebBDS.Models.BDS> listBDS_duan = new List<WebBDS.Models.BDS>();
+    for (int j = 0; j < listBDS.Count; j++)
+    {
+        if (listBDS[j].maloaiBDS == listLBDS[2]._id)
+        {
+            listBDS_duan.Add(listBDS[j]);
+        }
+    }
+    var demmm = 0;
+}
+
+<div class="row duanRow loaiBDSrow @listLBDS[2]._id" id="_TrangChu_DuanRow">
+    <div class="danhmucnoibat duan">
+        <div class="danmucnoibat__start duan__start">
+        </div>
+    </div>
+    <div class="TitleBlock">
+        <div class="danhmucnoibat__title">
+            <i class="fas fa-share-alt"></i>
+            <img src="~/images/trangchu/img/DUAN.svg" alt="">
+            <h2>@listLBDS[2].Name</h2>
+        </div>
+        <div class="TitleaName__name">
+            <p>Xem bằng bản đồ </p>
+            <i class="fas fa-map-marked-alt"></i>
+        </div>
+    </div>
+    @for (int i = 0; i < listBDS_duan.Count; i++)
+    {
+        if (i < 2)
+        {
+            <div class="duan1">
+                <div class="TitleaName">
+                    <div class="TitleaName__title">
+                        <h1>|  @listBDS_duan[i].Name</h1>
+                    </div>
+                </div>
+                <div class="duan1__item row">
+                    <div class="duan1__itemLeft col l-8 m-8 c-12">
+                        <a href="#" class="listing-img-container" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                            <img src="@listBDS_duan[i].Image[0]" />
+                        </a>
+                        <i class="fas fa-heart" onclick="return addCart('@listBDS_duan[i]._id')"></i>
+                        <div class="duan1__itemTenduan">
+                        </div>
+                        <div class="duan1__itemTenduan--content">
+                            <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                                <h2>@listBDS_duan[i].Name</h2>
+                                <p>@listBDS_duan[i].Mota</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="duan1__itemRight col l-4 m-4 c-12">
+                        <img class="duan1__itemRight--img1" src="@listBDS_duan[i].Image[1]" alt="">
+                        <img src="@listBDS_duan[i].Image[2]" alt="">
+                    </div>
+                    <div class="duan1__itemDes">
+                        <div class="information">
+                            <div class="chudautu item">
+                                <label for="">
+                                    Chủ đầu tư:
+                                    <p>Công ty Phát triển Bất động sản Vinhomes (Vingroup)</p>
+                                </label>
+                            </div>
+                            <div class="diachi item">
+                                <label for="">
+                                    Địa chỉ:
+                                    <p>@listBDS_duan[i].Vitri</p>
+                                </label>
+                            </div>
+                            <div class="tongdientichkhudat item">
+                                <label for="">
+                                    Tổng diện tích khu đất:
+                                    <p>@listBDS_duan[i].Dientich m2</p>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="showInfor" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                            <a href="" class="listing-img-container">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="duan1 rowDuanmore">
+                <div class="TitleaName">
+                    <div class="TitleaName__title">
+                        <h1>| @listBDS_duan[i].Name</h1>
+                    </div>
+                </div>
+                <div class="duan1__item row">
+                    <div class="duan1__itemLeft col l-8 m-8 c-12">
+                        <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                            <img src="@listBDS_duan[i].Image[0]" alt="Alternate Text" />
+                        </a>
+                        <i class="fas fa-heart" onclick="return addCart('@listBDS_duan[i]._id')"></i>
+                        <div class="duan1__itemTenduan">
+                        </div>
+                        <div class="duan1__itemTenduan--content">
+                            <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                                <h2>@listBDS_duan[i].Name</h2>
+                                <p>@listBDS_duan[i].Mota</p>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="duan1__itemRight col l-4 m-4 c-12">
+                        <img class="duan1__itemRight--img1" src="@listBDS_duan[i].Image[1]" alt="">
+                        <img src="" alt="">
+                    </div>
+                    <div class="duan1__itemDes">
+                        <div class="information">
+                            <div class="chudautu item">
+                                <label for="">
+                                    Chủ đầu tư:
+                                    <p>Công ty Phát triển Bất động sản Vinhomes (Vingroup)</p>
+                                </label>
+                            </div>
+                            <div class="diachi item">
+                                <label for="">
+                                    Địa chỉ:
+                                    <p>@listBDS_duan[i].Vitri</p>
+                                </label>
+                            </div>
+                            <div class="tongdientichkhudat item">
+                                <label for="">
+                                    Tổng diện tích khu đất:
+                                    <p>@listBDS_duan[i].Dientich m2</p>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="showInfor" onclick="return xemChiTiet('@listBDS_duan[i]._id')">
+                            <a href="">Xem chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    <div class="btnMore btnMoreDuan col l-4 m-4 c-12">
+        <div class="btnMore__des">XEM THÊM <p>710</p> DỰ ÁN KHÁC</div>
+        <i class="fas fa-caret-up iconUp"></i>
+        <i class="fas fa-caret-down iconDown"></i>
+    </div>
+</div>
+<script type="text/javascript">
+    function xemChiTiet(id) {
+        var idBDS = id;
+        $.ajax({
+            url: '/BDStheoLoai/GetID_BDS',
+            data: { 'id': idBDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+               window.location = '/BDS/ChiTietBDS';
+            }, error: function (er) {
+                alert("Fail: " +er);
+            }
+        });
+
+    }
+    function addCart(id) {
+        var BDS = id;
+        $.ajax({
+            url: '/BDS/AddCart',
+            data: { 'id': BDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                if (data['mgs'] == false) {
+                    window.location = '/Login/Index';
+                }
+                else {
+                    alert(data['note'])
+                }
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+    }
+</script>

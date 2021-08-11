@@ -1,0 +1,94 @@
+﻿@model WebBDS.Models.User
+
+@{
+    Layout = null;
+    string mess = ViewData["mess"]?.ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Official Signup Form Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- /fonts -->
+    <!-- css -->
+    <link href="~/Content/custom/Login/css/font-awesome.min.css" />
+    <link href="~/Content/custom/Login/css/style.css" rel='stylesheet' type='text/css' media="all" />
+    <!-- /css -->
+    <link rel="icon" type="image/png" href="~/images/favicon.ico">
+    <style>
+        .w3ls:hover a {
+            text-shadow: 0 0 5px #000;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="w3ls" style="font-weight:600"><a href="/trangchu" style="color:#fff">TRANG CHỦ</a></h1>
+    <span class="thongbaoloi">@mess</span>
+    <div class="content-w3ls">
+        <div class="content-agile1" style="height:660px">
+            <h2 class="agileits1">8xland</h2>
+        </div>
+        <div class="content-agile2">
+            <form action="#" method="post">
+                <div class="form-control w3layouts">
+                    <input type="number" id="firstname" name="Phone" placeholder="Phone" title="Please enter your Phone" required="">
+                </div>
+                <div class="form-control w3layouts">
+                    <input type="text" id="firstname" name="Address" placeholder="Address" title="Please enter your Address" required="">
+                </div>
+                <div class="form-control w3layouts">
+                    <input type="text" id="firstname" name="Name" placeholder="Name" title="Please enter your Name" required="">
+                </div>
+
+                <div class="form-control w3layouts">
+                    <input asp-for="email" type="email" id="email" name="Email" placeholder="mail@example.com" title="Please enter a valid email" required="">
+                </div>
+
+
+                <div class="form-control w3layouts">
+                    <select name="Role" id="address1" style="color:#ccc;width:330px">
+                        <option value="admin">Admin</option>
+                        <option value="customer">Customer</option>
+                        <option value="user">User</option>
+                    </select>
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="password" class="lock" name="Password" placeholder="Password" id="password1" required="">
+                </div>
+                <div class="form-control agileinfo">
+                    <input type="password" class="lock" name="confirm-password" placeholder="Confirm Password" id="password2" required="">
+                </div>
+
+                <input type="submit" class="register" value="Register">
+                <a href="/Admin/Index">
+                    <input class="register" type="button" value="Trở lại">
+                </a>
+            </form>
+            <script type="text/javascript">
+                window.onload = function () {
+                    document.getElementById("password1").onchange = validatePassword;
+                    document.getElementById("password2").onchange = validatePassword;
+                }
+                function validatePassword() {
+                    var pass2 = document.getElementById("password2").value;
+                    var pass1 = document.getElementById("password1").value;
+                    if (pass1 != pass2)
+                        document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+                    else
+                        document.getElementById("password2").setCustomValidity('');
+                    //empty string means no validation error
+                }
+            </script>
+        </div>
+        <div class="clear"></div>
+    </div>
+</body>
+</html>

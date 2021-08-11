@@ -1,0 +1,389 @@
+.list_nav2,.list_inforDes
+{
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 15px;
+}
+    .list_nav2--item
+    {
+        display: flex;
+    }
+    .list_nav2 >p
+    {
+        flex: 3;
+        font-size: 18px;
+        line-height: 1.2;
+        text-shadow: 0 0 0.5px #000;
+        margin-top: 17px;
+    }
+    .list_nav2--link
+    {
+        text-decoration: none;
+        color: red;
+        font-weight: 700;
+    }
+    .list_nav2--link:hover
+    {
+        color: red;
+        cursor: pointer;
+    }
+    .list_nav2 >Select
+    {
+        flex: 1;
+        box-shadow: 0 0 1px #000;
+        text-shadow: 0 0 0.5px #000;
+    }
+    .list_product--vitri
+    {
+       height: 100%;
+    }
+    .list_product--item,.list_product--vitri
+    {
+        border: none;
+        margin-left: 0;
+        margin-right: 0;
+    }
+/*  */
+.list_inforDes
+{
+    margin-left: 10px;
+    text-shadow: 0 0 1px #ccc;
+}
+    .list_inforDes>p
+    {
+        color: hsl(126deg 49% 43%);
+        font-weight: 700;
+        font-size: 18px;
+
+    }
+    .list_inforDes--detail
+    {
+        font-weight: 600;
+        color: #fda93f;
+    }
+    .list_inforDes--informain
+    {
+        font-weight: 600;
+    }
+/* Thông tin chính */
+.list_formInformain
+{
+    margin: 10px;
+    display: flex;
+}
+    .list_formInformain--formDT
+    {
+        border: 1px solid #ccc;
+        flex: 1;
+    }
+        .formDT_item
+        {
+            display: flex;
+            font-size: 15px;
+            margin: 5px;
+            text-shadow: 0 0 0.5px #000;
+        }
+            .formDT_item1
+            {
+
+                margin-right: 5px;
+            }
+            .formDT_item11,.formDT_item11MaBDS
+            {
+                font-weight: bolder;
+            }
+            .formDT_item12
+            {
+                color: #fda93f;
+                font-weight: bolder;
+            }
+.list_goal
+{
+    margin: 10px;
+    border: 1px solid #ccc;
+}  
+    .list_goal>p
+    {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 5px;
+        text-shadow: 0 0 0.5px #000;
+        line-height: 1.2;
+    }
+.list_inforDetail
+{
+    background-color: #dffdff;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 0 0 2px #ccc;
+    padding: 10px;
+}
+    .list_inforDetail >p
+    {
+        text-shadow: 0 0 0.5px #000;
+        font-size: 14px;
+    }
+    .list_inforDetail >h5
+    {
+        font-size: 15px;
+        font-weight: 800;
+    }
+    .list_inforDetail >h6
+    {
+        display: flex;
+    }
+    .list_inforDetail >h6>a,.list_inforDetail >h6>p
+    {
+        color: red;
+        font-weight: 700;
+        font-size: 15px;
+    }
+    .list_inforDetail >h6>p
+    {
+        margin: 0 5px;
+    }
+.list_imgproDetail
+{
+    margin:50px 10px;
+}
+    .list_imgproDetail>img
+    {
+        width: 100%;
+    }
+
+
+/* list dánh giá sau hình*/
+.listdanhgia
+{
+    margin: 10px;
+    text-shadow: 0 0 0.5px #000;
+}
+    .listdanhgia >p>u
+    {
+        color: rgb(12 77 161);
+        font-weight: 700;
+        font-size: 15px;
+    }
+    .listdanhgia_bdsCN
+    {
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+    }
+    .listdanhgia_vitri
+    {
+        font-size: 16px;
+        color: #000;
+    }
+    .listdanhgia_bdsCN:hover
+    {
+       color: red;
+    }
+    .listdanhgia_giathoathuan
+    {
+        font-size: 15px;
+        color: #ffa538;
+        font-weight: 500;
+    }
+    .listdanhgia_label
+    {
+        display: flex;
+    }
+        .listdanhgia_label>label,.listdanhgia_danhgianhanluc>label
+        {
+            margin-right: 5px;
+            font-size: 16px;
+            color: #000;
+            font-weight: 500;
+        }
+        .listdanhgia_label>p
+        {
+            font-size: 14px;
+            line-height: 1.8;
+        }
+    .listdanhgia_danhgianhanluc
+    {
+        margin-bottom: 15px;
+        border-bottom: 2px solid #ccc;
+    }
+    .list_map
+    {
+        display: flex;
+        padding-left: 5px;
+        border-bottom: 2px solid #ccc;
+    }
+        .list_map>i
+        {
+            color: #000;
+        }
+    .list_formDDandinfor
+    {
+        display: flex;
+    }
+        .list_formDDandinfor--item
+        {
+            flex: 1;
+            margin: 0 15px;
+        }
+        table 
+        {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+            .list_formDDandinfor--title
+            {
+                color: rgb(12 77 161);
+                text-shadow: 0 0 1px #000;
+            }
+          
+            td, th {
+            
+                text-align: left;
+                padding: 8px;
+            }
+            
+            tr:nth-child(odd) {
+                background-color: #ebf5ff;
+            }
+            .loaibatdongsan
+            {
+                display: flex;
+            }
+            td >label
+            {
+                font-weight: 700;
+                line-height: 1.5;
+            }
+            td>p
+            {
+                color: #4bb07b;
+                font-weight: 600;
+            }
+            .loaibatdongsan>label
+            {
+                max-width: 150px;
+                width: 100%;
+            }
+            .loaibatdongsan>p
+            {
+                color: #4bb07b;
+                font-weight: 600;
+            }
+.list_share
+{
+    margin:30px 15px;
+    background-color: #f6f6f6;
+    padding: 20px;
+    display: flex;
+}
+    .list_share>h3
+    {
+        color: rgb(121, 116, 116);
+        flex: 3;
+        padding-bottom: 10px;
+        margin-right: 5px;
+    }
+    .list_share--icon >i
+    {
+        width: 50px;
+        font-size: 50px;
+        padding-top: 8%;
+    }
+    .fa-facebook-square
+    {
+        color: #37599d;
+    }
+    .fa-google-plus-square
+    {
+        color:  #f70304;
+    }
+    .fa-twitter-square
+    {
+        color: #43b3e8;
+    }
+    .fa-invision
+    {
+        color: #69b6d3;
+    }
+    .fa-pinterest
+    {
+        color: #df0807;
+    }
+
+/* gửi yêu cầu thuê bất động sản */
+.list_sendRequest
+{
+    border: 3px solid #ccc;
+    margin: 20px 0;
+}
+    .list_sendRequest--title
+    {
+        display: flex;
+        margin: 15px 20px;
+    }
+        .list_sendRequest--title>i
+        {
+            font-size: 30px;
+            line-height: 1.85;
+            color: #f8a804;
+            padding: 0 10px;
+        }
+        .list_sendRequest--title>h3
+        {
+            text-shadow: 0 0 1px #000;
+        }
+    .list_sendRequest--content
+    {
+    
+    }
+        .list_sendRequest--item,.list_sendRequest--area
+        {
+            display: flex;
+            margin: 20px 30% 20px 5px;
+        }
+        .list_sendRequest--area
+        {
+            display: flex;
+        }
+            .list_sendRequest--item>label
+            {
+                font-size: 16px;
+                color: #000;
+                font-weight: 500;
+                flex: 1;
+                text-align: right;
+                margin: auto;
+                padding-right: 20px;
+            }
+            .list_sendRequest--area>label
+            {
+                font-size: 16px;
+                color: #000;
+                font-weight: 500;
+                text-align: right;
+                padding-right: 20px;
+                flex: 1;
+            }
+            .list_sendRequest--item>input
+            {
+               flex: 5;
+                margin: auto;
+            }
+            .list_sendRequest--form 
+            {
+                flex: 5.3;
+            }
+    .list_sendRequest--btn>button
+    {
+        background-color: #02913c;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 2px;
+        padding: 5px 10px;
+        margin: 0px 0px 30px 20px;
+    }
+
+                

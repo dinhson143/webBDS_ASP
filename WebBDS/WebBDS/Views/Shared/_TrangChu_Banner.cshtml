@@ -1,0 +1,118 @@
+﻿
+@*@using WowWeb.Models;
+@using WowCore*@
+@*@model TrangChuModel*@
+
+@{
+    List<Dictionary<string, object>> listBanner = null;
+    Dictionary<string, object> listVideo = null;
+    //listBanner = Model.ListDict_Banner as List<Dictionary<string, object>>;
+    //listVideo = Model.Dict_Video as Dictionary<string, object>;
+}
+
+
+
+<div class="main" id="_TrangChu_Banner">
+    @*<div class="menu">
+        <div class="row mainmenu">
+            <div class="menuLogin">
+                <div class="menuLogin__signin">
+                    Đăng nhập
+                </div>
+                <div class="menuLogin__signup">
+                    Đăng ký
+                </div>
+            </div>
+            <div class="menuSearch">
+                <div class="input-group">
+                    <div class="menuSearch__sub1">
+                        <div class="menuSearch__sub--item">MUA</div>
+                        <div class="menuSearch__sub--item">THUÊ</div>
+                        <div class="menuSearch__sub--item">DỰ ÁN</div>
+                    </div>
+                    <div class="menuSearch__input">
+                        <input type="text" class="form-control" placeholder="Nhập bđs bạn muốn tìm kiếm...">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                    </div>
+                </div>
+                <div class="menuSearch__sub">
+                    <div class="menuSearch__sub1">
+                        <div class="menuSearch__sub--item itemmua">
+                            MUA
+                        </div>
+                        <div class="menuSearch__sub--item">THUÊ</div>
+                        <div class="menuSearch__sub--item">DỰ ÁN</div>
+                    </div>
+                    <div class="menuSearch__sub1 menuSearch__sub1Mobile">
+                        <div class="menuSearch__sub--item">MUA</div>
+                        <div class="menuSearch__sub--item">THUÊ</div>
+                        <div class="menuSearch__sub--item">DỰ ÁN</div>
+                        <div class="menuSearch__sub--item showmenuPlus">
+                            +
+                            <div class="menuPlus">
+                                <div class="menuSearch__sub2">
+                                    <p>Xem bằng bản đồ</p>
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="menuSearch__sub2">
+                                    <p>3D Tour</p>
+                                    <i class="fab fa-unity"></i>
+                                </div>
+                                <div class="menuSearch__sub2">
+                                    <p>Video</p>
+                                    <i class="fas fa-photo-video"></i>
+                                </div>
+                                <div class="menuSearch__sub2">
+                                    <p>Tìm nâng cao</p>
+                                    <i class="fas fa-search-plus"></i>
+                                </div>
+                                <div class="menuSearch__sub2">
+                                    <p>Đóng</p>
+                                    <i class="fas fa-times"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menuSearch__sub2">
+                        <p>Xem bằng bản đồ</p>
+                        <i class="fas fa-map-marked-alt"></i>
+                    </div>
+                    <div class="menuSearch__sub2">
+                        <p>3D Tour</p>
+                        <i class="fab fa-unity"></i>
+                    </div>
+                    <div class="menuSearch__sub2">
+                        <p>Video</p>
+                        <i class="fas fa-photo-video"></i>
+                    </div>
+                    <div class="menuSearch__sub2">
+                        <p>Tìm nâng cao</p>
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>*@
+    
+
+    <div class="swiper-container mySwiper sliderHead">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide item slide">
+                <video controls autoplay>
+                    <source src="~/images/ads.mp4" type="video/mp4" />
+                </video>
+            </div>
+            <div class="swiper-slide item">
+                <img src="~/images/bn1.jpg" alt="">
+            </div>
+            <div class="swiper-slide item">
+                <img src="~/images/bn2.jpg" alt="">
+            </div>
+            <div class="swiper-slide item">
+                <img src="~/images/bn3.jpg" alt="">
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>

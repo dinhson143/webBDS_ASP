@@ -1,0 +1,348 @@
+﻿
+@model  WebBDS.Models.TrangchuModel
+@{
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.LoaiBDS> listLBDS = new List<WebBDS.Models.LoaiBDS>();
+    listBDS = Model.BDS;
+    listLBDS = Model.loaiBDS;
+    int dem = 0;
+    List<WebBDS.Models.BDS> listBDS_nhapho = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.BDS> listBDS_nhapho_mua = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.BDS> listBDS_nhapho_thue = new List<WebBDS.Models.BDS>();
+    for (int j = 0; j < listBDS.Count; j++)
+    {
+        if (listBDS[j].maloaiBDS == listLBDS[0]._id)
+        {
+            if (listBDS[j].Status == "Mua")
+            {
+                listBDS_nhapho_mua.Add(listBDS[j]);
+            }
+            else
+            {
+                listBDS_nhapho_thue.Add(listBDS[j]);
+            }
+        }
+    }
+}
+
+
+<div class="row bietthuRow loaiBDSrow @listLBDS[0]._id">
+    <div class="danhmucnoibat bietthu">
+        <div class="danmucnoibat__start bietthu__start">
+
+        </div>
+    </div>
+    <div class="SelectaName">
+        <div class="TitleBlock">
+            <div class="danhmucnoibat__title">
+                <!-- <i class="fas fa-hotel"></i> -->
+                <img src="~/images/trangchu/img/BIETTHU.svg" alt="">
+                <h2>@listLBDS[0].Name</h2>
+            </div>
+        </div>
+        <div class="SelectBlock">
+            <div class="SelectaName__name">
+                <p>Xem bằng bản đồ</p>
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="SelectaName__select">
+                <div class="SelectaName__select--mua muaBietthu">
+                    <p>MUA</p>
+                </div>
+                <div class="SelectaName__select--thue thueBietthu">
+                    <p>THUÊ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bietthuItem mua">
+        @for (int i = 0; i < listBDS_nhapho_mua.Count; i++)
+        {
+            int tam = -1;
+            if (i < 4)
+            {
+                <div class="row">
+                    @for (int j = i; j < listBDS_nhapho_mua.Count; j++)
+                    {
+                        tam++;
+                        if (j + 1 == listBDS_nhapho_mua.Count)
+                        {
+                            i += 2;
+                        }
+                        if (tam == 3)
+                        {
+                            i += 2;
+                            break;
+                        }
+
+                        <div class="bietthuItem__item col l-4 m-4 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    <img src="@listBDS_nhapho_mua[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_nhapho_mua[j].Dientich m2</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bed.svg" alt="">
+                                        <p>@i</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bath.svg" alt="">
+                                        <p>#</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_nhapho_mua[j]._id')"></i>
+                            <p class="bietthuItem__item--title">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    @listBDS_nhapho_mua[j].Name
+                                </a>
+                            </p>
+                            <p class="bietthuItem__item--des">
+                                @listBDS_nhapho_mua[j].Mota
+                            </p>
+                            <div class="bietthuItem__item--location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>@listBDS_nhapho_mua[j].Vitri</p>
+                            </div>
+                            <div class="bietthuItem__item--footer">
+                                <h1>@listBDS_nhapho_mua[j].Gia </h1>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else if (i < listBDS_nhapho_mua.Count)
+            {
+                <div class="row rowBietThumore">
+                    @for (int j = i; j < listBDS_nhapho_mua.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 3)
+                        {
+                            break;
+                        }
+                        <div class="bietthuItem__item col l-4 m-4 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    <img src="@listBDS_nhapho_mua[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_nhapho_mua[j].Dientich m2</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bed.svg" alt="">
+                                        <p>@i</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bath.svg" alt="">
+                                        <p>#</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_nhapho_mua[j]._id')"></i>
+                            <p class="bietthuItem__item--title">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    @listBDS_nhapho_mua[j].Name
+                                </a>
+                            </p>
+                            <p class="bietthuItem__item--des">
+                                @listBDS_nhapho_mua[j].Mota
+                            </p>
+                            <div class="bietthuItem__item--location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>@listBDS_nhapho_mua[j].Vitri</p>
+                            </div>
+                            <div class="bietthuItem__item--footer">
+                                <h1>@listBDS_nhapho_mua[j].Gia </h1>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_nhapho_mua[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+    <div class="bietthuItem thue">
+        @for (int i = 0; i < listBDS_nhapho_thue.Count; i++)
+        {
+            int tam = -1;
+            if (i < 4)
+            {
+                <div class="row">
+                    @for (int j = i; j < listBDS_nhapho_thue.Count; j++)
+                    {
+                        tam++;
+                        if (j + 1 == listBDS_nhapho_thue.Count)
+                        {
+                            i += 2;
+                        }
+                        if (tam == 3)
+                        {
+                            i += 2;
+                            break;
+                        }
+
+                        <div class="bietthuItem__item col l-4 m-4 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    <img src="@listBDS_nhapho_thue[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_nhapho_thue[j].Dientich m2</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bed.svg" alt="">
+                                        <p>@i</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bath.svg" alt="">
+                                        <p>#</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_nhapho_thue[j]._id')"></i>
+                            <p class="bietthuItem__item--title">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    @listBDS_nhapho_thue[j].Name
+                                </a>
+                            </p>
+                            <p class="bietthuItem__item--des">
+                                @listBDS_nhapho_thue[j].Mota
+                            </p>
+                            <div class="bietthuItem__item--location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>@listBDS_nhapho_thue[j].Vitri</p>
+                            </div>
+                            <div class="bietthuItem__item--footer">
+                                <h1>@listBDS_nhapho_thue[j].Gia </h1>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else if (i < listBDS_nhapho_thue.Count)
+            {
+                <div class="row rowBietThumore">
+                    @for (int j = i; j < listBDS_nhapho_thue.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 3)
+                        {
+                            break;
+                        }
+                        <div class="bietthuItem__item col l-4 m-4 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    <img src="@listBDS_nhapho_thue[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_nhapho_thue[j].Dientich m2</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bed.svg" alt="">
+                                        <p>@i</p>
+                                    </div>
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/bath.svg" alt="">
+                                        <p>#</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_nhapho_thue[j]._id')"></i>
+                            <p class="bietthuItem__item--title">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    @listBDS_nhapho_thue[j].Name
+                                </a>
+                            </p>
+                            <p class="bietthuItem__item--des">
+                                @listBDS_nhapho_thue[j].Mota
+                            </p>
+                            <div class="bietthuItem__item--location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <p>@listBDS_nhapho_thue[j].Vitri</p>
+                            </div>
+                            <div class="bietthuItem__item--footer">
+                                <h1>@listBDS_nhapho_thue[j].Gia </h1>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_nhapho_thue[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+    <div class="btnMore btnMoreBietThu col l-4 m-4 c-12">
+        <div class="btnMore__des">XEM THÊM <p></p> BIỆT THỰ</div>
+        <i class="fas fa-caret-up iconUp"></i>
+        <i class="fas fa-caret-down iconDown"></i>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function xemChiTiet(id) {
+        var idBDS = id;
+        $.ajax({
+            url: '/BDStheoLoai/GetID_BDS',
+            data: { 'id': idBDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                window.location = '/BDS/ChiTietBDS';
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+
+    }
+    function addCart(id) {
+        var BDS = id;
+        $.ajax({
+            url: '/BDS/AddCart',
+            data: { 'id': BDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                if (data['mgs'] == false) {
+                    window.location = '/Login/Index';
+                }
+                else {
+                    alert(data['note'])
+                }
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+    }
+</script>
+

@@ -1,0 +1,704 @@
+﻿
+@{
+    Layout = null;
+}
+@model  WebBDS.Models.AdminListLich_Model
+@{
+    List<WebBDS.Models.User> listUser = new List<WebBDS.Models.User>();
+    List<WebBDS.Models.Lich> listLich = new List<WebBDS.Models.Lich>();
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    listUser = Model.User;
+    listLich = Model.Lich;
+    listBDS = Model.BDS;
+
+    WebBDS.Models.BDS getBDS(string idBDS)
+    {
+        WebBDS.Models.BDS x = new WebBDS.Models.BDS();
+        foreach (var item in listBDS)
+        {
+            if (item._id == idBDS)
+            {
+                x = item;
+                break;
+            }
+        }
+        return x;
+    }
+
+    WebBDS.Models.User getUser(string id)
+    {
+        WebBDS.Models.User x = new WebBDS.Models.User();
+        foreach (var item in listUser)
+        {
+            if (item._id == id)
+            {
+                x = item;
+                break;
+            }
+        }
+        return x;
+    }
+
+    Boolean checkExist(string idUser)
+    {
+        bool check = false;
+        foreach (var item in listLich)
+        {
+            if (item.IDuser == idUser)
+            {
+                check = true;
+            }
+        }
+        return check;
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/custom/User/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="~/images/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Dự Án
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="~/Content/custom/User/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="~/Content/custom/User/assets/demo/demo.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <style>
+        body, html {
+            background-color: #000;
+            color: #fff;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 50;
+        }
+
+        .container-fluid {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            z-index: 150;
+            position: absolute;
+        }
+
+        .card {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            max-height: 580px;
+        }
+
+        #example_filter, .dataTables_length {
+            margin-top: 20px !important;
+        }
+
+        .thead-dark th {
+            color: #000 !important;
+        }
+
+        .dataTables_paginate {
+            position: fixed;
+            bottom: -20px;
+            right: 20px;
+            background-color: aquamarine;
+        }
+
+        .paginate_button:hover {
+            background-color: #ccc;
+            color: #000;
+        }
+
+        .dataTables_info {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="">
+    <div class="wrapper ">
+        <canvas id="bgCanvas"></canvas>
+        <div class="sidebar" data-color="purple" data-background-color="white" data-image="" style="z-index:100">
+            <div class="logo">
+                <a href="#" class="simple-text logo-normal" style="font-weight:600">
+                    <img src="~/images/user.png" style="width:50px" />
+                </a>
+            </div>
+            <div class="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="nav-item  ">
+                        <a class="nav-link" href="/">
+                            <p>Trang Chu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/User/Index">
+                            <i class="material-icons">person</i>
+                            <p>User Profile</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/User/ListUser" onclick="getUser()">
+                            <i class="material-icons">content_paste</i>
+                            <p>User</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/User/LoaiBDS">
+                            <i class="material-icons">content_paste</i>
+                            <p>Loại Bất Động Sản</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/User/ListBDS">
+                            <i class="material-icons">content_paste</i>
+                            <p>Dự Án</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/User/ListBDSmark">
+                            <i class="material-icons">content_paste</i>
+                            <p>BDS quan tâm</p>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="">
+                            <i class="material-icons">content_paste</i>
+                            <p>Lịch hẹn</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/User/Thongke">
+                            <i class="material-icons">content_paste</i>
+                            <p>Thống kê</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        @*<div class="input-group no-border btnAllBDS" style="margin-top:50px">
+                                <a href="#" class="btn btn--edit">
+                                    <p style="margin-bottom:0;color:#fff"></p>
+                                </a>
+                            </div>*@
+                    </div>
+                    <div class="collapse navbar-collapse justify-content-end">
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card card-profile">
+                                @foreach (var us in listUser)
+                                {
+                                    var dem = 0;
+                                    if (checkExist(us._id) == true)
+                                    {
+                                        <table id="example" class="table table-striped table-bordered table-sm infor-table"
+                                               data-show-export="true"
+                                               data-show-toggle="true"
+                                               data-show-columns="true"
+                                               data-export-data-type="excel"
+                                               data-click-to-select="true"
+                                               data-height="450"
+                                               data-pagination="true"
+                                               data-export-types=['excel']
+                                               data-page-list="[10, 25, 50, 100, 200, All]">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>SDT</th>
+                                                    <th>Date</th>
+                                                    <th>Tên dự án</th>
+                                                    <th>Xác nhận</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in listLich)
+                                                {
+                                                    if (us._id == item.IDuser)
+                                                    {
+                                                        dem++;
+                                                        var bds = getBDS(item.IDbds);
+                                                        var user = getUser(item.IDuser);
+                                                        var confirm = "";
+                                                        if (@item.Xacnhan == true)
+                                                        {
+                                                            confirm = "Đã lên lịch";
+                                                        }
+                                                        else
+                                                        {
+                                                            confirm = "Chưa lên lịch";
+                                                        }
+
+                                                        if (dem == 1)
+                                                        {
+                                                            <h3 style="font-weight:600;color:#000;box-shadow: 0 2px #000">Name: @user.UserInfor.Name</h3>
+                                                        }
+                                                        <tr>
+                                                            <td>
+                                                                @item.Name
+                                                            </td>
+                                                            <td>@item.Email</td>
+                                                            <td>@item.Sdt</td>
+                                                            <td>@item.Date</td>
+                                                            <td>@bds.Name</td>
+                                                            <td>@confirm</td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/core/bootstrap-material-design.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+    <script src="~/Content/custom/User/assets/js/plugins/moment.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/sweetalert2.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/jquery.validate.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-selectpicker.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/jquery.dataTables.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-tagsinput.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/jasny-bootstrap.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/fullcalendar.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/nouislider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/arrive.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/chartist.min.js"></script>
+    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-notify.js"></script>
+    <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+    <script src="~/Content/custom/User/assets/demo/demo.js"></script>
+
+    <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+
+        $('#example').DataTable();
+
+
+        (function () {
+            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+            window.requestAnimationFrame = requestAnimationFrame;
+        })();
+
+        // Terrain stuff.
+        var background = document.getElementById("bgCanvas"),
+            bgCtx = background.getContext("2d"),
+            width = window.innerWidth,
+            height = document.body.offsetHeight;
+
+        (height < 400) ? height = 400 : height;
+
+        background.width = width;
+        background.height = height;
+
+        function Terrain(options) {
+            options = options || {};
+            this.terrain = document.createElement("canvas");
+            this.terCtx = this.terrain.getContext("2d");
+            this.scrollDelay = options.scrollDelay || 90;
+            this.lastScroll = new Date().getTime();
+
+            this.terrain.width = width;
+            this.terrain.height = height;
+            this.fillStyle = options.fillStyle || "#191D4C";
+            this.mHeight = options.mHeight || height;
+
+            // generate
+            this.points = [];
+
+            var displacement = options.displacement || 140,
+                power = Math.pow(2, Math.ceil(Math.log(width) / (Math.log(2))));
+
+            // set the start height and end height for the terrain
+            this.points[0] = this.mHeight;//(this.mHeight - (Math.random() * this.mHeight / 2)) - displacement;
+            this.points[power] = this.points[0];
+
+            // create the rest of the points
+            for (var i = 1; i < power; i *= 2) {
+                for (var j = (power / i) / 2; j < power; j += power / i) {
+                    this.points[j] = ((this.points[j - (power / i) / 2] + this.points[j + (power / i) / 2]) / 2) + Math.floor(Math.random() * -displacement + displacement);
+                }
+                displacement *= 0.6;
+            }
+
+            document.body.appendChild(this.terrain);
+        }
+
+        Terrain.prototype.update = function () {
+            // draw the terrain
+            this.terCtx.clearRect(0, 0, width, height);
+            this.terCtx.fillStyle = this.fillStyle;
+
+            if (new Date().getTime() > this.lastScroll + this.scrollDelay) {
+                this.lastScroll = new Date().getTime();
+                this.points.push(this.points.shift());
+            }
+
+            this.terCtx.beginPath();
+            for (var i = 0; i <= width; i++) {
+                if (i === 0) {
+                    this.terCtx.moveTo(0, this.points[0]);
+                } else if (this.points[i] !== undefined) {
+                    this.terCtx.lineTo(i, this.points[i]);
+                }
+            }
+
+            this.terCtx.lineTo(width, this.terrain.height);
+            this.terCtx.lineTo(0, this.terrain.height);
+            this.terCtx.lineTo(0, this.points[0]);
+            this.terCtx.fill();
+        }
+
+
+        // Second canvas used for the stars
+        bgCtx.fillStyle = '#05004c';
+        bgCtx.fillRect(0, 0, width, height);
+
+        // stars
+        function Star(options) {
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * .05;
+            this.x = options.x;
+            this.y = options.y;
+        }
+
+        Star.prototype.reset = function () {
+            this.size = Math.random() * 2;
+            this.speed = Math.random() * .05;
+            this.x = width;
+            this.y = Math.random() * height;
+        }
+
+        Star.prototype.update = function () {
+            this.x -= this.speed;
+            if (this.x < 0) {
+                this.reset();
+            } else {
+                bgCtx.fillRect(this.x, this.y, this.size, this.size);
+            }
+        }
+
+        function ShootingStar() {
+            this.reset();
+        }
+
+        ShootingStar.prototype.reset = function () {
+            this.x = Math.random() * width;
+            this.y = 0;
+            this.len = (Math.random() * 80) + 10;
+            this.speed = (Math.random() * 10) + 6;
+            this.size = (Math.random() * 1) + 0.1;
+            // this is used so the shooting stars arent constant
+            this.waitTime = new Date().getTime() + (Math.random() * 3000) + 500;
+            this.active = false;
+        }
+
+        ShootingStar.prototype.update = function () {
+            if (this.active) {
+                this.x -= this.speed;
+                this.y += this.speed;
+                if (this.x < 0 || this.y >= height) {
+                    this.reset();
+                } else {
+                    bgCtx.lineWidth = this.size;
+                    bgCtx.beginPath();
+                    bgCtx.moveTo(this.x, this.y);
+                    bgCtx.lineTo(this.x + this.len, this.y - this.len);
+                    bgCtx.stroke();
+                }
+            } else {
+                if (this.waitTime < new Date().getTime()) {
+                    this.active = true;
+                }
+            }
+        }
+
+        var entities = [];
+
+        // init the stars
+        for (var i = 0; i < height; i++) {
+            entities.push(new Star({
+                x: Math.random() * width,
+                y: Math.random() * height
+            }));
+        }
+
+        // Add 2 shooting stars that just cycle.
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new ShootingStar());
+        entities.push(new Terrain({ mHeight: (height) - 320 }));
+        entities.push(new Terrain({ displacement: 120, scrollDelay: 50, fillStyle: "rgb(17,20,40)", mHeight: (height) - 200 }));
+        entities.push(new Terrain({ displacement: 100, scrollDelay: 20, fillStyle: "rgb(10,10,5)", mHeight: height - 120 }));
+
+        //animate background
+        function animate() {
+            bgCtx.fillStyle = '#110E19';
+            bgCtx.fillRect(0, 0, width, height);
+            bgCtx.fillStyle = '#ffffff';
+            bgCtx.strokeStyle = '#ffffff';
+
+            var entLen = entities.length;
+
+            while (entLen--) {
+                entities[entLen].update();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+
+        ////////////////
+        $(".loaiBDS").hide();
+        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listLich)'.replace(/&quot;/g, "\""));
+        var array2 = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listUser)'.replace(/&quot;/g, "\""));
+        var lich = null;
+        var loaiBDS = null;
+        var idFilterLoai = 0;
+        // Loai BDs
+        $(".btnAllBDS").click(() => {
+            $("table").hide();
+            $(".AllBDS").show();
+        })
+        function handlerFilterLoai(id) {
+            idFilterLoai = id;
+            $("table").hide();
+            let className = "." + id;
+            $(className).toggle();
+            $(".AllBDS").hide();
+        }
+        // BDS
+        var idDuAn = "";
+        var name = "";
+        var mota= "";
+        var vitri= "";
+        var dientich= "";
+        var gia = "";
+        var image = "";
+
+
+     
+    </script>
+    <script>
+        $(document).ready(function () {
+            $().ready(function () {
+                $sidebar = $('.sidebar');
+
+                $sidebar_img_container = $sidebar.find('.sidebar-background');
+
+                $full_page = $('.full-page');
+
+                $sidebar_responsive = $('body > .navbar-collapse');
+
+                window_width = $(window).width();
+
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+
+                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                        $('.fixed-plugin .dropdown').addClass('open');
+                    }
+
+                }
+
+                $('.fixed-plugin a').click(function (event) {
+                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
+
+                $('.fixed-plugin .active-color span').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-color', new_color);
+                    }
+
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .background-color .badge').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('background-color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-background-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .img-holder').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).parent('li').siblings().removeClass('active');
+                    $(this).parent('li').addClass('active');
+
+
+                    var new_image = $(this).find("img").attr('src');
+
+                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        $sidebar_img_container.fadeOut('fast', function () {
+                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                            $sidebar_img_container.fadeIn('fast');
+                        });
+                    }
+
+                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $full_page_background.fadeOut('fast', function () {
+                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            $full_page_background.fadeIn('fast');
+                        });
+                    }
+
+                    if ($('.switch-sidebar-image input:checked').length == 0) {
+                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+
+                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                    }
+
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                    }
+                });
+
+                $('.switch-sidebar-image input').change(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $input = $(this);
+
+                    if ($input.is(':checked')) {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar_img_container.fadeIn('fast');
+                            $sidebar.attr('data-image', '#');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page_background.fadeIn('fast');
+                            $full_page.attr('data-image', '#');
+                        }
+
+                        background_image = true;
+                    } else {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar.removeAttr('data-image');
+                            $sidebar_img_container.fadeOut('fast');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page.removeAttr('data-image', '#');
+                            $full_page_background.fadeOut('fast');
+                        }
+
+                        background_image = false;
+                    }
+                });
+
+                $('.switch-sidebar-mini input').change(function () {
+                    $body = $('body');
+
+                    $input = $(this);
+
+                    if (md.misc.sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        md.misc.sidebar_mini_active = false;
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                    } else {
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                        setTimeout(function () {
+                            $('body').addClass('sidebar-mini');
+
+                            md.misc.sidebar_mini_active = true;
+                        }, 300);
+                    }
+
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
+
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function () {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
+
+                });
+            });
+        });</script>
+</body>
+
+</html>

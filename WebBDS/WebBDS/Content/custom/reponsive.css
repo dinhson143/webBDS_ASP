@@ -1,0 +1,878 @@
+@media (max-width:1550px) {
+    .navSearch__bieudoChuthich .navSearch__bieudoChuthichTren {
+        display: block;
+    }
+
+    .navSearch__bieudoChuthichTren .navSearch__bieudoChuthich--item {
+        /* text-align: -webkit-right; */
+    }
+
+    .navSearch__bieudoTren #doughnut-chart {
+        width: 500px !important;
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    .navSearch__bieudoTren #doughnut-chart {
+        margin-left: -45%;
+        margin-right: -45%;
+    }
+}
+
+@media (min-width: 1367px) {
+    .startbody {
+        max-width: 1800px;
+        width: 100%;
+    }
+}
+
+@media (max-width:1367px) {
+    .navSearch__bieudoTren #doughnut-chart {
+        margin-left: -50%;
+        margin-right: -50%;
+    }
+
+    .endSlider4__right {
+        width: 100%;
+        margin-left: unset;
+    }
+}
+
+@media (max-width:1919px) {
+    .navSearch__tinhlaisuat .navSearch__tinhlaisuat--item {
+        display: block;
+    }
+
+    .navSearch__tinhlaisuat--item .navSearch__tinhlaisuat--itemGia {
+        margin-left: 0;
+        width: unset;
+        padding: 5px 0;
+    }
+
+    .navSearch__tinhlaisuat--item .navSearch__tinhlaisuat--itemDonvi {
+        padding: 5px 0;
+    }
+
+    .navSearch__tinhlaisuat .navSearch__tinhlaisuat--item label {
+        font-size: 15px;
+    }
+
+    .navSearch .navSearch__Chuthich {
+        display: block;
+    }
+
+    .navSearch__Chuthich--item {
+        justify-content: center;
+    }
+
+    .navSearch__bieudoChuthich .navSearch__bieudoChuthichDuoi {
+        display: block;
+    }
+}
+/* ipad pro */
+@media (max-width:1239px) and (min-width:1023px) {
+    .list_product--item, .list_product--vitri {
+        font-size: 12px;
+    }
+
+    .list_head {
+        /*height: 100px;*/
+    }
+
+    .list_product--end > a {
+        margin-top: 15px;
+    }
+
+    .list_product--end > a {
+        font-size: 15px !important;
+    }
+
+    .list_product--end > p {
+        font-size: 11px !important;
+        flex: 1.15 !important;
+        padding-top: 22px;
+    }
+
+    .list_formDDandinfor--title {
+        font-size: 26px;
+    }
+    /* 8xland3 */
+    .listDuans_iteminfo--location > p {
+        font-size: 13px !important;
+    }
+
+    .owl-carousel.owl-drag .owl-item {
+        margin: 0 !important;
+    }
+    /* 8xland4 */
+    .slider4__start {
+        width: 42% !important;
+    }
+
+    .owl-nav span {
+        /* line-height: 1.7 !important; */
+    }
+
+    .endSlider4__right--item {
+        padding-bottom: 10px !important;
+    }
+
+    button.owl-next > span {
+        margin-left: 1px;
+    }
+
+    .startP4__title > h1, .navP4 {
+        padding-left: 30px !important;
+    }
+
+    .gioithieu-vitri-tienich__content--item {
+        font-size: 16px !important;
+    }
+
+    .search__SDT {
+        padding: 50px 20px;
+    }
+    /* Chitietnhapho1 */
+    .navCTNP1__search {
+        width: 98% !important;
+        transform: translate(-50%, -90%) !important;
+    }
+
+    .navCTNP1__dettailNav {
+        width: 80% !important;
+        top: 70% !important;
+    }
+
+    .mainbody__allItem--img,
+    .mainbody__allItemDetail {
+        width: 100%;
+    }
+
+        .mainbody__allItemDetail--navEndright .mainbody__allItemDetail--navEndUser > p,
+        .mainbody__allItemDetail .mainbody__allItemDetail--navEnd > p {
+            font-size: 15px;
+        }
+
+    .mainbody__allItemDetail--navEndChat > p {
+        font-size: 15px !important;
+    }
+        
+    .searchDetailnhapho .submitInfor {
+        height: 650px;
+    }
+
+    .submitInfor .submitInforDetail > input {
+        width: 90%;
+    }
+
+    .submitInforDetail .submitInfor__btn {
+        width: 70%;
+    }
+
+    .navCTNP1__searchStart--block > h3 {
+        font-size: 23px;
+    }
+    /* chi tiết nhà pho 2 */
+    .searchBlock__listItem .searchBlock__listItemDetail {
+        display: block;
+    }
+
+        .searchBlock__listItem .searchBlock__listItemDetail > img {
+            max-width: unset;
+        }
+    /* Chi tiết nhà phố 3 */
+    .titleChitietNP4__desContent .titleChitietNP4__desLienhe {
+        /* display: block; */
+    }
+
+    .titleChitietNP4__desContentDetail .titleChitietNP4__desContentDetail--item {
+        display: block;
+    }
+
+    .titleChitietNP4__shareSave-Link {
+        margin-top: 10px;
+    }
+
+    .inforuser__account .inforuser__accountName h4 {
+        font-size: 26px;
+    }
+
+    .inforuser__account .inforuser__accountName--active p {
+        font-size: 10px;
+    }
+
+    .inforuser__accountRate--item p {
+        font-size: 13px;
+    }
+
+    .inforuser .inforuser__Phone a {
+        margin-left: 0;
+        padding-left: 30px;
+    }
+
+    .navSearch .navSearch__item p {
+        font-size: 18px;
+    }
+
+    .bdsNoibat__title h2 {
+        font-size: 20px;
+    }
+
+    .bdsNoibat__list .bdsNoibat__list--item {
+        display: block;
+    }
+
+        .bdsNoibat__list .bdsNoibat__list--item img {
+            max-width: unset;
+        }
+
+    .sliderChitietnhapho3 .slider2 .owl-nav span {
+        left: 97%;
+    }
+
+    .navSearch__bieudoTren #doughnut-chart {
+        margin-left: -65%;
+        margin-right: -65%;
+    }
+}
+
+
+
+@media (max-width:1919px) and (min-width:1025px) {
+    .startP4__title > h1, .navP4 {
+        padding-left: 30px !important;
+    }
+}
+
+@media (max-width:1023px) {
+
+    .main {
+        padding: 0 20px !important;
+    }
+    .list_product--img {
+        max-width: unset !important;
+    }
+    .mainDetailnhapho {
+        padding: 0 !important;
+    }
+
+    .search {
+        padding: 0 20px !important;
+    }
+    /* 8xland3 */
+    .nav {
+        display: block !important;
+    }
+
+    .nav_item--sort, .nav_item {
+        margin: 0 !important;
+        padding: 14px 0;
+        margin-bottom: 16px !important;
+    }
+
+    .nav > input {
+        padding-left: 15px;
+        max-height: unset !important;
+    }
+
+    .nav_item, .nav_item--sort {
+        max-height: unset !important;
+    }
+    /* 8xland4 */
+    .slider4__start {
+        width: 93% !important;
+    }
+
+    .endSlider4 {
+        display: block !important;
+    }
+
+    button.owl-next > span {
+        margin-right: -33px;
+    }
+
+    button.owl-prev > span {
+        margin-right: 5px !important;
+    }
+
+    .startP4__title > h1, .navP4 {
+        padding-left: 0px !important;
+    }
+
+    .endSlider4__right {
+        width: unset;
+        margin-left: unset;
+    }
+    /* chitietnhapho1 */
+    .navCTNP1__search, .navCTNP1__dettailNav {
+        position: unset !important;
+        transform: unset !important;
+        margin: auto;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        width: 90% !important;
+        margin-top: 20px;
+    }
+
+    .navCTNP1__dettailNav {
+        /* display: none; */
+    }
+
+    .navCTNP1 > img {
+        max-height: 500px !important;
+    }
+
+    .navCTNP1__searchStart {
+        margin-top: 25px !important;
+    }
+
+    .navCTNP1__searchStart--block > h3 {
+        margin-left: 0 !important;
+    }
+
+    .navCTNP1__searchStart--block1 > input {
+        font-size: 13px !important;
+        padding: 0 2px !important;
+        font-size: 30px !important;
+        border: none !important;
+    }
+
+    .navCTNP1__searchStart--block1 > input {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 355px;
+    }
+
+    .navCTNP1__searchStart--block1Search > p {
+        margin-top: 14% !important;
+    }
+
+    .navCTNP1__searchEnd {
+        display: block !important;
+        margin-bottom: 10px !important;
+        /* display: none !important; */
+    }
+
+    .search_item {
+        width: 90% !important;
+        margin-bottom: 8px !important;
+        font-size: 18px !important;
+        padding: 10px 0 !important;
+    }
+
+    .search_item--pro {
+        padding: 12px !important;
+    }
+
+    .navCTNP1__searchEnd--bottom {
+        margin: 0 25px !important;
+    }
+
+    .leftAds, .rightAds {
+        display: none;
+    }
+
+    .mainbody__allItemDetail--navEndright .mainbody__allItemDetail--navEndUser > p,
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEnd > p {
+        font-size: 18px;
+    }
+
+    .mainbody__allItemDetail--navEndChat > p {
+        font-size: 18px !important;
+    }
+
+    .mainbody .mainbody__link {
+        margin-left: -15px;
+    }
+
+    .searchDetailnhapho .submitInfor {
+        height: 550px;
+    }
+
+    .searchDetailnhapho {
+        padding: 0 !important;
+    }
+
+    .submitInfor > img {
+        width: 100%;
+    }
+
+    .mainDetailnhapho .titleChitietNP4 {
+        padding: 0 15px;
+    }
+
+    .sliderChitietnhapho3 .slider2 .owl-nav span {
+        left: 96%;
+    }
+}
+
+
+
+@media (max-width:1240px) {
+    .searchblock {
+    }
+
+    .list_nav > Select {
+        flex: 2 !important;
+    }
+    /* 8x land2 */
+    .list_sendRequest--item, .list_sendRequest--area {
+        margin: 20px 5% 20px 5px !important;
+    }
+
+        .list_sendRequest--item > label {
+            width: 100%;
+            flex: 1 !important;
+        }
+
+        .list_sendRequest--area > label {
+        }
+
+    .list_sendRequest--form {
+        flex: 5.5 !important;
+    }
+    /*8xland3  */
+    .nav > input {
+        padding: 0 5px;
+    }
+
+    .nav_item {
+    }
+
+    .listDuans_iteminfo--location > p {
+        font-size: 15px !important;
+    }
+
+    .iconSlider__item {
+        margin-right: 25px !important;
+    }
+    /* 8xland4 */
+    .owl-dots {
+        display: none;
+    }
+    /* chi tiết nhà đất 1 */
+    .mainbody__allItem--img > img {
+        height: unset !important;
+    }
+
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEnd > h3 {
+        font-size: 21px;
+    }
+    /* chi tiet nha pho 3 */
+    .navCTNP1 .navCTNP3 {
+        display: block;
+    }
+
+    .navCTNP3__item--select .navCTNP3__itemSl,
+    .navCTNP3__item--select .navCTNP3__itemAll p {
+        font-size: 18px;
+    }
+
+    .navCTNP3 .navCTNP3__itemtimkiem p {
+        transform: unset;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .navCTNP3__itemFilter {
+        padding: 20px 0;
+    }
+
+    .navCTNP3 .navCTNP3__itemFilter p,
+    .navCTNP3 .navCTNP3__itemFilter i {
+        font-size: 20px;
+    }
+
+    .sellhire__itemSell > p, .sellhire__itemHire > p,
+    .navCTNP3__itemSearch input {
+        font-size: 20px;
+    }
+    /* Chi tiết nhà đất 3 */
+    .titleChitietNP4 .titleChitietNP4__share {
+        /* display:  block; */
+    }
+
+    .titleChitietNP4__shareSave-Link .titleChitietNP4__shareSave {
+        /* margin-top: 10px; */
+        margin-left: 0;
+    }
+
+    .inforuser .inforuser__chat {
+        margin: 0;
+    }
+
+    .navSearch__tinhlaisuat .navSearch__tinhlaisuat--item {
+        display: block;
+    }
+}
+
+
+
+@media (min-width:601px) and (max-width:769px) {
+    .slider4__start {
+        margin: 0 25px !important;
+    }
+}
+
+@media (max-width:601px) {
+    .list_nav > p {
+        margin-top: 0px !important;
+    }
+    /* 8xland3 */
+    .nav > input {
+        font-size: 12px;
+        padding-left: 13px !important;
+    }
+    /* 8xland4 */
+    button.owl-prev > span {
+        margin-left: -24px !important;
+    }
+
+    .slider4__displayimg {
+        display: block !important;
+    }
+    /* chi tiết nhà phố 1 */
+
+}
+
+
+@media (min-width:415px ) and (max-width:679px) {
+    .gioithieu-vitri-tienich__content--item {
+        font-size: 15px !important;
+    }
+}
+
+@media (max-width:740px) {
+    .main {
+        padding: 0 15px !important;
+    }
+
+    .mainDetailnhapho {
+        padding: 0 !important;
+    }
+
+    .search {
+        padding: 0 15px !important;
+    }
+
+    .list_head {
+    }
+
+    .list_head-block > h2 {
+        top: 0px !important;
+        font-size: 26px;
+        /*margin-top: 6px;*/
+    }
+
+    .list_nav > p {
+        margin-right: 2px;
+    }
+
+    .list_formDDandinfor--title {
+        font-size: 20px;
+        padding:5px;
+    }
+    /* 8x land2 */
+    .list_formDDandinfor {
+        display: block !important;
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .list_formDDandinfor--item {
+        margin: 30px 0;
+    }
+
+    .list_share {
+        display: block !important;
+    }
+    .loaibatdongsan
+    {
+        display:block;
+    }
+    .loaibatdongsan > label {
+       
+    }
+
+    .list_sendRequest--item, .list_sendRequest--area {
+        /* margin: 20px 5% 20px 5px !important; */
+    }
+
+        .list_sendRequest--item > label {
+            width: 100%;
+            flex: 2 !important;
+        }
+
+        .list_sendRequest--area > label {
+            flex: 1.8 !important;
+            margin-left: -8px;
+        }
+
+    .list_sendRequest--form {
+        flex: 5 !important;
+    }
+    /* 8xland3 */
+    .iconSlider__item {
+        margin-right: 10px !important;
+    }
+    /* chi tiết nhà phố  1*/
+    .mainbody__allItemDetail--navEndright .mainbody__allItemDetail--navEndUser > p,
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEnd > p {
+        font-size: 14px;
+    }
+
+    .mainbody__allItemDetail--navEndChat > p {
+        font-size: 13px !important;
+    }
+
+    .searchDetailnhapho {
+        padding: 0 !important;
+    }
+
+    .mainbody__nav--itemSort .mainbody__nav--itemSortdetail {
+        width: 110%;
+    }
+
+    .titleChitietNP4__desContent .titleChitietNP4__desLienhe {
+        /* display: block; */
+    }
+}
+
+
+@media (max-width:599px) {
+    .gioithieu-vitri-tienich__content1 {
+        display: block !important;
+    }
+
+    .tongquanduan__content--item > label {
+        max-width: 89px !important;
+    }
+    /* chi tiết nhà phố 1 */
+    .navCTNP1__search .navCTNP1__searchStart {
+        display: block;
+    }
+
+    .navCTNP1__searchStart .navCTNP1__searchStart--block {
+        margin: 10px 25px;
+        border-radius: 5px;
+        background-color: #164897;
+    }
+
+        .navCTNP1__searchStart .navCTNP1__searchStart--block > h3 {
+            width: 100%;
+            color: #fff;
+        }
+
+    .navCTNP1__searchStart--block1 > input {
+        font-size: 20px !important;
+        padding: 25px 10px !important;
+    }
+
+    .navCTNP1__searchStart .navCTNP1__searchStart--block1 {
+        display: block;
+        margin: 10px 25px;
+        border-radius: 5px;
+    }
+
+    .navCTNP1__searchStart .navCTNP1__searchStart--block1Search {
+        position: unset;
+        text-align: center;
+    }
+
+        .navCTNP1__searchStart .navCTNP1__searchStart--block1Search > p {
+            padding: 13px 25px;
+        }
+
+    .mainbody__link .mainbody__link--page,
+    .mainbody__link .mainbody__link--noi {
+        margin-left: 15px;
+        font-size: 17px;
+    }
+
+    .mainDetailnhapho .mainbody__nav {
+        flex-wrap: wrap;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .mainDetailnhapho .mainbody__nav--item,
+    .mainDetailnhapho .mainbody__nav--itemSort {
+        flex: unset;
+    }
+
+    .mainbody__all .mainbody__allItem {
+        padding: 0;
+    }
+
+    .mainbody__allItem .mainbody__allItemDetail {
+        border-right: unset;
+    }
+
+    .mainbody__allItemDetail .mainbody__allItemDetail--name {
+        line-height: 1.3;
+    }
+
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEnd {
+        display: block;
+    }
+
+        .mainbody__allItemDetail .mainbody__allItemDetail--navEnd > p {
+            text-align: unset;
+            margin: 15px 0;
+        }
+
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEndUser > img {
+        margin-left: -15px;
+    }
+
+    .titleChitietNP4__desContentDetail .titleChitietNP4__desContentDetail--item {
+        display: block;
+    }
+
+    .titleChitietNP4 .titleChitietNP4__price-s {
+        display: block;
+    }
+
+    .titleChitietNP4__shareSave-Link .titleChitietNP4__shareLink {
+        margin-left: 10px;
+    }
+
+    .titleChitietNP4__shareSave-Link .titleChitietNP4__shareSave, .titleChitietNP4__shareLink {
+        margin-top: 10px;
+        margin-left: 0;
+    }
+
+    .titleChitietNP4__map .titleChitietNP4__mapButton {
+        display: block;
+        text-align: center;
+    }
+
+    .titleChitietNP4__mapButton--item {
+        margin: 5px 0;
+    }
+
+    .inforuser__account .inforuser__accountName h4 {
+        font-size: 25px;
+    }
+
+    .inforuser__account .inforuser__accountName--active p {
+        font-size: 8px;
+    }
+
+    .inforuser__accountRate--item p {
+        font-size: 13px;
+    }
+
+    .inforuser .inforuser__Phone a {
+        margin-left: 0;
+        padding-left: 30px;
+    }
+
+    .searchDetailnhapho .navSearch {
+        margin: 0 5px;
+    }
+
+    .navSearch .navSearch__item p {
+        font-size: 18px;
+    }
+
+    .bdsNoibat__title h2 {
+        font-size: 20px;
+    }
+
+    .bdsNoibat__list .bdsNoibat__list--item {
+        display: block;
+    }
+
+        .bdsNoibat__list .bdsNoibat__list--item img {
+            max-width: unset;
+        }
+
+    .row .sliderChitietnhapho3 {
+        margin-left: 4.333333%;
+        margin-right: 4.33333%;
+    }
+
+    .sliderChitietnhapho3 .slider2 .owl-nav span {
+        left: 95%;
+    }
+}
+
+
+@media (max-width:415px) {
+    button.owl-prev > span {
+        margin-left: -32px !important;
+    }
+
+    button.owl-next > span {
+        margin-left: -8px !important;
+    }
+
+    .mainbody__link .mainbody__link--page,
+    .mainbody__link .mainbody__link--noi {
+        margin-left: 15px;
+        font-size: 16px;
+    }
+
+    .titleChitietNP4__shareSave-Link .titleChitietNP4__shareLink {
+        margin-left: 0;
+    }
+
+    .mapPosition .startmapPosition {
+        display: block;
+    }
+}
+
+@media (max-width:321px) {
+    button.owl-next > span {
+        margin-left: -12px !important;
+    }
+
+    .mainbody__link .mainbody__link--page,
+    .mainbody__link .mainbody__link--noi {
+        margin-left: 15px;
+        font-size: 12px;
+    }
+
+    .mainbody__allItemDetail .mainbody__allItemDetail--navEndUser > img {
+        margin-left: 0px;
+    }
+
+    .inforuser__account .inforuser__accountName h4 {
+        font-size: 15px;
+    }
+
+    .inforuser__account .inforuser__accountName--active p {
+        font-size: 7px;
+    }
+
+    .inforuser__accountRate--item p {
+        font-size: 13px;
+    }
+
+    .inforuser .inforuser__account > i {
+        font-size: 15px;
+    }
+
+    .inforuser__accountRate--item p {
+        font-size: 10px;
+    }
+
+    .inforuser .inforuser__Phone a {
+        margin-left: 0;
+        padding-left: 15px;
+    }
+
+    .inforuser .inforuser__Phone i {
+        padding: 0 10px 0 15px;
+    }
+
+    .navSearch .navSearch__item p {
+        font-size: 16px;
+    }
+
+    .sliderChitietnhapho3 .sliderChitietnhapho3__xemAll {
+        font-size: 15px;
+    }
+}

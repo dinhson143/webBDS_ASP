@@ -1,0 +1,871 @@
+
+@media (min-width: 1367px){
+    .menu,.content, .containerFooter{
+        max-width: 1200px;
+    }
+    /* content */
+}
+@media (max-width:1945px)
+{
+    /* .main .sliderHead .carousel-indicators li{
+        width:150px;
+    } */
+}
+@media (max-width:1545px)
+{
+    .main .sliderHead .carousel-indicators li{
+        /* width:100px; */
+    }
+    .main .menu .mainmenu .menuSearch{
+        /* margin-left: unset;
+        width: 100%;
+        margin-top: 20px; */
+    }
+    .main .sliderHead .carousel-inner .item img{
+        /* height:832px; */
+    }
+}
+@media (max-width: 1367px){
+    /* content */
+    .content .danhmucnoibat .danmucnoibat__start{
+        clip-path: polygon(45% 0%, 50% 92%, 100% 92%, 100% 100%, 39% 100%, 30% 100%, 0 100%, 0 0);
+    }
+    .content .danhmucnoibat__list{
+        margin-top: 30px;
+    }
+    /* Footer */
+    .content .tintucRow .tintucItem .tintucItem__left .tintucItem__leftItem .tintucItem__Infor h3{
+        font-size:18px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer h1{
+        font-size: 35px;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__itemContent .bdsKCNItem__itemContent2 h1{
+        text-align: center;
+        margin-right: 0;
+        font-size:30px;
+    }
+    .main .menu{
+       right:5%;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item img
+    {
+        max-width:30px;
+        margin-right: 10px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item p
+    {
+        font-size:15px;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__sub1 .menuSearch__sub--item{
+        font-size:15px;
+    }
+}
+@media (max-width:1252px)
+{
+    .MenuBlock .Menu .Menu__logo{
+        margin-left: 5%;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        margin-right: 5%;
+    }
+    .MenuBlock ul{
+        right:5%;
+        justify-content: unset;
+    }
+    .MenuBlock ul .item{
+        border-radius: 5px;
+    }
+    
+    /* content */
+    .content{
+        margin-left: 5%;
+        margin-right:5%;
+    }
+    .main .menu .mainmenu{
+        display: unset;
+    }
+    .main .menu .mainmenu .menuSearch{
+        /* margin-left: unset;
+        width: 100%; */
+        /* margin-top: 20px; */
+        width:67%;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__sub1 .menuSearch__sub--item{
+        font-size:14px;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub{
+        justify-content:unset;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub2,.main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1{
+        margin: 5px;
+    }
+    .main .menu .mainmenu .menuLogin .menuLogin__signin, .main .menu .mainmenu .menuLogin .menuLogin__signup{
+        margin: auto;
+    }
+    .main .menu{
+        margin-top:0;
+    } 
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__select .SelectaName__select--mua p, .content .bietthuRow .SelectaName .SelectBlock .SelectaName__select .SelectaName__select--thue p
+    {
+        font-size:15px;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem img{
+        max-width:300px;
+    }
+    .content .duanRow .btnMore .btnMore__des,
+    .content .bietthuRow .btnMore .btnMore__des{
+        font-size:11px;
+    }
+    .content .endBody .imgFooter .btnApp{
+        bottom:13%;
+    }
+}
+@media (max-width:1240px){
+
+}
+@media (max-width:1175px)
+{
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__sub1 .menuSearch__sub--item{
+        padding:5px 10px;
+        font-size:13px;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input input{
+        padding:25px 10px;
+        font-size:13px;
+    }
+}
+
+
+
+
+@media (max-width:1500px) and (min-width:1239px)
+{
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail
+    {
+        /* font-size:18px; */
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon img{
+        /* width:35px;
+        height: 35px; */
+    }
+}
+
+/* IPad pro */
+@media (max-width:1239px) and (min-width:1024px)
+{
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon{
+        margin-right: 10px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon .icon-menu{
+        margin: 5px auto 0 auto;
+    }
+    .MenuBlock .Menu .Menu__logo img{
+        width:85%;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        /* margin-top: 10px; */
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--SDT, .MenuBlock .Menu .Menu__navContact .Menu__navContact--Gmail{
+        margin: auto 0px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size:13px;
+        padding: 4px 10px;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        margin-top:0;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn{
+        /* display:unset; */
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail,
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT
+    {
+        /* margin-right: unset; */
+        margin-bottom: 3px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon img{
+        width:30px;
+        height: 30px;
+        margin: auto 5px;
+    }
+    .MenuBlock ul .item{
+        /* font-size: 21px; */
+        line-height:1.5;
+        padding:0 1.5%;
+    }
+    /* Footer */
+    .footer .containerFooter .rightFooter{
+        margin-top:50px;
+    }
+    .footerOFooter{
+        margin-top:50px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon .icon-menu i{
+        font-size:30px;
+        margin: auto 5px;
+    }
+    .footer .footerOFooter .social-footer .center-block{
+        display:unset;
+    }
+    .footer .footerOFooter .social-footer .center-block .center-block__share{
+        width:max-content;
+        margin:50px auto 0 auto;
+    }
+    .footer .footerOFooter .social-footer .center-block .center-block__share a{
+        margin: unset;
+        margin-left:20px;
+    }
+    .footer .footerOFooter .social-footer .center-block img{
+        width: 50%;
+        max-width:unset;
+        margin-left: 25%;
+    }
+    .main .sliderHead .carousel-inner .item img{
+        height:570px;
+    }
+}
+@media (max-width:1105px) and (min-width:1024px){
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem img
+    {
+        max-width: 475px;
+    }
+}
+@media (max-width:1145px)
+{
+    .swiper-pagination-bullet {
+        width: 100px !important;
+    }
+    .content .danhmucnoibat__title h2{
+        font-size:30px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes{
+        display:unset;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes .showInfor{
+        width:40%;
+        margin: auto;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes .showInfor a{
+        text-align: center;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan{
+        margin: 0 8px;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__item--footer{
+        display:unset;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--location{
+        margin:10px 0;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__item--footer .btnDetail{
+        width:50%;
+        margin:auto;
+    }
+    .MenuBlock ul .item{
+        font-size:15px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon .icon-menu i{
+        font-size:25px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon img{
+        width:25px;
+        height:25px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        padding: 4px 5px;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        margin-top: 5px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon .icon-menu{
+        margin-top: 0;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer .btnDetail p{
+        font-size:13px;
+        padding:5px 25px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--des,
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--location p{
+        font-size:13px;
+    }
+}
+/* Mobile and Tablet */
+@media (max-width:1023px)
+{
+    .MenuBlock .Menu .Menu__navContact{
+        margin-right: 3%;
+        display:unset;
+        margin-top: unset;
+    }
+    .Menu__nav ul{
+        right:3%;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon img{
+        width:25px;
+        height: 25px;
+        margin: 0 auto;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon{
+        /* margin-top: 7.5px; */
+    }
+    .MenuBlock .Menu .Menu__logo img{
+        width:85%;
+    }
+    .Menu__nav ul{
+        justify-content:unset;
+        bottom:10%;
+    }
+    .MenuBlock ul .item{
+        font-size: 17px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT,
+     .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail{
+        margin: 3px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p,
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size:11px;
+    }
+    /* content */
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub2, 
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1{
+        display:none;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1Mobile .showmenuPlus .menuPlus .menuSearch__sub2{
+        display:flex;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1Mobile{
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .main .menu .mainmenu .menuSearch
+    {
+        margin-top:10px;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub{
+        margin-top:0px;
+    }
+    .content .danhmucnoibat__title h2{
+        font-size:25px;
+    }
+    .content .danhmucnoibat__list .danhmucnoibat__item{
+        max-width:134px;
+    }
+    /* BDS KCN */
+    .content .bdsKCNrow .bdsKCN .bdsKCN__start h2{
+        font-size:20px;
+    }
+    .content .danhmucnoibat__title i{
+        font-size:35px;
+        margin-right: 10px;
+    }
+    .content .danhmucnoibat__title img{
+        width:40px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer{
+        display:unset;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__itemContent{
+        display:block;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__itemContent .bdsKCNItem__itemContent1,
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__itemContent .bdsKCNItem__itemContent2{
+        max-width:unset;
+    }
+    /* footer */
+    .footer .footerOFooter .social-footer .center-block img{
+        max-width: 315px;
+    }
+    .footer .containerFooter .leftFooter{
+        margin-left: 15px;
+    }
+    .footer .containerFooter .rightFooter{
+        margin-top:50px;
+        margin-left: 0;
+    }
+    .footerOFooter{
+        margin-top:50px;
+    }
+    .footer .footerOFooter .DKKD{
+        margin-top: 30px;
+    }
+    .footer .containerFooter .rightFooter{
+        width: 100%;
+    }
+    .swiper-pagination-bullet {
+        width: 50px !important;
+    }
+    .MenuBlock .Menu__navChild{
+        display:flex;
+
+    }
+    .MenuBlock ul,.MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon .icon-menu,
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__sub1{
+        display:none;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content
+    {
+        top: 68%;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item img
+    {
+        max-width:25px;
+        margin-right: 5px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item p
+    {
+        font-size:15px;
+    }
+    .MenuBlock ul .itemMua ul,.MenuBlock ul .itemThue ul,.MenuBlock ul .itemThongtin ul,.MenuBlock ul .itemDuan ul,
+    .MenuBlock ul .itemTienich ul,.MenuBlock ul .itemBDSnuocngoai ul,.MenuBlock ul .itemBanThue ul
+    {
+        left: 50%;
+    }
+    .main .sliderHead .carousel-inner .item img{
+        height:unset;
+    }
+    .MenuBlock .Menu,.MenuBlock .MenuShadow{
+        clip-path: polygon(0% 0%, 100% 0%, 100% 55%, 40% 55%, 34% 100%, 25% 100%, 0 100%);
+    }
+    .main .menu{
+        position:unset;
+        background-color: #fff;
+    }
+    .main .menu .mainmenu .menuSearch{
+        margin-left: unset;
+        width: 100%;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input{
+        width: 90%;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem img
+    {
+        max-width: 375px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--title{
+        font-size: 17px;
+    }
+    .content .endBody .imgFooter .btnApp{
+        bottom:5%;
+        right:8%;
+    }
+}
+/* tablet */
+@media (min-width:740px) and (max-width:1023px)
+{
+    .MenuBlock ul .itemBDSnuocngoai ul{
+        top: 140%;
+    }
+}
+
+
+/* mobile */
+@media (max-width:740px)
+{
+    .MenuBlock .Menu,.MenuBlock .MenuShadow{
+        clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 40% 60%, 34% 100%, 25% 100%, 0 100%);
+    }
+    .MenuBlock .Menu .Menu__logo{
+        margin-top: unset;
+        margin-bottom:unset;
+        margin-left:2%;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        margin-right: 2%;
+    }
+    .MenuBlock .Menu .Menu__logo img{
+        width:80%;
+        height:100%;
+        max-width: 210px;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        flex-wrap: wrap;
+        justify-content:center;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size:12px;
+        padding: 0px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon{
+        width:100%;
+        justify-content:center;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--SDT, .MenuBlock .Menu .Menu__navContact .Menu__navContact--Gmail{
+        margin-top: unset;
+        padding:5px;
+    }
+    .Menu__nav ul{
+        bottom:5%;
+    }
+    .MenuBlock ul .item{
+        text-align:unset;
+        padding:0;
+    }
+    .MenuBlock .Menu__navChild .Menu__navChild--menubar i, 
+    .MenuBlock .Menu__navChild .Menu__navChild--home i, 
+    .MenuBlock .Menu__navChild .Menu__navChild--user i{
+        font-size:30px;
+    }
+    /* content */
+    .content{
+        margin-left: 2%;
+        margin-right:2%;
+    }
+    .content .danhmucnoibat__title h2{
+        font-size:20px;
+    }
+    /* dự án */
+    .content .duanRow .duan1 .duan1__item .duan1__itemRight img{
+        height:400px;
+        margin: 20px 0;
+    }
+    /* BDS KCN */
+    .content .bdsKCNrow .bdsKCN .bdsKCN__start h2{
+        font-size:15px;
+        margin: 10px;
+    }
+    .content .danhmucnoibat__title i{
+        font-size:25px;
+    }
+    .content .danhmucnoibat__title img{
+        width:28px;
+    }
+    .footer .containerFooter .leftFooter{
+        margin-top: 50px;
+    }
+    .footer .containerFooter{
+        padding-bottom: 50px;
+    }
+    .content .sliderFooter .slider2 .owl-nav{
+        left:-45px;
+        right:-45px;
+    }
+    .swiper-pagination-bullet {
+        width: 30px !important;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item{
+        max-width: unset;
+        margin:unset;
+        margin-bottom:20px;
+        padding:0;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan{
+        margin: 0;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item img
+    {
+        max-width:30px;
+        margin-right: 15px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description .item p
+    {
+        font-size:20px;
+    }
+    .footer .footerOFooter .social-footer .center-block{
+        display:unset;
+    }
+    .footer .footerOFooter .social-footer .center-block .center-block__share{
+        margin: auto;
+        margin-top:20px;
+    }
+    .footer .footerOFooter .social-footer{
+        width:100%;
+    }
+    .footer .footerOFooter .social-footer .center-block img{
+        width: 50%;
+        max-width:unset;
+        margin-left: 25%;
+    }
+    .content .duanRow .duan1 .TitleaName .TitleaName__title h1{
+        font-size:25px;
+    }
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__name i{
+        font-size:23px;
+    }
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__name p{
+        font-size:12px;
+    }
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__select .SelectaName__select--mua, .content .bietthuRow .SelectaName .SelectBlock .SelectaName__select .SelectaName__select--thue
+    {
+        padding:1px 25px;
+    }
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__name{
+        margin-right: 5px;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer .btnDetail{
+        width:40%;
+        margin: auto;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem .tintucItem__Infor h3{
+        margin-bottom: 90%;
+    }
+    .content .endBody .imgFooter .btnApp {
+        bottom: 2%;
+        right: 0%;
+    }
+}
+@media (max-width:599px)
+{
+    .MenuBlock .Menu .Menu__logo{
+        max-width:140px;
+    }
+    .MenuBlock .Menu .Menu__logo img{
+        width:60%;
+    }
+    .MenuBlock .Menu .Menu__navContact,.MenuBlock .Menu .Menu__navContact .Menu__navContact--Icon{
+        flex-wrap: wrap;
+        justify-content:flex-end;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size: 8px;
+        padding: 3px 0px;
+    }
+    .MenuBlock .Menu .Menu__navContact{
+        /* margin-right: 0%; */
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--SDT, .MenuBlock .Menu .Menu__navContact .Menu__navContact--Gmail{
+       font-size:11px;
+    }
+    .Menu__logo img{
+        max-width:130px;
+    }
+    /* content */
+    .main .menu{
+        margin-top:0;
+    }
+    .main .menu .mainmenu .menuLogin .menuLogin__signin, .main .menu .mainmenu .menuLogin .menuLogin__signup,
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input input
+    {
+        font-size:14px;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input input{
+        padding:15px;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input .form-control-feedback{
+        font-size:20px;
+        top: 5px;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1 .menuSearch__sub--item{
+        padding:5px 10px;
+        font-size:13px;
+    }
+    .content .danhmucnoibat__title h2{
+        margin: 10px 0;
+    }
+    .content .danhmucnoibat .danmucnoibat__start{
+        clip-path: polygon(70% 0%, 75% 92%, 100% 92%, 100% 100%, 39% 100%, 30% 100%, 0 100%, 0 0);
+    }
+    .content .danhmucnoibat__title i{
+        font-size:30px;
+    }
+    /* dự án */
+    .content .duanRow .duan1 .TitleaName .TitleaName__title h1{
+        font-size:24px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft img{
+        height:300px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemRight img{
+        height:300px;
+        margin: 20px 0;
+    }
+    /*  */
+    .content .bietthuRow .SelectaName{
+        display:block;
+    }
+    /* tintuc */
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem{
+        display:block;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem .tintucItem__Infor h3{
+        margin-bottom: 15%;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem img{
+        max-width:unset;
+        width: 100%;
+        margin-right: unset;
+    }
+    /* Footer */
+    .footer .footerOFooter .social-footer .center-block{
+        display:block;
+    }
+    .footer .footerOFooter .social-footer .center-block .center-block__share{
+        margin-top:20px;
+    }
+    .content .sliderFooter .slider2 .owl-nav .owl-prev span,
+    .content .sliderFooter .slider2 .owl-nav .owl-next span{
+        padding:0 10px 5px 10px;
+    }
+    .content .sliderFooter .slider2 .owl-nav{
+        left:-35px;
+        right:-35px;
+    }
+    .swiper-pagination-bullet {
+        margin: 0 10px;
+    }
+    .swiper-pagination-bullet {
+        width: 24px;
+    }
+    .content .bietthuRow .SelectaName .SelectBlock .SelectaName__select{
+        margin-left: auto;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content h2{
+        font-size:18px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content p{
+        font-size:14px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes .showInfor{
+        width:50%;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer .btnDetail p{
+        padding:5px 20px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes .showInfor a{
+        padding:8px 25px;
+    }
+    .content .endBody .imgFooter .btnApp{
+        display:unset;
+    }
+    .content .endBody .imgFooter .btnApp{
+        position:unset;
+    }
+    .content .endBody .imgFooter .btnApp .appStore {
+        margin: 5px auto;
+        width: 80%;
+    }
+}
+@media (max-width:376px){
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size:7px;
+        padding:3px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn{
+        margin-top:5px;
+    }
+    .Menu__logo img{
+        max-width:100px;
+    }
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--SDT, .MenuBlock .Menu .Menu__navContact .Menu__navContact--Gmail{
+        padding:3px;
+    }
+    .MenuBlock .Menu__navChild .Menu__navChild--menubar i, 
+    .MenuBlock .Menu__navChild .Menu__navChild--home i, 
+    .MenuBlock .Menu__navChild .Menu__navChild--user i{
+        font-size:29px;
+    }
+    /* content */
+    .main .menu .mainmenu .menuLogin .menuLogin__signin, 
+    .main .menu .mainmenu .menuLogin .menuLogin__signup
+    {
+        font-size:12px;
+    }
+    .main .menu .mainmenu .menuSearch .input-group .menuSearch__input input{
+        font-size:10px;
+    }
+    .main .menu .mainmenu .menuSearch .menuSearch__sub .menuSearch__sub1 .menuSearch__sub--item{
+        padding: 5px;
+    }
+    /* BDS KCN */
+    .content .bdsKCNrow .bdsKCN .bdsKCN__start h2{
+        font-size:15px;
+        margin:5px 3px;
+    }
+    .content .danhmucnoibat__title i{
+        font-size:20px;
+    }
+    .content .danhmucnoibat__title img{
+        width:22.5px;
+    }
+    .content .endBody .endBody__vien{
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+    .content .sliderFooter .slider2 .owl-nav{
+        left:-30px;
+        right:-30px;
+    }
+    .MenuBlock ul .itemMua ul,.MenuBlock ul .itemThue ul,.MenuBlock ul .itemThongtin ul,.MenuBlock ul .itemDuan ul,
+    .MenuBlock ul .itemBanThue ul
+    {
+        left: 45%;
+    }
+    .MenuBlock ul .itemTienich ul,.MenuBlock ul .itemBDSnuocngoai ul{
+        left:20%;
+    }
+}
+@media (max-width:375px){
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--SDT p, 
+    .MenuBlock .Menu .Menu__navContact .Menu__navContact--blockBtn .Menu__navContact--Gmail p{
+        font-size:7px;
+        padding:0px;
+    }
+    .content .danhmucnoibat .danmucnoibat__start{
+        clip-path: polygon(85% 0%, 90% 92%, 100% 92%, 100% 100%, 39% 100%, 30% 100%, 0 100%, 0 0);
+    }
+    .content .danhmucnoibat__list .danhmucnoibat__item{
+        min-width:120px;
+    }
+    .footer .footerOFooter .social-footer .center-block img{
+        max-width:250px;
+    }
+    .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem img{
+        margin-right: 0;
+    }
+    .footer .containerFooter .leftFooter{
+        margin-left: 0;
+    }
+    .footer .containerFooter .rightFooter .rightFooter__content .footer-links .link_footer img{
+        margin: auto 20px auto 10px;
+    }
+    .footer .containerFooter .rightFooter .rightFooter__content h2,
+    .footer .containerFooter .leftFooter .leftFooter__content .ft-newslatter h2,
+    .footer .containerFooter .rightFooter .centerFooter__content h2{
+        font-size:27px;
+    }
+    .footer .containerFooter .rightFooter .centerFooter__content .footer-links li a,
+    .footer .containerFooter .leftFooter .leftFooter__content span{
+        font-size: 17px;
+    }
+    .swiper-pagination-bullet {
+        width: 17px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content h2{
+        font-size:15px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content p{
+        font-size:11px;
+    }
+    .content .duanRow .duan1 .duan1__item .duan1__itemDes .showInfor{
+        width:80%;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bdsKCNItem__item--footer .btnDetail{
+        width:60%;
+    }
+    .content .bdsKCNrow .bdsKCNItem .bdsKCNItem__item .bietthuItem__itemImgBlock .bietthuItem__itemImgBlock--description{
+        width:47%;
+    }
+    .footer .footerOFooter .social-footer .center-block .center-block__share a i{
+        font-size:2.5em;
+    }
+    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--footer .btnDetail{
+        width:50%;
+    }
+    .content .endBody .imgFooter .btnApp .appStore {
+        width: 95%;
+    }
+}
+
+
+
+
+
+

@@ -1,0 +1,320 @@
+﻿
+@model  WebBDS.Models.TrangchuModel
+@{
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.LoaiBDS> listLBDS = new List<WebBDS.Models.LoaiBDS>();
+    listBDS = Model.BDS;
+    listLBDS = Model.loaiBDS;
+    List<WebBDS.Models.BDS> listBDS_kcn_mua = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.BDS> listBDS_kcn_thue = new List<WebBDS.Models.BDS>();
+    for (int j = 0; j < listBDS.Count; j++)
+    {
+        if (listBDS[j].maloaiBDS == listLBDS[1]._id)
+        {
+            if (listBDS[j].Status == "Mua")
+            {
+                listBDS_kcn_mua.Add(listBDS[j]);
+            }
+            else
+            {
+                listBDS_kcn_thue.Add(listBDS[j]);
+            }
+        }
+    }
+    //int dem = 0;
+}
+
+<div class="row bietthuRow bdsKCNrow loaiBDSrow @listLBDS[1]._id">
+    <div class="danhmucnoibat bdsKCN">
+        <div class="danmucnoibat__start bdsKCN__start">
+        </div>
+    </div>
+    <div class="SelectaName">
+        <div class="TitleBlock">
+            <div class="danhmucnoibat__title">
+                <i class="fas fa-industry"></i>
+                <h2>@listLBDS[1].Name</h2>
+            </div>
+        </div>
+        <div class="SelectBlock">
+            <div class="SelectaName__name">
+                <p>Xem bằng bản đồ</p>
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <div class="SelectaName__select ">
+                <div class="SelectaName__select--mua muaKCN">
+                    <p>MUA</p>
+                </div>
+                <div class="SelectaName__select--thue thueKCN">
+                    <p>THUÊ</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bietthuItem bdsKCNItem kcnMua">
+        @for (int i = 0; i < listBDS_kcn_mua.Count; i++)
+        {
+            int tam = -1;
+            if (i < 2)
+            {
+                <div class="row">
+                    @for (int j = i; j < listBDS_kcn_mua.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            i += 1;
+                            break;
+                        }
+                        <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                    <img src="@listBDS_kcn_mua[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_kcn_mua[j].Dientich m2</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_kcn_mua[j]._id')"></i>
+                            <div class="bdsKCNItem__itemContent row">
+                                <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                        <p class="bietthuItem__item--title"> @listBDS_kcn_mua[j].Name</p>
+                                    </a>
+                                    <p class="bietthuItem__item--des">
+                                        @listBDS_kcn_mua[j].Mota
+                                    </p>
+                                </div>
+                                <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                    <h1>@listBDS_kcn_mua[j].Gia </h1>
+                                </div>
+                            </div>
+                            <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                <div class="bietthuItem__item--location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <p>@listBDS_kcn_mua[j].Vitri</p>
+                                </div>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+
+                <div class="row rowKCNmore">
+                    @for (int j = i; j < listBDS_kcn_mua.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            i += 1;
+                            break;
+                        }
+                        <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                    <img src="@listBDS_kcn_mua[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_kcn_mua[j].Dientich m2 </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_kcn_mua[j]._id')"></i>
+                            <div class="bdsKCNItem__itemContent row">
+                                <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                        <p class="bietthuItem__item--title"> @listBDS_kcn_mua[j].Name</p>
+                                    </a>
+                                    <p class="bietthuItem__item--des">
+                                        @listBDS_kcn_mua[j].Mota
+                                    </p>
+                                </div>
+                                <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                    <h1>@listBDS_kcn_mua[j].Gia </h1>
+                                </div>
+                            </div>
+                            <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                <div class="bietthuItem__item--location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <p>@listBDS_kcn_mua[j].Vitri</p>
+                                </div>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_kcn_mua[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+    <div class="bietthuItem bdsKCNItem kcnThue">
+        @for (int i = 0; i < listBDS_kcn_thue.Count; i++)
+        {
+            int tam = -1;
+            if (i < 2)
+            {
+                <div class="row">
+                    @for (int j = i; j < listBDS_kcn_thue.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            i += 1;
+                            break;
+                        }
+                        <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                    <img src="@listBDS_kcn_thue[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_kcn_thue[j].Dientich m2</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_kcn_thue[j]._id')"></i>
+                            <div class="bdsKCNItem__itemContent row">
+                                <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                        <p class="bietthuItem__item--title"> @listBDS_kcn_thue[j].Name</p>
+                                    </a>
+                                    <p class="bietthuItem__item--des">
+                                        @listBDS_kcn_thue[j].Mota
+                                    </p>
+                                </div>
+                                <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                    <h1>@listBDS_kcn_thue[j].Gia </h1>
+                                </div>
+                            </div>
+                            <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                <div class="bietthuItem__item--location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <p>@listBDS_kcn_thue[j].Vitri</p>
+                                </div>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+
+                <div class="row rowKCNmore">
+                    @for (int j = i; j < listBDS_kcn_thue.Count; j++)
+                    {
+                        tam++;
+                        if (tam == 2)
+                        {
+                            i += 1;
+                            break;
+                        }
+                        <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                            <div class="bietthuItem__itemImgBlock">
+                                <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                    <img src="@listBDS_kcn_thue[j].Image[0]" alt="">
+                                </a>
+                                <div class="bietthuItem__itemImgBlock--description">
+                                    <div class="item">
+                                        <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                        <p>@listBDS_kcn_thue[j].Dientich m2 </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <i class="fas fa-heart heart" onclick="return addCart('@listBDS_kcn_thue[j]._id')"></i>
+                            <div class="bdsKCNItem__itemContent row">
+                                <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                        <p class="bietthuItem__item--title"> @listBDS_kcn_thue[j].Name</p>
+                                    </a>
+                                    <p class="bietthuItem__item--des">
+                                        @listBDS_kcn_thue[j].Mota
+                                    </p>
+                                </div>
+                                <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                    <h1>@listBDS_kcn_thue[j].Gia </h1>
+                                </div>
+                            </div>
+                            <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                <div class="bietthuItem__item--location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <p>@listBDS_kcn_thue[j].Vitri</p>
+                                </div>
+                                <div class="btnDetail" onclick="return xemChiTiet('@listBDS_kcn_thue[j]._id')">
+                                    <a href="" class="listing-img-container">
+                                        <p>Xem chi tiết</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+    <div class="btnMore btnMoreKCN col l-6 m-6 c-12">
+        <div class="btnMore__des">XEM THÊM <p></p> KCN</div>
+        <i class="fas fa-caret-up iconUp"></i>
+        <i class="fas fa-caret-down iconDown"></i>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function xemChiTiet(id) {
+        var idBDS = id;
+        $.ajax({
+            url: '/BDStheoLoai/GetID_BDS',
+            data: { 'id': idBDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                window.location = '/BDS/ChiTietBDS';
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+
+    }
+    function addCart(id) {
+        var BDS = id;
+        $.ajax({
+            url: '/BDS/AddCart',
+            data: { 'id': BDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                if (data['mgs'] == false) {
+                    window.location = '/Login/Index';
+                }
+                else {
+                    alert(data['note'])
+                }
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+    }
+</script>

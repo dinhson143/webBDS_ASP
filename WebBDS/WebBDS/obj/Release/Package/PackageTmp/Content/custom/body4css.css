@@ -1,0 +1,360 @@
+.startbody4
+{
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 15px;
+}
+.main4
+{
+    /*margin-top: -14px;*/
+}
+.container-fluid
+{
+    padding:0 !important;
+}
+    .slider4 {
+    }
+        .slider4__displayimg
+        {
+            display: flex;
+        }
+        .slider4__displayimg--item
+        {
+            flex: 1;
+        }
+        .slider4__displayimg--item img
+        {
+            width: 100%;
+            height: 100%;
+        }
+        .slider4__start
+        {
+            width: 50%;
+            padding: 20px;
+            position: relative;
+            margin: 0 15px;
+        }
+        .slider4__start .slider .owl-dots 
+        {
+                display: none !important;
+        }
+        .itemSlider4
+        {
+            padding: 0 6px;
+            max-height: 100px;
+        }
+        .itemSlider4>img
+        {
+            width: auto;
+           min-height: 100px;
+        }
+        .owl-nav
+        {
+            display: flex !important;
+            justify-content:space-between;
+        }
+        .owl-nav span
+        {
+            font-size: 40px;  
+            line-height: 2.2;
+            background-color: #393939;
+            height: 100%;         
+            font-weight: 900;
+            box-shadow: 0 0 1px #000;
+            position: absolute;
+            top: 0;
+            opacity: unset !important;
+            border-radius: 2px;
+            color: #343434;
+        }
+        button.owl-prev >span
+        {
+            margin-left: -33px;
+        }
+    .endSlider4
+    {
+        width: 100%;
+        max-height: 1000px;
+        height: 100%;
+        background-color: #222222;   
+        color: #fff;
+        justify-content: space-between;
+    }
+        .endSlider4__right
+        {
+            display: flex;
+            height: 100%;
+            flex-wrap: wrap;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width:50%;
+            margin-left:50%;
+        }
+        .endSlider4__right--item
+        {
+            flex: 1;
+            background-color: #343434;  
+            max-height: 100px;
+            margin: 15px 5px 15px 5px;
+            padding: 20px;
+            width: 100px;
+            min-height: 100px;
+            max-width:285px;
+        }
+            .endSlider4__right--item:hover {
+               /* background-color: hsl(126deg 49% 43%);
+                color: #fff;*/
+                cursor: pointer;
+                background-color: white;
+                color: var(--COLOR_PRIMARY);
+            }
+        .endSlider4__right--item>i
+        {
+            font-size: 30px;
+            max-height: 40px;
+            height: 120%;   
+            display: block;
+            text-align: center;
+        }
+        .endSlider4__right--item>p
+        {
+           text-align: center;
+           max-width: 100px;
+           width:max-content;
+           margin: auto;
+           padding: 5px 0 5px 0;
+        }
+        .startP4
+        {
+
+        }
+        .titleP4
+        {
+            font-size: 40px;
+            color: #000;
+        }
+        .navP4,.startP4__title
+        {
+            display: flex;
+        }
+            .startP4__title
+            {
+                border-bottom: 2px solid #ccc;
+                padding-bottom: 30px;
+                padding-top: 20px;
+            }
+                .startP4__title>h1
+                {
+                    display: block;
+                   padding-left: 112px;
+                }
+            .blockNavP4
+            {
+                border-bottom: 4px solid #ccc;
+            }
+                .navP4
+                {
+                    padding-left: 112px;
+                    flex-wrap: wrap;
+                }
+                .navP4__item
+                {
+                    width: max-content;
+                    margin-right: 30px;
+                    font-size: 18px;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                }
+                .navP4__item:hover
+                {
+                    color: #000;
+                    font-weight: 500;
+                    border-bottom: 5px solid #f6720e;
+                    cursor: pointer;
+                }
+
+
+
+/* body */
+.tongquanduan__title
+{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 3px solid #ccc;
+    border-top: 3px solid #ccc;
+    color: #000;
+    font-weight: 700;
+    font-size: 19px;
+}
+    .tongquanduan__content1
+    {
+        margin: 20px 0;
+    }
+        .tongquanduan__content1 img
+        {
+            width:100% !important;
+        }
+        .tongquanduan__title > p, .tongquanduan__title > i {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .tongquanduan__content--item
+        {
+            display: flex;
+        }
+        .tongquanduan__content--item>label
+        {
+            display: block;
+            max-width: 200px;
+            width: 100%;
+            font-weight: unset;
+        }
+        .tongquanduan__content--item>label
+        ,.tongquanduan__content--item>p
+        {
+            color: #000;
+            font-size: 18px;
+        }
+        .tongquanduan__content--item>p
+        {
+            font-weight: 700;
+        }
+.gioithieu-vitri-tienich .tongquanduan__title
+{
+    border-top: unset;
+}
+    .tongquanduan__content1>p
+    {
+        color: #000;
+        font-size: 18px;
+    }
+    .tongquanduan__content1>img
+    {
+        margin-top: 15px;
+        width: 100%;
+    }
+    .gioithieu-vitri-tienich__map>iframe
+    {
+        width: 100%;
+    }
+    .gioithieu-vitri-tienich__content
+    {
+        margin: 15px 0 70px 0;
+    }
+    .gioithieu-vitri-tienich__content1
+    {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin: 25px 0;
+    }
+        .gioithieu-vitri-tienich__content--item
+        {
+            display: flex;
+            font-size: 18px;
+            flex: 1;
+        }
+        .gioithieu-vitri-tienich__content--item>i
+        {
+            color: #f6720e;
+            margin-right: 5px;
+        }
+        .gioithieu-vitri-tienich__content--item>p,.gioithieu-vitri-tienich__content--item>i
+        {
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: center;
+        }
+/* Search */
+.search__SDT
+{
+    margin-top: 85px;
+    padding: 50px 45px;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 15px #ccc;
+}
+.searchblock
+{
+    padding-bottom: 50px;
+}
+.search__SDT,.searchblock
+{
+    border-radius: 3px;
+    box-shadow: 0 0 1px #ccc;
+}
+    .search__SDT>label
+    {
+        font-size: 18px;
+        font-weight: 700;
+    }
+    .search__SDT>h1
+    {
+        color: red;
+        font-weight: 700;
+        font-size:35px;
+    }
+    .search__tenItem
+    {
+        width: 90%;
+        margin: auto;
+        height: 100%;
+        margin-bottom: 15px;
+        background-color: #e8ecef;
+        border-radius: 3px;
+    }
+    .search__tenItem>p
+    {
+        margin: auto;
+        font-size: 18px;
+        padding: 12px;
+        margin-left: 10px;
+        color: rgb(100, 91, 91);
+    }
+    .search_item2--mes>textarea,.search_item>input
+    {
+        font-size: 18px;
+    }
+    .search_advance--btn
+    {
+        padding: 15px;
+        border-radius: 4px;
+        background-color: #f6720e;
+        border: none;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 700;
+    }
+    .search_advance > :hover {
+        cursor: pointer;
+        background-color: #054166;
+    }
+        .searchblock>p
+    {
+        width: 90%;
+        margin: auto;
+        height: 100%;
+        margin-bottom: 40px;
+        font-size: 18px;
+        color: rgb(124, 122, 122);
+    }
+    .search_advance--guilienhe
+    {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        background-color: #dc3546;
+        border: none;
+        font-size: 18px;
+        color: #fff;
+        font-weight: 700;
+    }
+
+.property-slider-nav .item img
+{
+    min-height:160px;
+}

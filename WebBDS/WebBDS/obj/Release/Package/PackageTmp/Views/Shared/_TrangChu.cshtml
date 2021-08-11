@@ -1,0 +1,255 @@
+﻿
+
+@Html.Partial("_TrangChu_MenuRow")
+<!-- main -->
+@Html.Partial("_TrangChu_Banner")
+
+<!-- list -->
+<div class="content">
+    @Html.Partial("_TrangChu_DanhMucNoiBatRow")
+    @Html.Partial("_TrangChu_DuanRow")
+    @Html.Partial("_TrangChu_BietThuRow")
+    @Html.Partial("_TrangChu_KCNRow")
+    @Html.Partial("_TrangChu_TinTucRow")
+
+    <div class="row contentFooter col l-4 m-4 c-12"></div>
+    <div class="khachhang">
+        <h2>KHÁCH HÀNG VÀ ĐỐI TÁC</h2>
+            <p>Rất nhiều người đã dự đoán Công Phượng sẽ được điền tên trong đội hình chính thức.</p>
+    </div>
+    <div class="sliderFooter">
+        <div class="owl-carousel slider2">
+            <img src="~/images/trangchu/img/sliderEnd1.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd2.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd3.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd4.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd5.png" alt="">
+        </div>
+    </div>
+
+    <div class="endBody">
+        <div class="endBody__vien">
+            <div class="endBody__vien--item">
+            </div>
+        </div>
+        <div class="imgFooter">
+            <img src="~/images/trangchu/img/footer.png" alt="">
+            <div class="btnApp">
+                <a href="" class="appStore">
+                    <i class="fab fa-apple"></i>
+                    <div class="appStore__name">
+                        <p>Available on the</p>
+                        <h3>App Store</h3>
+                    </div>
+                </a>
+                <a href="" class="appStore chPlay">
+                    <img src="~/images/trangchu/img/chPlay.png" />
+                    <div class="appStore__name">
+                        <p>Get it on</p>
+                        <h3>Google Play</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_TrangChu_FooterRow")
+
+
+
+<script>
+    $(document).ready(function () {
+        // click mua thuê biethtu
+        const blockThue = $('.thue');
+        const blockMua = $('.mua');
+        blockThue.hide();
+        const btnThue = $('.thueBietthu');
+        const btnMua = $('.muaBietthu');
+        btnThue.click(() => {
+            blockMua.hide();
+            blockThue.show();
+            btnThue.css("background-color", "#E59933");
+            btnMua.css("background-color", "#fff");
+        })
+        btnMua.click(() => {
+            blockThue.hide();
+            blockMua.show();
+            btnMua.css("background-color", "#E59933");
+            btnThue.css("background-color", "#fff");
+        })
+        // click mua thuê BDS KCN
+        const blockThueKCN = $('.kcnThue');
+        const blockMuaKCN = $('.kcnMua');
+        blockThueKCN.hide();
+        const btnThueKCN = $('.thueKCN');
+        const btnMuaKCN = $('.muaKCN');
+        btnThueKCN.click(() => {
+            blockMuaKCN.hide();
+            blockThueKCN.show();
+            btnThueKCN.css("background-color", "#E59933");
+            btnMuaKCN.css("background-color", "#fff");
+        })
+        btnMuaKCN.click(() => {
+            blockThueKCN.hide();
+            blockMuaKCN.show();
+            btnMuaKCN.css("background-color", "#E59933");
+            btnThueKCN.css("background-color", "#fff");
+        })
+        // click heart
+        const heart = $('.fa-heart');
+        $(document).on("click", ".fa-heart", function (e) {
+            if (event.target.classList.contains('clickHeart')) {
+                $(this).removeClass('clickHeart');
+            }
+            else {
+                e.currentTarget.classList.add("clickHeart");
+            }
+        });
+        // show more tin tuc
+        $(".rowTintucMore").hide();
+        $(".iconUp").hide();
+        var btnXemThem = $(".btnMoreTinTuc");
+        btnXemThem.click(() => {
+            if ($('.btnMoreTinTuc .iconUp').css('display') == 'none') {
+                $(".btnMoreTinTuc .iconUp").show();
+                $(".btnMoreTinTuc .iconDown").hide();
+                $(".btnMoreTinTuc .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreTinTuc .iconUp").hide();
+                $(".btnMoreTinTuc .iconDown").show();
+                $(".btnMoreTinTuc .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowTintucMore").toggle();
+        })
+        // show more bds KCN
+        $(".rowKCNmore").hide();
+        var btnXemThemKCN = $(".btnMoreKCN");
+        btnXemThemKCN.click(() => {
+            if ($('.btnMoreKCN .iconUp').css('display') == 'none') {
+                $(".btnMoreKCN .iconUp").show();
+                $(".btnMoreKCN .iconDown").hide();
+                $(".btnMoreKCN .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreKCN .iconUp").hide();
+                $(".btnMoreKCN .iconDown").show();
+                $(".btnMoreKCN .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowKCNmore").toggle();
+        })
+        //show more biệt thự
+        $(".rowBietThumore").hide();
+        var btnXemThemBT = $(".btnMoreBietThu");
+        btnXemThemBT.click(() => {
+            if ($('.btnMoreBietThu .iconUp').css('display') == 'none') {
+                $(".btnMoreBietThu .iconUp").show();
+                $(".btnMoreBietThu .iconDown").hide();
+                $(".btnMoreBietThu .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreBietThu .iconUp").hide();
+                $(".btnMoreBietThu .iconDown").show();
+                $(".btnMoreBietThu .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowBietThumore").toggle();
+        })
+        //show more Duan
+        $(".rowDuanmore").hide();
+        var btnXemThemDA = $(".btnMoreDuan");
+        btnXemThemDA.click(() => {
+            if ($('.btnMoreDuan .iconUp').css('display') == 'none') {
+                $(".btnMoreDuan .iconUp").show();
+                $(".btnMoreDuan .iconDown").hide();
+                $(".btnMoreDuan .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreDuan .iconUp").hide();
+                $(".btnMoreDuan .iconDown").show();
+                $(".btnMoreDuan .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowDuanmore").toggle();
+        })
+        //
+        const nextIcon = '<i class="fas fa-caret-right"></i>';
+        const prevIcon = '<i class="fas fa-caret-left"></i>';
+        // sliderHead
+        //const swiper = new Swiper('.swiper-container', {
+        //    // Optional parameters
+        //    loop: true,
+
+        //    // If we need pagination
+        //    pagination: {
+        //        el: '.swiper-pagination',
+        //    },
+
+        //    // Navigation arrows
+        //    navigation: {
+        //        nextEl: '.swiper-button-next',
+        //        prevEl: '.swiper-button-prev',
+        //    },
+        //});
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + (index + 1) + "</span>";
+                },
+            },
+        });
+        //
+        $('.slider2').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+        $('.slider3').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 7
+                }
+            }
+        })
+    });
+</script>
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="~/Content/custom/trangchu/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

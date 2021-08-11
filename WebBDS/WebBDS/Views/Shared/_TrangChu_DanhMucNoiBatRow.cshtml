@@ -1,0 +1,95 @@
+﻿@model  WebBDS.Models.TrangchuModel
+@{
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    List<WebBDS.Models.LoaiBDS> listLBDS = new List<WebBDS.Models.LoaiBDS>();
+    listBDS = Model.BDS;
+    listLBDS = Model.loaiBDS;
+    List<String> list_image = new List<String>();
+    list_image.Add("./images/trangchu/img/muanhaIcon.png");
+    list_image.Add("./images/trangchu/img/bdsCNicon.png");
+    list_image.Add("./images/trangchu/img/muacanhoIcon.png");
+
+    list_image.Add("./images/trangchu/img/bdsCNicon.png");
+}
+
+
+<div class="row">
+    <div class="danhmucnoibat">
+        <div class="danmucnoibat__start">
+        </div>
+    </div>
+    <div class="danhmucnoibat__title">
+        <i class="far fa-star"></i>
+        <h2>DANH MỤC NỔI BẬT</h2>
+    </div>
+
+    <div class="danhmucnoibat__list">
+        <div class="owl-carousel slider3">
+            <a href="/TrangChu/Index">
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/yeccauBdsicon.png" alt="">
+                    <p>Trang Chủ</p>
+                </div>
+            </a>
+            @for (int i = 0; i < listLBDS.Count; i++)
+            {
+                <div class="danhmucnoibat__item @listLBDS[i]._id" onclick="return handlerFilterLoai('@listLBDS[i]._id')">
+                    <img src="~/images/trangchu/img/muadatnenIcon.png" alt="">
+                    <p>@listLBDS[i].Name</p>
+                </div>
+            }
+            <a href="/Customer/ListBDSmark">
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/thueNDicon.png" alt="">
+                    <p>Danh Sách Yêu Thích</p>
+                </div>
+            </a>
+            <a href="/Customer/ListLich">
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/muacanhoIcon.png" alt="">
+                    <p>Lịch Hẹn Của Bạn</p>
+                </div>
+            </a>
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/thuecanhoIcon.png" alt="">
+                    <p>Liên Hệ</p>
+                </div>
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/muadatnenIcon.png" alt="">
+                    <p>MUA ĐẤT NỀN</p>
+                </div>
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/bdsCNicon.png" alt="">
+                    <p>BĐS CÔNG NGHIỆP</p>
+                </div>
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/bdsNuocngoaiicon.png" alt="">
+                    <p>BĐS NƯỚC NGOÀI</p>
+                </div>
+                <div class="danhmucnoibat__item">
+                    <img src="~/images/trangchu/img/yeccauBdsicon.png" alt="">
+                    <p>YÊU CẦU BĐS</p>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listLBDS)'.replace(/&quot;/g, "\""));
+    function handlerFilterLoai(id) {
+        var idloai = id;
+        $.ajax({
+            url: '/BDStheoLoai/GetBDStheoloai',
+            data: { 'id': idloai },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                window.location = '/BDStheoLoai/Index';
+            }, error: function (er) {
+                alert(er + "fail");
+            }
+        });
+    }
+</script>

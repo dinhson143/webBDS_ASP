@@ -1,0 +1,449 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BaseLayout_Empty_Trangchu.cshtml";
+}
+
+@model  List<WebBDS.Models.BDS>
+@{
+    List<WebBDS.Models.BDS> listBDS = new List<WebBDS.Models.BDS>();
+    listBDS = Model.ToList();
+    int dem = 0;
+}
+
+@Html.Partial("_TrangChu_MenuRow")
+<!-- main -->
+@Html.Partial("_TrangChu_Banner")
+
+<!-- list -->
+<div class="content">
+
+
+    <div class="row bietthuRow bdsKCNrow loaiBDSrow">
+        <div class="danhmucnoibat bdsKCN">
+            <div class="danmucnoibat__start bdsKCN__start">
+            </div>
+        </div>
+        <div class="SelectaName">
+            <div class="TitleBlock">
+                <div class="danhmucnoibat__title">
+                    <i class="fas fa-industry"></i>
+                    <h2>Danh Sách</h2>
+                </div>
+            </div>
+            <div class="SelectBlock">
+                <div class="SelectaName__name">
+                    <p>Xem bằng bản đồ</p>
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <div class="SelectaName__select ">
+                    <div class="SelectaName__select--mua muaKCN">
+                        <p>MUA</p>
+                    </div>
+                    <div class="SelectaName__select--thue thueKCN">
+                        <p>THUÊ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bietthuItem bdsKCNItem kcnMua">
+            @for (int i = 0; i < listBDS.Count; i++)
+            {
+                int tam = -1;
+                if (i < 2)
+                {
+                    <div class="row">
+                        @for (int j = i; j < listBDS.Count; j++)
+                        {
+                            tam++;
+                            if (tam == 2)
+                            {
+                                i += 1;
+                                break;
+                            }
+                            <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                                <div class="bietthuItem__itemImgBlock">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                        <img src="@listBDS[j].Image" alt="">
+                                    </a>
+                                    <div class="bietthuItem__itemImgBlock--description">
+                                        <div class="item">
+                                            <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                            <p>@listBDS[j].Dientich m2</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-heart heart" onclick="return addCart('@listBDS[j]._id')"></i>
+                                <div class="bdsKCNItem__itemContent row">
+                                    <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                        <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                            <p class="bietthuItem__item--title"> @listBDS[j].Name</p>
+                                        </a>
+                                        <p class="bietthuItem__item--des">
+                                            @listBDS[j].Mota
+                                        </p>
+                                    </div>
+                                    <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                        <h1>@listBDS[j].Gia </h1>
+                                    </div>
+                                </div>
+                                <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                    <div class="bietthuItem__item--location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <p>@listBDS[j].Vitri</p>
+                                    </div>
+                                    <div class="btnDetail" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                        <a href="" class="listing-img-container">
+                                            <p>Xem chi tiết</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+
+                    <div class="row rowKCNmore">
+                        @for (int j = i; j < listBDS.Count; j++)
+                        {
+                            tam++;
+                            if (tam == 2)
+                            {
+                                i += 1;
+                                break;
+                            }
+                            <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
+                                <div class="bietthuItem__itemImgBlock">
+                                    <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                        <img src="@listBDS[j].Image" alt="">
+                                    </a>
+                                    <div class="bietthuItem__itemImgBlock--description">
+                                        <div class="item">
+                                            <img src="~/images/trangchu/img/dientich.svg" alt="">
+                                            <p>@listBDS[j].Dientich m2 </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <i class="fas fa-heart heart" onclick="return addCart('@listBDS[j]._id')"></i>
+                                <div class="bdsKCNItem__itemContent row">
+                                    <div class="bdsKCNItem__itemContent1 col l-8 m-8 c-12">
+                                        <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                            <p class="bietthuItem__item--title"> @listBDS[j].Name</p>
+                                        </a>
+                                        <p class="bietthuItem__item--des">
+                                            @listBDS[j].Mota
+                                        </p>
+                                    </div>
+                                    <div class="bdsKCNItem__itemContent2 l-4 m-4 c-12">
+                                        <h1>@listBDS[j].Gia </h1>
+                                    </div>
+                                </div>
+                                <div class="bietthuItem__item--footer bdsKCNItem__item--footer">
+                                    <div class="bietthuItem__item--location">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <p>@listBDS[j].Vitri</p>
+                                    </div>
+                                    <div class="btnDetail" onclick="return xemChiTiet('@listBDS[j]._id')">
+                                        <a href="" class="listing-img-container">
+                                            <p>Xem chi tiết</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
+        <div class="bietthuItem bdsKCNItem kcnThue">
+
+        </div>
+        <div class="btnMore btnMoreKCN col l-6 m-6 c-12">
+            <div class="btnMore__des">XEM THÊM <p></p> KCN</div>
+            <i class="fas fa-caret-up iconUp"></i>
+            <i class="fas fa-caret-down iconDown"></i>
+        </div>
+    </div>
+
+
+
+    <div class="row contentFooter col l-4 m-4 c-12"></div>
+    <div class="khachhang">
+        <h2>KHÁCH HÀNG VÀ ĐỐI TÁC</h2>
+        <p>Rất nhiều người đã dự đoán Công Phượng sẽ được điền tên trong đội hình chính thức.</p>
+    </div>
+    <div class="sliderFooter">
+        <div class="owl-carousel slider2">
+            <img src="~/images/trangchu/img/sliderEnd1.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd2.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd3.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd4.png" alt="">
+            <img src="~/images/trangchu/img/sliderEnd5.png" alt="">
+        </div>
+    </div>
+
+    <div class="endBody">
+        <div class="endBody__vien">
+            <div class="endBody__vien--item">
+            </div>
+        </div>
+        <div class="imgFooter">
+            <img src="~/images/trangchu/img/footer.png" alt="">
+            <div class="btnApp">
+                <a href="" class="appStore">
+                    <i class="fab fa-apple"></i>
+                    <div class="appStore__name">
+                        <p>Available on the</p>
+                        <h3>App Store</h3>
+                    </div>
+                </a>
+                <a href="" class="appStore chPlay">
+                    <img src="~/images/trangchu/img/chPlay.png" />
+                    <div class="appStore__name">
+                        <p>Get it on</p>
+                        <h3>Google Play</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("_TrangChu_FooterRow")
+
+<script type="text/javascript">
+    function xemChiTiet(id) {
+        var idBDS = id;
+        $.ajax({
+            url: '/BDStheoLoai/GetID_BDS',
+            data: { 'id': idBDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+               window.location = '/BDS/ChiTietBDS';
+            }, error: function (er) {
+                alert("Fail: " +er);
+            }
+        });
+
+    }
+    function addCart(id) {
+        var BDS = id;
+        $.ajax({
+            url: '/BDS/AddCart',
+            data: { 'id': BDS },
+            type: "POST",
+            dataType: "json",
+            //contentType: "application/json",
+            success: function (data) {
+                if (data['mgs'] == false) {
+                    window.location = '/Login/Index';
+                }
+                else {
+                    alert(data['note'])
+                }
+            }, error: function (er) {
+                alert("Fail: " + er);
+            }
+        });
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // click mua thuê biethtu
+        const blockThue = $('.thue');
+        const blockMua = $('.mua');
+        blockThue.hide();
+        const btnThue = $('.thueBietthu');
+        const btnMua = $('.muaBietthu');
+        btnThue.click(() => {
+            blockMua.hide();
+            blockThue.show();
+            btnThue.css("background-color", "#E59933");
+            btnMua.css("background-color", "#fff");
+        })
+        btnMua.click(() => {
+            blockThue.hide();
+            blockMua.show();
+            btnMua.css("background-color", "#E59933");
+            btnThue.css("background-color", "#fff");
+        })
+        // click mua thuê BDS KCN
+        const blockThueKCN = $('.kcnThue');
+        const blockMuaKCN = $('.kcnMua');
+        blockThueKCN.hide();
+        const btnThueKCN = $('.thueKCN');
+        const btnMuaKCN = $('.muaKCN');
+        btnThueKCN.click(() => {
+            blockMuaKCN.hide();
+            blockThueKCN.show();
+            btnThueKCN.css("background-color", "#E59933");
+            btnMuaKCN.css("background-color", "#fff");
+        })
+        btnMuaKCN.click(() => {
+            blockThueKCN.hide();
+            blockMuaKCN.show();
+            btnMuaKCN.css("background-color", "#E59933");
+            btnThueKCN.css("background-color", "#fff");
+        })
+        // click heart
+        const heart = $('.fa-heart');
+        $(document).on("click", ".fa-heart", function (e) {
+            if (event.target.classList.contains('clickHeart')) {
+                $(this).removeClass('clickHeart');
+            }
+            else {
+                e.currentTarget.classList.add("clickHeart");
+            }
+        });
+        // show more tin tuc
+        $(".rowTintucMore").hide();
+        $(".iconUp").hide();
+        var btnXemThem = $(".btnMoreTinTuc");
+        btnXemThem.click(() => {
+            if ($('.btnMoreTinTuc .iconUp').css('display') == 'none') {
+                $(".btnMoreTinTuc .iconUp").show();
+                $(".btnMoreTinTuc .iconDown").hide();
+                $(".btnMoreTinTuc .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreTinTuc .iconUp").hide();
+                $(".btnMoreTinTuc .iconDown").show();
+                $(".btnMoreTinTuc .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowTintucMore").toggle();
+        })
+        // show more bds KCN
+        $(".rowKCNmore").hide();
+        var btnXemThemKCN = $(".btnMoreKCN");
+        btnXemThemKCN.click(() => {
+            if ($('.btnMoreKCN .iconUp').css('display') == 'none') {
+                $(".btnMoreKCN .iconUp").show();
+                $(".btnMoreKCN .iconDown").hide();
+                $(".btnMoreKCN .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreKCN .iconUp").hide();
+                $(".btnMoreKCN .iconDown").show();
+                $(".btnMoreKCN .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowKCNmore").toggle();
+        })
+        //show more biệt thự
+        $(".rowBietThumore").hide();
+        var btnXemThemBT = $(".btnMoreBietThu");
+        btnXemThemBT.click(() => {
+            if ($('.btnMoreBietThu .iconUp').css('display') == 'none') {
+                $(".btnMoreBietThu .iconUp").show();
+                $(".btnMoreBietThu .iconDown").hide();
+                $(".btnMoreBietThu .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreBietThu .iconUp").hide();
+                $(".btnMoreBietThu .iconDown").show();
+                $(".btnMoreBietThu .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowBietThumore").toggle();
+        })
+        //show more Duan
+        $(".rowDuanmore").hide();
+        var btnXemThemDA = $(".btnMoreDuan");
+        btnXemThemDA.click(() => {
+            if ($('.btnMoreDuan .iconUp').css('display') == 'none') {
+                $(".btnMoreDuan .iconUp").show();
+                $(".btnMoreDuan .iconDown").hide();
+                $(".btnMoreDuan .btnMore__des").text("Thu Gọn");
+            }
+            else {
+                $(".btnMoreDuan .iconUp").hide();
+                $(".btnMoreDuan .iconDown").show();
+                $(".btnMoreDuan .btnMore__des").text("Xem Thêm");
+            }
+            $(".rowDuanmore").toggle();
+        })
+        //
+        const nextIcon = '<i class="fas fa-caret-right"></i>';
+        const prevIcon = '<i class="fas fa-caret-left"></i>';
+        // sliderHead
+        //const swiper = new Swiper('.swiper-container', {
+        //    // Optional parameters
+        //    loop: true,
+
+        //    // If we need pagination
+        //    pagination: {
+        //        el: '.swiper-pagination',
+        //    },
+
+        //    // Navigation arrows
+        //    navigation: {
+        //        nextEl: '.swiper-button-next',
+        //        prevEl: '.swiper-button-prev',
+        //    },
+        //});
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + (index + 1) + "</span>";
+                },
+            },
+        });
+        //
+        $('.slider2').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+        $('.slider3').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 7
+                }
+            }
+        })
+    });
+</script>
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<script src="~/Content/custom/trangchu/main.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

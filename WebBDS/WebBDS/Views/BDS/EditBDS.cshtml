@@ -1,0 +1,195 @@
+﻿
+@{
+    Layout = null;
+    string mess = ViewData["mess"]?.ToString();
+}
+@model  List<WebBDS.Models.LoaiBDS>
+@{
+    List<WebBDS.Models.LoaiBDS> list = new List<WebBDS.Models.LoaiBDS>();
+    list = Model.ToList();
+    WebBDS.Models.BDS data = new WebBDS.Models.BDS();
+    object dt = null;
+    if (TempData["bdsEdit"] != null)
+    {
+        dt = TempData["bdsEdit"];
+        data = (WebBDS.Models.BDS)dt;
+    }
+    string id = data._id;
+    string idLoai = data.maloaiBDS;
+    string name = data.Name;
+    string mota = data.Mota;
+    string vitri = data.Vitri;
+    string dientich = data.Dientich;
+    string status = data.Status;
+    string gia = data.Gia;
+    string kinhdo = data.KinhDo;
+    string vido = data.ViDo;
+    List<String> image = data.Image;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update BDS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Official Signup Form Responsive, Login form web template,Flat Pricing tables,Flat Drop downs  Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    <!-- /fonts -->
+    <!-- css -->
+    <link href="~/Content/custom/Login/css/font-awesome.min.css" />
+    <link href="~/Content/custom/Login/css/style.css" rel='stylesheet' type='text/css' media="all" />
+    <!-- /css -->
+    <link rel="icon" type="image/png" href="~/images/favicon.ico">
+    <style>
+        @*.content-w3ls .content-agile1{
+            background:url(@image);
+        }*@
+        .content-w3ls .content-agile1{
+            height:800px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Cập Nhật Bất Động Sản</a></h1>
+    <span class="thongbaoloi">@mess</span>
+    <div class="content-w3ls">
+        <div class="content-agile1">
+            <h2 class="agileits1"></h2>
+        </div>
+        <div class="content-agile2">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <div class="form-control w3layouts">
+                    <input type="file" id="firstname" class="" name="file">
+                </div>
+
+                <div class="form-control agileinfo" style="display:flex;color:red;justify-content:space-evenly">
+
+                    <input type="radio" checked id="cb1" name="luachon" value="Khong">
+                    <label for="cb1">Không Ghi Đè Image</label><br>
+
+                    <input type="radio" id="cb2" name="luachon" value="Co">
+                    <label for="cb2">Ghi Đè Image</label><br>
+                </div>
+
+                <div class="form-control w3layouts">
+                    <input type="text" id="email" class="nameBDS" name="Name" placeholder="Tên BDS" title="Please enter a valid name" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock motaBDS" name="Mota" placeholder="Mô tả ngắn" id="address1" title="Please enter a valid mota" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock vitriBDS" name="Vitri" placeholder="Mô tả chi tiết" id="address1" title="Please enter a valid mota" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="number" class="lock dientichBDS" name="Dientich" placeholder="Mô tả chi tiết" id="address1" title="Please enter a valid mota" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock giaBDS" name="Gia" placeholder="Giá" id="password1" title="Please enter a valid gia" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock kdBDS" name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock vdBDS" name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock imageBDS" name="Image" placeholder="" id="address1" title="Please enter a valid mota" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <input type="text" class="lock idBDS" name="_id" placeholder="" id="address1" title="Please enter a valid mota" required="">
+                </div>
+
+                <div class="form-control agileinfo">
+                    <select class="statusBDS" name="Status" id="address1" style="width:330px">
+                        <option style="color:#000" name="Status" value="Mua">Mua</option>
+                        <option style="color:#000" name="Status" value="Thue">Thuê</option>
+                    </select>
+                </div>
+
+                <div class="form-control agileinfo">
+                    <select name="maloaiBDS" id="address1" class="loaiBDS" style="width:330px">
+                        @foreach (var item in list)
+                        {
+                            <option style="color:#000" name="maloaiBDS" value="@item._id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <input type="submit" class="register" value="Update">
+                <a href="/Admin/ListBDS">
+                    <input class="register" type="button" value="Trở Về">
+                </a>
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>  
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
+        var image = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(image)'.replace(/&quot;/g, "\""));
+        var id = '@id';
+        var idLoai = '@idLoai';
+        var name = '@name';
+        var mota = '@data.Mota';
+        var vitri = '@data.Vitri';
+        var dientich = '@data.Dientich';
+        var status = '@status';
+        var gia = '@data.Gia';
+        var kinhdo = '@kinhdo';
+        var vido = '@vido';
+
+        alert(kinhdo);
+
+        if (status == "Mua") {
+            $(".statusBDS").val("Mua");
+        }
+        else {
+            $(".statusBDS").val("Thue");
+        }
+
+        /*$('.content-w3ls .content-agile1').css("background", "url(" + image + ")");*/
+
+
+        $(".imageBDS").val(image);
+
+        $(".imageBDS").hide();
+
+        $(".idBDS").val(id);
+        $(".idBDS").hide();
+
+
+
+        $(".nameBDS").val(name);
+        $(".motaBDS").val(mota);
+        $(".vitriBDS").val(vitri);
+        $(".dientichBDS").val(dientich);
+
+        $(".giaBDS").val(gia);
+
+        $(".kdBDS").val(kinhdo);
+        $(".vdBDS").val(vido);
+
+        $(".statusBDS").val(status);
+        // array[i]._id.localeCompare(id)
+        $(".loaiBDS").val(idLoai);
+    })
+</script>
+
+
+
