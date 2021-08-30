@@ -20,12 +20,6 @@ namespace WebBDS.Controllers
         private static string Bucket = "bds-asp-mvc.appspot.com";
         private static string AuthEmail = "dinhson14399@gmail.com";
         private static string AuthPassword = "tranthingocyen";
-        IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
-        {
-            AuthSecret = "Yc3HItx8xYxfdktTU31jV1siLWE2vknIZAt8gSJg",
-            BasePath = "https://bds-asp-mvc-default-rtdb.firebaseio.com/"
-        };
-        IFirebaseClient client;
         public ActionResult Index()
         {
             if (CommonConstants.listUser.Count == 0)

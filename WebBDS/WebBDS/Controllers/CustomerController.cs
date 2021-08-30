@@ -36,18 +36,10 @@ namespace WebBDS.Controllers
             }
 
             // listBDSmark
-            if (CommonConstants.listBDSmark.Count == 0)
-            {
-                List<BDSmark> listbdsmark = CommonConstants.getlistBDSmark();
-                CommonConstants.listBDSmark = listbdsmark;
-            }
+            
 
 
-            if (CommonConstants.listLich.Count == 0)
-            {
-                List<Lich> listLich = CommonConstants.getlistLich();
-                CommonConstants.listLich = listLich;
-            }
+            
 
 
             userID = (string)Session[CommonConstants.USER_SESSION];
@@ -186,20 +178,6 @@ namespace WebBDS.Controllers
             }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             bool check = false;
             Dictionary<string, object> data = new Dictionary<string, object>();
             using (var client = new HttpClient())
@@ -243,8 +221,12 @@ namespace WebBDS.Controllers
             }
 
             List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
-            
-          
+            if (CommonConstants.listBDSmark.Count == 0)
+            {
+                listBDSmark = CommonConstants.getlistBDSmark();
+                CommonConstants.listBDSmark = listBDSmark;
+            }
+
             List<User> listUser = CommonConstants.listUser;
            
             List<User> listUser_end = new List<User>() ;
@@ -289,7 +271,8 @@ namespace WebBDS.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            List<Lich> listLich = CommonConstants.listLich;
+            List<Lich> listLich = CommonConstants.getlistLich();
+              CommonConstants.listLich = listLich;
 
 
 

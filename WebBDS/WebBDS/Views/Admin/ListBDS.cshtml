@@ -98,6 +98,78 @@
         .dataTables_info{
             display:none;
         }
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            color: #000;
+            font-size: 25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            color: #000;
+        }
     </style>
 </head>
 
@@ -167,19 +239,6 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        @*<div class="input-group no-border btnAllBDS" style="margin-top:50px">
-                            <a href="#" class="btn btn--edit">
-                                <p style="margin-bottom:0;color:#fff">All</p>
-                            </a>
-                        </div>
-                        @foreach (var item in listLBDS)
-                        {
-                            <div class="input-group no-border" style="margin-top:50px" onclick="return handlerFilterLoai('@item._id')">
-                                <a href="#" class="btn btn--edit">
-                                    <p style="margin-bottom:0;color:#fff">@item.Name</p>
-                                </a>
-                            </div>
-                        }*@
                     </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form">
@@ -204,59 +263,6 @@
                         <div class="col-md-12">
                             <div class="card card-profile">
 
-                                @*@foreach (var loaibds in listLBDS)
-                                {
-                                    <table class="@loaibds._id loaiBDS">                                      
-                                        <thead class="thead-dark">
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Image</th>
-                                                <th>Mô Tả</th>
-                                                <th>Vị trí</th>
-                                                <th>Diện tích</th>
-                                                <th>Status</th>
-                                                <th>Giá</th>
-                                                <th>Loại BDS</th>
-                                                <th>Chức năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in listBDS)
-                                            {
-                                                if (item.maloaiBDS == loaibds._id)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            <img class="img+@dem" style="width:200px;height:100px" src="@item.Image[0]" />
-                                                        </td>
-                                                        <td>@item.Name</td>
-                                                        <td>@item.Mota</td>
-                                                        <td>@item.Vitri</td>
-                                                        <td>@item.Dientich</td>
-                                                        <td>@item.Status</td>
-                                                        <td>@item.Gia</td>
-                                                        <td>@loaibds.Name</td>
-                                                        <td>
-                                                            <div class="btn__group">
-                                                                <div class="btn btn--edit" onclick="">
-                                                                    <p style="margin-bottom:0;">Detail</p>
-                                                                </div>
-                                                                <div class="btn btn--edit" onclick="return handlerEditBDS('@dem')">
-                                                                    <p style="margin-bottom:0;">Edit</p>
-                                                                </div>
-                                                                <div class="btn btn--delete" onclick="return deleteBDS('@dem')">
-                                                                    <p style="margin-bottom:0;">Delete</p>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    dem++;
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                    dem = 0;
-                                }*@
                                 <table id="example" class="table table-striped table-bordered table-sm infor-table AllBDS"
                                        data-show-export="true"
                                        data-show-toggle="true"
@@ -326,6 +332,25 @@
             </div>
         </div>
     </div>
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Đóng</p>
+            </div>
+        </div>
+    </div>
     <!--   Core JS Files   -->
     <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
@@ -336,30 +361,12 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
-    @*<script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
-        <script src="~/Content/custom/User/assets/js/core/dataTables.bootstrap4.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
-        <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/export/bootstrap-table-export.min.js"></script>*@
 
 
-<script type="text/javascript">
+
+    <script type="text/javascript">
         ////////
         $('#example').DataTable();
-        //$(function () {
-        //    $('#example').bootstrapTable('destroy').bootstrapTable({
-        //        toolbar: '.toolbar',
-        //        search: true,
-        //        showColumns: true,
-        //        fixedColumns: true,
-        //        fixedNumber: 0,
-        //        fixedRightNumber: 0
-        //    });
-        //});
-        /*$(".example2_wrapper").hide();*/
 
         ////////////////
         $(".loaiBDS").hide();
@@ -392,8 +399,6 @@
         var status = "";
         var image = "";
 
-
-    console.log(array);
     function xemChiTiet(item) {
         duan = array[parseInt(item)];
         var idBDS = duan._id;
@@ -433,8 +438,11 @@
            /* debugger;*/
             /*image = duan.Image.replace("amp", "");*/
             image = duan.Image;
-
-            console.log(image.toString());
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__des h3").text('Loading ...');
+            $(".thongbao__btn").hide();
             $.ajax({
                 url: '/Admin/EditBDS',
                 data: JSON.stringify({ 'id': duan._id, 'idLoai': duan.maloaiBDS, 'name': duan.Name, 'mota': duan.Mota, 'vitri': duan.Vitri, 'dientich': duan.Dientich, 'gia': duan.Gia, 'kinhdo': duan.KinhDo, 'vido': duan.ViDo, 'status': duan.Status, 'image': image.toString() }),
@@ -449,27 +457,57 @@
             });
         }
         function deleteBDS(item) {
-            duan = array[parseInt(item)];
-            id = duan._id;
-            $.ajax({
-                url: '/BDS/DeleteBDS',
-                data: { 'id': id },
-                type: "POST",
-                dataType: "json",
-                //idIFIFntentType: "application/json",
-                success: function (data) {
-                    if (data['mgs'] == true) {
-                        alert("Xóa thành công");
-                        window.location = '/Admin/ListBDS';
-                    } else {
-                        alert("Xóa thất bại");
+            $(".thongbao__des h3").text('Xác nhận xóa BDS');
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__btn--ok").click(function () {
+                $(".thongbao__des h3").text('Loading ...');
+                $(".thongbao__btn").hide();
+                duan = array[parseInt(item)];
+                id = duan._id;
+                $.ajax({
+                    url: '/BDS/DeleteBDS',
+                    data: { 'id': id },
+                    type: "POST",
+                    dataType: "json",
+                    //idIFIFntentType: "application/json",
+                    success: function (data) {
+                        if (data['mgs'] == true) {
+                            $(".thongbao__des h3").text('Xóa BDS thành công');
+                            $(".thongbao__des").css('color', 'green');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".thongbao__des h3").text('Loading ...');
+                                $(".thongbao__btn").hide();
+                                window.location = '/Admin/ListBDS';
+                            })
+                        } else {
+                            $(".thongbao__des h3").text('Xóa BDS thất bại');
+                            $(".thongbao__des").css('color', 'red');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".overlay").hide();
+                                $(".thongbao").hide();
+                            });
+                        }
+                    }, error: function (er) {
+                        alert("Fail: " + er);
                     }
-                }, error: function (er) {
-                    alert("Fail: " + er);
-                }
-            });
+                });
+            })           
+            $(".thongbao__btn--huy").click(function () {
+                $(".overlay").hide();
+                $(".thongbao").hide();
+            }); 
         }
-</script>
+    </script>
     <script type="text/javascript">
         (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {

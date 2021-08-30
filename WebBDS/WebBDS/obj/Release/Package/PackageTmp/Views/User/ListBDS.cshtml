@@ -168,19 +168,6 @@
             <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
-                        @*<div class="input-group no-border btnAllBDS" style="margin-top:50px">
-                                <a href="#" class="btn btn--edit">
-                                    <p style="margin-bottom:0;color:#fff">All</p>
-                                </a>
-                            </div>
-                            @foreach (var item in listLBDS)
-                            {
-                                <div class="input-group no-border" style="margin-top:50px" onclick="return handlerFilterLoai('@item._id')">
-                                    <a href="#" class="btn btn--edit">
-                                        <p style="margin-bottom:0;color:#fff">@item.Name</p>
-                                    </a>
-                                </div>
-                            }*@
                     </div>
                     <div class="collapse navbar-collapse justify-content-end">
                         <form class="navbar-form">
@@ -204,60 +191,6 @@
                         </div>
                         <div class="col-md-12">
                             <div class="card card-profile">
-
-                                @*@foreach (var loaibds in listLBDS)
-                                    {
-                                        <table class="@loaibds._id loaiBDS">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Image</th>
-                                                    <th>Mô Tả</th>
-                                                    <th>Vị trí</th>
-                                                    <th>Diện tích</th>
-                                                    <th>Status</th>
-                                                    <th>Giá</th>
-                                                    <th>Loại BDS</th>
-                                                    <th>Chức năng</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in listBDS)
-                                                {
-                                                    if (item.maloaiBDS == loaibds._id)
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                <img class="img+@dem" style="width:200px;height:100px" src="@item.Image[0]" />
-                                                            </td>
-                                                            <td>@item.Name</td>
-                                                            <td>@item.Mota</td>
-                                                            <td>@item.Vitri</td>
-                                                            <td>@item.Dientich</td>
-                                                            <td>@item.Status</td>
-                                                            <td>@item.Gia</td>
-                                                            <td>@loaibds.Name</td>
-                                                            <td>
-                                                                <div class="btn__group">
-                                                                    <div class="btn btn--edit" onclick="">
-                                                                        <p style="margin-bottom:0;">Detail</p>
-                                                                    </div>
-                                                                    <div class="btn btn--edit" onclick="return handlerEditBDS('@dem')">
-                                                                        <p style="margin-bottom:0;">Edit</p>
-                                                                    </div>
-                                                                    <div class="btn btn--delete" onclick="return deleteBDS('@dem')">
-                                                                        <p style="margin-bottom:0;">Delete</p>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        dem++;
-                                                    }
-                                                }
-                                            </tbody>
-                                        </table>
-                                        dem = 0;
-                                    }*@
                                 <table id="example" class="table table-striped table-bordered table-sm infor-table AllBDS"
                                        data-show-export="true"
                                        data-show-toggle="true"
@@ -323,15 +256,6 @@
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
-    @*<script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
-        <script src="~/Content/custom/User/assets/js/core/dataTables.bootstrap4.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
-
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/fixed-columns/bootstrap-table-fixed-columns.min.js"></script>
-        <script src="https://unpkg.com/tableexport.jquery.plugin/tableExport.min.js"></script>
-        <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/export/bootstrap-table-export.min.js"></script>*@
-
 
     <script type="text/javascript">
         ////////
@@ -356,17 +280,6 @@
             $(className).toggle();
             $(".AllBDS").hide();
         }
-        // BDS
-        var idDuAn = "";
-        var name = "";
-        var mota= "";
-        var vitri= "";
-        var dientich= "";
-        var gia = "";
-        var kinhdo = "";
-        var vido = "";
-        var status = "";
-        var image = "";
     </script>
     <script type="text/javascript">
         (function () {

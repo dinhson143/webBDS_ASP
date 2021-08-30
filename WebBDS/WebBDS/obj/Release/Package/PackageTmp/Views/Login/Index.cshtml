@@ -7,7 +7,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html style="position:relative">
 <head>
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,10 +135,6 @@
 
 </head>
 <body>
-    @*@foreach (var item in Model)
-        {
-            <h1 class="w3ls">@item.name + "-" + @item.email</h1>
-        }*@
     <h1 class="w3ls" style="font-weight:600"><a href="/trangchu" style="color:#fff">TRANG CHỦ</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
@@ -164,10 +160,17 @@
                 </a>
                 <input class="register" type="button" id="GoogleLogin" onclick="login()" value="Google">
 
-
+                <a href="/Login/QuenMK">
+                    <input style="margin: 2px auto;" class="register" type="button" id="" onclick="" value="Quên mật khẩu ?">
+                </a>
             </form>
             <script type="text/javascript">
                 function checkLogin() {
+                    $(".thongbao__des").css('color', 'green');
+                    $(".overlay").show();
+                    $(".thongbao").show();
+                    $(".thongbao__des h3").text('Loading . . .');
+                    $(".thongbao__btn").hide();
                     $.ajax({
                         url: '/Login/CheckLogin',
                         data: { 'id': $('#email').val(), 'pw': $('#password1').val() },
@@ -176,19 +179,39 @@
                         //contentType: "application/json",
                         success: function (data) {
                             if (data['mgs'] == true) {
-                                alert("Đăng nhập thành công");
-                                if (data['loai'] == "user") {
-                                    window.location = '/User/Index';
-                                }
-                                else if (data['loai'] == "admin") {
-                                    window.location = '/Admin/Index';
-                                }
-                                else {
-                                    window.location = '/Customer/Index';
-                                }
+                                $(".thongbao__des h3").text('Đăng nhập thành công');
+                                $(".thongbao__des").css('color', 'green');
+                                $(".overlay").show();
+                                $(".thongbao").show();
+                                $(".thongbao__btn").show();
+                                $(".thongbao__btn--huy").hide();
+                                $(".thongbao__btn--ok").click(function () {
+                                    $(".thongbao__des h3").text('Loading . . .');
+                                    $(".thongbao__btn").hide();
+                                    //$(".overlay").hide();
+                                    //$(".thongbao").hide();
+                                    if (data['loai'] == "user") {
+                                        window.location = '/User/Index';
+                                    }
+                                    else if (data['loai'] == "admin") {
+                                        window.location = '/Admin/Index';
+                                    }
+                                    else {
+                                        window.location = '/Customer/Index';
+                                    }
+                                });                               
                             }
                             else {
-                                alert("Đăng nhập thất bại");
+                                $(".thongbao__des h3").text('Đăng nhập thất bại');
+                                $(".thongbao__des").css('color', 'red');
+                                $(".overlay").show();
+                                $(".thongbao").show();
+                                $(".thongbao__btn").show();
+                                $(".thongbao__btn--huy").hide();
+                                $(".thongbao__btn--ok").click(function () {
+                                    $(".overlay").hide();
+                                    $(".thongbao").hide();
+                                });
                             }
                         }, error: function (er) {
                             alert(er);
@@ -196,9 +219,29 @@
                     });
 
                 }
-    </script>
+            </script>
+        </div>
+
+        <div class="clear"></div>
+
     </div>
-    <div class="clear"></div>
+    <div class="overlay">
     </div>
-    </body>
+    <div class="thongbao">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Hủy</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

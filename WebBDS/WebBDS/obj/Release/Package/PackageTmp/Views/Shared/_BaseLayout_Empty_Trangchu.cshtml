@@ -19,9 +19,101 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    
+    <style>
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: fixed;
+            width: 30%;
+            height: 35%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            color: #000;
+            font-size: 25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            color: #000;
+        }
+    </style>
 </head>
-<body>
+<body style="position:relative">
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Hủy</p>
+            </div>
+        </div>
+    </div>
     @RenderBody()
 </body>
 </html>

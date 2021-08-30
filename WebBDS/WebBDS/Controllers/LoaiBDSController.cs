@@ -138,6 +138,7 @@ namespace WebBDS.Controllers
             {
                 if(item.maloaiBDS == id)
                 {
+                    check = false;
                     data.Add("mgs", check);
                     return JsonConvert.SerializeObject(data);
                 }
@@ -158,9 +159,9 @@ namespace WebBDS.Controllers
                     check = true;
                     List<LoaiBDS> listlbds = CommonConstants.getlistLoaiBDS();
                     CommonConstants.listLoaiBDS = listlbds;
+                    data.Add("mgs", check);
                 }
             }
-            data.Add("mgs", check);
             return JsonConvert.SerializeObject(data);
         }
     }

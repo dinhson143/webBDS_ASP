@@ -1,5 +1,4 @@
 ﻿@model WebBDS.Models.User
-
 @{
     Layout = null;
     string mess = ViewData["mess"]?.ToString();
@@ -32,7 +31,7 @@
     <h1 class="w3ls" style="font-weight:600"><a href="/trangchu" style="color:#fff">TRANG CHỦ</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
-        <div class="content-agile1" style="height:660px">
+        <div class="content-agile1" style="height:730px">
             <h2 class="agileits1">8xland</h2>
         </div>
         <div class="content-agile2">
@@ -68,8 +67,8 @@
                 </div>
 
                 <input type="submit" class="register" value="Register">
-                <a href="/Login">
-                    <input class="register" type="button" value="Login">
+                <a href="/Admin/Index">
+                    <input class="register" type="button" value="Trở lại">
                 </a>
             </form>
             <script type="text/javascript">

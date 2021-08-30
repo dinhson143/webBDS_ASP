@@ -71,33 +71,20 @@ namespace WebBDS.Controllers
 
 
 
-            
 
 
-            List<User> listUS = new List<User>();
-            using (var client = new HttpClient())
+
+            string token = (string)Session[CommonConstants.AccessToken_SESSION];
+            if (CommonConstants.User.Email != userID)
             {
-                client.BaseAddress = new Uri(CommonConstants.URL+ "user/" + userID);
-                var responseTask = client.GetAsync("");
-                responseTask.Wait();
-
-                var result2 = responseTask.Result;
-                if (result2.IsSuccessStatusCode)
+                List<User> getUser = CommonConstants.getlistUserID(userID, token);
+                if (getUser.Count > 0)
                 {
-                    var readJob = result2.Content.ReadAsAsync<List<User>>();
-                    readJob.Wait();
-                    listUS = readJob.Result;
-                }
-                else
-                {                   
-                    ViewData["mess"] = "Server Bảo Trì !";
+                    CommonConstants.User = getUser[0];
                 }
             }
             User user = new User();
-            if (listUS.Count > 0)
-            {
-                user = listUS[0];
-            }
+            user = CommonConstants.User;
 
 
             lich.IDuser = user._id;
@@ -159,10 +146,15 @@ namespace WebBDS.Controllers
                     check = true;
                     List<Lich> listLich = CommonConstants.getlistLich();
                     CommonConstants.listLich = listLich;
+                    data.Add("mgs", check);
+                    return JsonConvert.SerializeObject(data);
+                }
+                else
+                {
+                    data.Add("mgs", check);
+                    return JsonConvert.SerializeObject(data);
                 }
             }
-            data.Add("mgs", check);
-            return JsonConvert.SerializeObject(data);
         }
 
 

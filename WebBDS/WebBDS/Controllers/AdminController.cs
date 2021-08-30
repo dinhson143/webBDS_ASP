@@ -55,11 +55,7 @@ namespace WebBDS.Controllers
                 CommonConstants.listBDS = listbds;
             }
             // listBDSmark
-            if (CommonConstants.listBDSmark.Count == 0)
-            {
-                List<BDSmark> listbdsmark = CommonConstants.getlistBDSmark();
-                CommonConstants.listBDSmark = listbdsmark;
-            }
+            
             // listLich
             if (CommonConstants.listLich.Count == 0)
             {
@@ -148,7 +144,11 @@ namespace WebBDS.Controllers
         public ActionResult ListBDSmark()
         {
             List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
-
+            if (CommonConstants.listBDSmark.Count == 0)
+            {
+                listBDSmark = CommonConstants.getlistBDSmark();
+                CommonConstants.listBDSmark = listBDSmark;
+            }
 
             List<User> listUser = CommonConstants.listUser;
 
@@ -170,8 +170,9 @@ namespace WebBDS.Controllers
         {
             List<User> listUser = CommonConstants.listUser;
 
-            List<Lich> listLich = CommonConstants.listLich;
-            
+            List<Lich> listLich = CommonConstants.getlistLich();
+            CommonConstants.listLich = listLich;
+
 
             List<BDS> listBDS = CommonConstants.listBDS;          
 
@@ -253,8 +254,8 @@ namespace WebBDS.Controllers
             
 
             /// bds mark
-            List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
-           
+            List<BDSmark> listBDSmark = CommonConstants.getlistBDSmark();
+            CommonConstants.listBDSmark = listBDSmark;
 
             // 
             List<Thongke> listThongke = new List<Thongke>();

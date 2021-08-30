@@ -65,10 +65,83 @@
             z-index: 150;
             position: absolute;
         }
+
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index:999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold ;
+            color:#000;
+            font-size:25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            color: #000;
+        }
     </style>
 </head>
 
-<body class="">
+<body style="position:relative">
 
     <div class="wrapper" style="background-color:sandybrown">
         <canvas id="bgCanvas"></canvas>
@@ -175,7 +248,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class="bmd-label-floating">PassWord mới</label>
+                                                    <label class="bmd-label-floating">PassWord</label>
                                                     <input type="text" class="form-control" id="password">
                                                 </div>
                                             </div>
@@ -192,8 +265,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary pull-right" onclick="updateUser()">Update Profile </button>
-                                        <button class="btn btn-primary pull-right" onclick=" deleteUser()">Xóa tài khoản</button>
+                                        <button class="btn btn-primary pull-right" onclick="updateUser(); return false;" value="Click">Update Profile </button>
+                                        <button class="btn btn-primary pull-right" onclick=" deleteUser();return false;">Xóa tài khoản</button>
                                         <a href="/Admin/CreateUser">
                                             <input class="btn btn-primary pull-right" type="button" value="Tạo Tài Khoản">
                                         </a>
@@ -213,38 +286,196 @@
             </div>
         </div>
     </div>
+
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Hủy</p>
+            </div>
+        </div>
+    </div>
     <!--   Core JS Files   -->
     <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <script src="~/Content/custom/User/assets/js/plugins/moment.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/sweetalert2.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.validate.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-selectpicker.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-tagsinput.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jasny-bootstrap.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/fullcalendar.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/nouislider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/arrive.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/chartist.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-notify.js"></script>
+
     <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
-    <script src="~/Content/custom/User/assets/demo/demo.js"></script>
 
+    <script type="text/javascript">
+           var role = '@role';
+        if (role == "admin") {
+            $("#role").val("admin");
+        }
+        else if (role == "user") {
+            $("#role").val("user");
+        }
+        else {
+            $("#role").val("customer");
+        }
+        var idUser = '@id';
+        var idUserIF = '@idIF';
+        var role = '@role';
+        var name = "";
+        var address = "";
+        var phone = "";
+        var email = "";
+         var pass = "";
 
+            function dangxuatUser() {
+                $.ajax({
+                    url: '/Customer/Logout',
+                    data: { 'id': idUser },
+                    type: "POST",
+                    dataType: "json",
+                    success: function (data) {
+                        window.location = '/Login/Index';
+                    }, error: function (er) {
+                        alert("Fail: " + er);
+                    }
+                });
+        }
+        function updateUser() {
+                if ($('#name').val() === "") { name = '@name' }
+            else { name = $('#name').val() }
+
+            if ($('#email').val() === "") { email = '@email' }
+            else { email = $('#email').val() }
+
+            if ($('#address').val() === "") { address = '@address' }
+            else { address = $('#address').val() }
+
+            if ($('#phone').val() === "") { phone = '@phone' }
+            else { phone = $('#phone').val() }
+
+            if ($('#password').val() === "") {
+                $(".thongbao__des h3").text('Vui lòng nhập password');
+                $(".thongbao__des").css('color', 'red');
+                $(".overlay").show();
+                $(".thongbao").show();
+                $(".thongbao__btn--huy").hide();
+                $(".thongbao__btn--ok").click(function () {
+                    $(".overlay").hide();
+                    $(".thongbao").hide();
+                });
+                return;
+            }
+            else { pass = $('#password').val() }
+
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__des h3").text('Loading ...');
+            $(".thongbao__btn").hide();
+
+            $.ajax({
+                url: '/Customer/Edit',
+                data: { 'id': idUser, 'idIF': idUserIF, 'name': name, 'email': email, 'address': address, 'phone': phone, 'password': pass, 'role': role },
+                type: "POST",
+                dataType: "json",
+                //contentType: "application/json",
+                success: function (data) {
+                    if (data['mgs'] != null) {
+                        /*alert("Update thành công");*/
+                        $(".thongbao__des h3").text('Update thông tin thành công');
+                        $(".thongbao__des").css('color', 'green');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".thongbao__des h3").text('Loading ...');
+                            $(".thongbao__btn").hide();
+                            window.location = '/Admin/Index';                          
+                        })
+                    } else {
+                        $(".thongbao__des h3").text('Update thông tin thất bại');
+                        $(".thongbao__des").css('color', 'red');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".overlay").hide();
+                            $(".thongbao").hide();
+
+                        });
+                    }
+                }, error: function (er) {
+                    alert(er+ "fail");
+                }
+            });
+        }
+        function deleteUser(e) {
+            $(".thongbao__des h3").text('Xác nhận xóa User');
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__btn--ok").click(function () {
+                $(".thongbao__des h3").text('Loading ...');
+                $(".thongbao__btn").hide();
+                $.ajax({
+                    url: '/Customer/Delete',
+                    data: { 'id': idUser, 'idIF': idUserIF },
+                    type: "POST",
+                    dataType: "json",
+                    //idIFIFntentType: "application/json",
+                    success: function (data) {
+                        if (data['mgs'] == true) {
+                            $(".thongbao__des h3").text('Xóa User thành công');
+                            $(".thongbao__des").css('color', 'green');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".thongbao__des h3").text('Loading ...');
+                                $(".thongbao__btn").hide();
+                                window.location = '/Login/Index';
+                            })                             
+                        } else {
+                            $(".thongbao__des h3").text('Xóa User thất bại');
+                            $(".thongbao__des").css('color', 'red');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".overlay").hide();
+                                $(".thongbao").hide();
+                            })  
+                        }
+                    }, error: function (er) {
+                        alert("Fail: " + er);
+                    }
+                });
+            })
+            $(".thongbao__btn--huy").click(function () {
+                $(".overlay").hide();
+                $(".thongbao").hide();
+            });
+        }
+    </script>
     <script type="text/javascript">
         (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
                 window.setTimeout(callback, 1000 / 60);
             };
             window.requestAnimationFrame = requestAnimationFrame;
-        }) ();
+        })();
 
         // Terrain stuff.
         var background = document.getElementById("bgCanvas"),
@@ -398,8 +629,8 @@
         entities.push(new ShootingStar());
         entities.push(new ShootingStar());
         entities.push(new Terrain({ mHeight: (height) - 320 }));
-        entities.push(new Terrain({ displacement: 120, scrollDelay: 50, fillStyle: "rgb(17,20,40)", mHeight: (height) -200 }));
-        entities.push(new Terrain({ displacement: 100, scrollDelay: 20, fillStyle: "rgb(10,10,5)", mHeight: height -120}));
+        entities.push(new Terrain({ displacement: 120, scrollDelay: 50, fillStyle: "rgb(17,20,40)", mHeight: (height) - 200 }));
+        entities.push(new Terrain({ displacement: 100, scrollDelay: 20, fillStyle: "rgb(10,10,5)", mHeight: height - 120 }));
 
         //animate background
         function animate() {
@@ -416,97 +647,6 @@
             requestAnimationFrame(animate);
         }
         animate();
-
-
-
-
-
-    var role = '@role';
-        if (role == "admin") {
-            $("#role").val("admin");
-        }
-        else if (role == "user") {
-            $("#role").val("user");
-        }
-        else {
-            $("#role").val("customer");
-        }
-    var idUser = '@id';
-    var idUserIF = '@idIF';
-    var role = '@role';
-    var name = "";
-    var address = "";
-    var phone = "";
-    var email = "";
-        var pass = "";
-
-        function dangxuatUser() {
-            window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
-            
-            $.ajax({
-                url: '/Customer/Logout',
-                data: { 'id': idUser },
-                type: "POST",
-                dataType: "json",
-                success: function (data) {
-                    window.location = '/Login/Index';
-                }, error: function (er) {
-                    alert("Fail: " + er);
-                }
-            });
-    }
-    function updateUser() {
-            if ($('#name').val() === "") { name = '@name' }
-        else { name = $('#name').val() }
-
-        if ($('#email').val() === "") { email = '@email' }
-        else { email = $('#email').val() }
-
-        if ($('#address').val() === "") { address = '@address' }
-        else { address = $('#address').val() }
-
-        if ($('#phone').val() === "") { phone = '@phone' }
-        else { phone = $('#phone').val() }
-
-        if ($('#password').val() === "") { pass = '@pw' }
-        else { pass = $('#password').val() }
-        $.ajax({
-            url: '/Customer/Edit',
-            data: { 'id': idUser, 'idIF': idUserIF, 'name': name, 'email': email, 'address': address, 'phone': phone, 'password': pass, 'role': role },
-            type: "POST",
-            dataType: "json",
-            //contentType: "application/json",
-            success: function (data) {
-                if (data['mgs'] != null) {
-                    alert("Update thành công");
-                    window.location = '/Admin/Index';
-                } else {
-                    alert("Update thất bại");
-                }
-            }, error: function (er) {
-                alert(er+ "fail");
-            }
-        });
-    }
-    function deleteUser() {
-        $.ajax({
-            url: '/Customer/Delete',
-            data: { 'id': idUser, 'idIF': idUserIF },
-            type: "POST",
-            dataType: "json",
-            //idIFIFntentType: "application/json",
-            success: function (data) {
-                if (data['mgs'] == true) {
-                    alert("Xóa thành công");
-                    window.location = '/Admin/Index';
-                } else {
-                    alert("Xóa thất bại");
-                }
-            }, error: function (er) {
-                alert("Fail: " + er);
-            }
-       });
-    }
     </script>
     <script>
         $(document).ready(function () {

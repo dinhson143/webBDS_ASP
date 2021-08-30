@@ -53,7 +53,7 @@
                 if (i < 2)
                 {
                     <div class="row">
-                        @for (int j = i; j < listBDS.Count; j++)
+                        @for (int j = i; j < listBDS.Count+1; j++)
                         {
                             tam++;
                             if (tam == 2)
@@ -64,7 +64,7 @@
                             <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
                                 <div class="bietthuItem__itemImgBlock">
                                     <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
-                                        <img src="@listBDS[j].Image" alt="">
+                                        <img src="@listBDS[j].Image[0]" alt="">
                                     </a>
                                     <div class="bietthuItem__itemImgBlock--description">
                                         <div class="item">
@@ -104,12 +104,11 @@
                 }
                 else
                 {
-
                     <div class="row rowKCNmore">
                         @for (int j = i; j < listBDS.Count; j++)
-                        {
+                        {                           
                             tam++;
-                            if (tam == 2)
+                            if (tam >1)
                             {
                                 i += 1;
                                 break;
@@ -117,7 +116,7 @@
                             <div class="bietthuItem__item bdsKCNItem__item col l-6 m-6 c-12">
                                 <div class="bietthuItem__itemImgBlock">
                                     <a href="" class="listing-img-container" onclick="return xemChiTiet('@listBDS[j]._id')">
-                                        <img src="@listBDS[j].Image" alt="">
+                                        <img src="@listBDS[j].Image[0]" alt="">
                                     </a>
                                     <div class="bietthuItem__itemImgBlock--description">
                                         <div class="item">
@@ -152,6 +151,11 @@
                                     </div>
                                 </div>
                             </div>
+                            if (j == listBDS.Count - 1)
+                            {
+                                i = listBDS.Count;
+                                break;
+                            }
                         }
                     </div>
                 }

@@ -171,6 +171,11 @@
     }
     function addCart(id) {
         var BDS = id;
+        $(".thongbao__des").css('color', 'green');
+        $(".overlay").show();
+        $(".thongbao").show();
+        $(".thongbao__des h3").text('Loading ...');
+        $(".thongbao__btn").hide();
         $.ajax({
             url: '/BDS/AddCart',
             data: { 'id': BDS },
@@ -182,7 +187,29 @@
                     window.location = '/Login/Index';
                 }
                 else {
-                    alert(data['note'])
+                    if (data['note'] != null) {
+                        $(".thongbao__des h3").text(data['note']);
+                        $(".thongbao__des").css('color', 'green');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".overlay").hide();
+                            $(".thongbao").hide();
+                        })
+                    } else {
+                        $(".thongbao__des h3").text('Failed');
+                        $(".thongbao__des").css('color', 'red');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".overlay").hide();
+                            $(".thongbao").hide();
+                        });
+                    }
                 }
             }, error: function (er) {
                 alert("Fail: " + er);

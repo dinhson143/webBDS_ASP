@@ -83,6 +83,79 @@
         .dataTables_info {
             display: none;
         }
+
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            color: #000;
+            font-size: 25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+            cursor: pointer;
+            opacity: 0.8;
+            color: #000;
+        }
     </style>
 </head>
 
@@ -183,8 +256,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-primary pull-right" onclick="editLBDS()">Update</button>
-                                        <div class="clearfix"></div>
+                                        <button class="btn btn-primary pull-right" onclick="editLBDS(); return false;">Update</button>
                                     </form>
                                 </div>
                                 <table id="example" class="table table-striped table-bordered table-sm infor-table"
@@ -199,7 +271,7 @@
                                        data-page-list="[10, 25, 50, 100, 200, All]">
                                     <thead class="thead-dark">
                                         <tr>
-                                            <th>ID</th>
+                                            @*<th>ID</th>*@
                                             <th>Name</th>
                                             <th>Chức năng</th>
                                         </tr>
@@ -208,7 +280,7 @@
                                         @foreach (var item in list)
                                         {
                                             <tr>
-                                                <td id="idUser">@item._id</td>
+                                                @*<td id="idUser">@item._id</td>*@
                                                 <td>@item.Name</td>
                                                 <td>
                                                     <div class="btn__group">
@@ -233,34 +305,148 @@
             </div>
         </div>
     </div>
+
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Đóng</p>
+            </div>
+        </div>
+    </div>
     <!--   Core JS Files   -->
     <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-    <script src="~/Content/custom/User/assets/js/plugins/moment.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/sweetalert2.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.validate.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-selectpicker.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jquery.dataTables.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-tagsinput.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/jasny-bootstrap.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/fullcalendar.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/nouislider.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/arrive.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/chartist.min.js"></script>
-    <script src="~/Content/custom/User/assets/js/plugins/bootstrap-notify.js"></script>
     <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
-    <script src="~/Content/custom/User/assets/demo/demo.js"></script>
 
 
     <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
 
+    <script type="text/javascript">
+        ////////////////////////////
+        $(".create").hide();
+        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
+        var loaiBDS = null;
+        var id = "";
+        var name = "";
+        function handlerEditLBDS(item) {
+            $(".create").toggle();
+            loaiBDS = array[parseInt(item)];
+            $(".lbName").text("Name: " + loaiBDS.Name);
+            id = loaiBDS._id;
+        }
+        function editLBDS() {
+            if ($('#name').val() === "") { name = loaiBDS.Name}
+            else { name = $('#name').val()}
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__des h3").text('Loading ...');
+            $(".thongbao__btn").hide();
+            $.ajax({
+                url: '/LoaiBDS/EditLBDS',
+                data: { 'id': id,'name': name},
+                type: "POST",
+                dataType: "json",
+                //contentType: "application/json",
+                success: function (data) {
+                    if (data['mgs'] != null) {
+                        $(".thongbao__des h3").text('Update thành công');
+                        $(".thongbao__des").css('color', 'green');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".thongbao__des h3").text('Loading ...');
+                            $(".thongbao__btn").hide();
+                            window.location = '/Admin/LoaiBDS';
+                        })                       
+                    } else {
+                        $(".thongbao__des h3").text('Update thất bại');
+                        $(".thongbao__des").css('color', 'red');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__btn").show();
+                        $(".thongbao__btn--huy").hide();
+                        $(".thongbao__btn--ok").click(function () {
+                            $(".overlay").hide();
+                            $(".thongbao").hide();
+                        })
+                    }
+                }, error: function (er) {
+                    alert(er + "fail");
+                }
+            });
+        }
 
+        function deleteLBDS(item) {
+            $(".thongbao__des h3").text('Xác nhận xóa Lịch hẹn');
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__btn--ok").click(function () {
+                $(".thongbao__des h3").text('Loading ...');
+                $(".thongbao__btn").hide();
+                loaiBDS = array[parseInt(item)];
+                id = loaiBDS._id;
+                $.ajax({
+                    url: '/LoaiBDS/DeleteLBDS',
+                    data: { 'id': id },
+                    type: "POST",
+                    dataType: "json",
+                    //idIFIFntentType: "application/json",
+                    success: function (data) {
+                        if (data['mgs'] == true) {
+                            $(".thongbao__des h3").text('Xóa loại BDS thành công');
+                            $(".thongbao__des").css('color', 'green');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".thongbao__des h3").text('Loading ...');
+                                $(".thongbao__btn").hide();
+                                window.location = '/Admin/LoaiBDS';
+                            })                            
+                        } else if (data['mgs'] == false){
+                            $(".thongbao__des h3").text('Loại BDS đang có dự án không thể xóa !!!');
+                            $(".thongbao__des").css('color', 'red');
+                            $(".overlay").show();
+                            $(".thongbao").show();
+                            $(".thongbao__btn").show();
+                            $(".thongbao__btn--ok").hide();
+                            $(".thongbao__btn--huy").click(function () {
+                                $(".overlay").hide();
+                                $(".thongbao").hide();
+                            }); 
+                        }
+                    }, error: function (er) {
+                        alert("Fail: " + er);
+                    }
+                });
+            })           
+            $(".thongbao__btn--huy").click(function () {
+                $(".overlay").hide();
+                $(".thongbao").hide();
+                return;
+            }); 
+        }
+    </script>
     <script type="text/javascript">
 
         $('#example').DataTable();
@@ -442,239 +628,178 @@
             }
             requestAnimationFrame(animate);
         }
-        animate();
-
-
-
-
-
-
-        ////////////////////////////
-        $(".create").hide();
-        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
-        var loaiBDS = null;
-        var id = "";
-        var name = "";
-        function handlerEditLBDS(item) {
-            $(".create").toggle();
-            loaiBDS = array[parseInt(item)];
-            $(".lbName").text("Name: " + loaiBDS.Name);
-            id = loaiBDS._id;
-        }
-        function editLBDS(){
-            if ($('#name').val() === "") { name = loaiBDS.Name}
-            else { name = $('#name').val()}
-            $.ajax({
-                url: '/LoaiBDS/EditLBDS',
-                data: { 'id': id,'name': name},
-                type: "POST",
-                dataType: "json",
-                //contentType: "application/json",
-                success: function (data) {
-                    if (data['mgs'] != null) {
-                        alert("Update thành công");
-                        window.location = '/Admin/LoaiBDS';
-                    } else {
-                        alert("Update thất bại");
-                    }
-                }, error: function (er) {
-                    alert(er + "fail");
-                }
-            });
-        }
-
-        function deleteLBDS(item) {
-            loaiBDS = array[parseInt(item)];
-            id = loaiBDS._id;
-            $.ajax({
-                url: '/LoaiBDS/DeleteLBDS',
-                data: { 'id': id},
-                type: "POST",
-                dataType: "json",
-                //idIFIFntentType: "application/json",
-                success: function (data) {
-                    if (data['mgs'] == true) {
-                        alert("Xóa thành công");
-                        window.location = '/Admin/LoaiBDS';
-                    } else {
-                        alert("Loại BDS đang có dự án không thể xóa !!!");
-                    }
-                }, error: function (er) {
-                    alert("Fail: " + er);
-                }
-            });
-        }
+        animate();      
     </script>
     <script>
-        $(document).ready(function () {
-            $().ready(function () {
-                $sidebar = $('.sidebar');
+                $(document).ready(function () {
+                    $().ready(function () {
+                        $sidebar = $('.sidebar');
 
-                $sidebar_img_container = $sidebar.find('.sidebar-background');
+                        $sidebar_img_container = $sidebar.find('.sidebar-background');
 
-                $full_page = $('.full-page');
+                        $full_page = $('.full-page');
 
-                $sidebar_responsive = $('body > .navbar-collapse');
+                        $sidebar_responsive = $('body > .navbar-collapse');
 
-                window_width = $(window).width();
+                        window_width = $(window).width();
 
-                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+                        fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
-                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-                        $('.fixed-plugin .dropdown').addClass('open');
-                    }
+                        if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                            if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                                $('.fixed-plugin .dropdown').addClass('open');
+                            }
 
-                }
-
-                user_id  $('.fixed-plugin a').click(function (event) {
-                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                    if ($(this).hasClass('switch-trigger')) {
-                        if (event.stopPropagation) {
-                            event.stopPropagation();
-                        } else if (window.event) {
-                            window.event.cancelBubble = true;
                         }
-                    }
-                });
 
-                $('.fixed-plugin .active-color span').click(function () {
-                    $full_page_background = $('.full-page-background');
-
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data-color', new_color);
-                    }
-
-                    if ($full_page.length != 0) {
-                        $full_page.attr('filter-color', new_color);
-                    }
-
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.attr('data-color', new_color);
-                    }
-                });
-
-                $('.fixed-plugin .background-color .badge').click(function () {
-                    $(this).siblings().removeClass('active');
-                    $(this).addClass('active');
-
-                    var new_color = $(this).data('background-color');
-
-                    if ($sidebar.length != 0) {
-                        $sidebar.attr('data-background-color', new_color);
-                    }
-                });
-
-                $('.fixed-plugin .img-holder').click(function () {
-                    $full_page_background = $('.full-page-background');
-
-                    $(this).parent('li').siblings().removeClass('active');
-                    $(this).parent('li').addClass('active');
-
-
-                    var new_image = $(this).find("img").attr('src');
-
-                    if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                        $sidebar_img_container.fadeOut('fast', function () {
-                            $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                            $sidebar_img_container.fadeIn('fast');
+                        user_id  $('.fixed-plugin a').click(function (event) {
+                            // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                            if ($(this).hasClass('switch-trigger')) {
+                                if (event.stopPropagation) {
+                                    event.stopPropagation();
+                                } else if (window.event) {
+                                    window.event.cancelBubble = true;
+                                }
+                            }
                         });
-                    }
 
-                    if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
-                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+                        $('.fixed-plugin .active-color span').click(function () {
+                            $full_page_background = $('.full-page-background');
 
-                        $full_page_background.fadeOut('fast', function () {
-                            $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                            $full_page_background.fadeIn('fast');
+                            $(this).siblings().removeClass('active');
+                            $(this).addClass('active');
+
+                            var new_color = $(this).data('color');
+
+                            if ($sidebar.length != 0) {
+                                $sidebar.attr('data-color', new_color);
+                            }
+
+                            if ($full_page.length != 0) {
+                                $full_page.attr('filter-color', new_color);
+                            }
+
+                            if ($sidebar_responsive.length != 0) {
+                                $sidebar_responsive.attr('data-color', new_color);
+                            }
                         });
-                    }
 
-                    if ($('.switch-sidebar-image input:checked').length == 0) {
-                        var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
-                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
+                        $('.fixed-plugin .background-color .badge').click(function () {
+                            $(this).siblings().removeClass('active');
+                            $(this).addClass('active');
 
-                        $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                        $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
-                    }
+                            var new_color = $(this).data('background-color');
 
-                    if ($sidebar_responsive.length != 0) {
-                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                    }
-                });
+                            if ($sidebar.length != 0) {
+                                $sidebar.attr('data-background-color', new_color);
+                            }
+                        });
 
-                $('.switch-sidebar-image input').change(function () {
-                    $full_page_background = $('.full-page-background');
+                        $('.fixed-plugin .img-holder').click(function () {
+                            $full_page_background = $('.full-page-background');
 
-                    $input = $(this);
+                            $(this).parent('li').siblings().removeClass('active');
+                            $(this).parent('li').addClass('active');
 
-                    if ($input.is(':checked')) {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar_img_container.fadeIn('fast');
-                            $sidebar.attr('data-image', '#');
-                        }
 
-                        if ($full_page_background.length != 0) {
-                            $full_page_background.fadeIn('fast');
-                            $full_page.attr('data-image', '#');
-                        }
+                            var new_image = $(this).find("img").attr('src');
 
-                        background_image = true;
-                    } else {
-                        if ($sidebar_img_container.length != 0) {
-                            $sidebar.removeAttr('data-image');
-                            $sidebar_img_container.fadeOut('fast');
-                        }
+                            if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                                $sidebar_img_container.fadeOut('fast', function () {
+                                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                                    $sidebar_img_container.fadeIn('fast');
+                                });
+                            }
 
-                        if ($full_page_background.length != 0) {
-                            $full_page.removeAttr('data-image', '#');
-                            $full_page_background.fadeOut('fast');
-                        }
+                            if ($full_page_background.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
+                                var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
-                        background_image = false;
-                    }
-                });
+                                $full_page_background.fadeOut('fast', function () {
+                                    $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                                    $full_page_background.fadeIn('fast');
+                                });
+                            }
 
-                $('.switch-sidebar-mini input').change(function () {
-                    $body = $('body');
+                            if ($('.switch-sidebar-image input:checked').length == 0) {
+                                var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr('src');
+                                var new_image_full_page = $('.fixed-plugin li.active .img-holder').find('img').data('src');
 
-                    $input = $(this);
+                                $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
+                                $full_page_background.css('background-image', 'url("' + new_image_full_page + '")');
+                            }
 
-                    if (md.misc.sidebar_mini_active == true) {
-                        $('body').removeClass('sidebar-mini');
-                        md.misc.sidebar_mini_active = false;
+                            if ($sidebar_responsive.length != 0) {
+                                $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                            }
+                        });
 
-                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+                        $('.switch-sidebar-image input').change(function () {
+                            $full_page_background = $('.full-page-background');
 
-                    } else {
+                            $input = $(this);
 
-                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+                            if ($input.is(':checked')) {
+                                if ($sidebar_img_container.length != 0) {
+                                    $sidebar_img_container.fadeIn('fast');
+                                    $sidebar.attr('data-image', '#');
+                                }
 
-                        setTimeout(function () {
-                            $('body').addClass('sidebar-mini');
+                                if ($full_page_background.length != 0) {
+                                    $full_page_background.fadeIn('fast');
+                                    $full_page.attr('data-image', '#');
+                                }
 
-                            md.misc.sidebar_mini_active = true;
-                        }, 300);
-                    }
+                                background_image = true;
+                            } else {
+                                if ($sidebar_img_container.length != 0) {
+                                    $sidebar.removeAttr('data-image');
+                                    $sidebar_img_container.fadeOut('fast');
+                                }
 
-                    // we simulate the window Resize so the charts will get updated in realtime.
-                    var simulateWindowResize = setInterval(function () {
-                        window.dispatchEvent(new Event('resize'));
-                    }, 180);
+                                if ($full_page_background.length != 0) {
+                                    $full_page.removeAttr('data-image', '#');
+                                    $full_page_background.fadeOut('fast');
+                                }
 
-                    // we stop the simulation of Window Resize after the animations are completed
-                    setTimeout(function () {
-                        clearInterval(simulateWindowResize);
-                    }, 1000);
+                                background_image = false;
+                            }
+                        });
 
-                });
-            });
-        });</script>
+                        $('.switch-sidebar-mini input').change(function () {
+                            $body = $('body');
+
+                            $input = $(this);
+
+                            if (md.misc.sidebar_mini_active == true) {
+                                $('body').removeClass('sidebar-mini');
+                                md.misc.sidebar_mini_active = false;
+
+                                $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                            } else {
+
+                                $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                                setTimeout(function () {
+                                    $('body').addClass('sidebar-mini');
+
+                                    md.misc.sidebar_mini_active = true;
+                                }, 300);
+                            }
+
+                            // we simulate the window Resize so the charts will get updated in realtime.
+                            var simulateWindowResize = setInterval(function () {
+                                window.dispatchEvent(new Event('resize'));
+                            }, 180);
+
+                            // we stop the simulation of Window Resize after the animations are completed
+                            setTimeout(function () {
+                                clearInterval(simulateWindowResize);
+                            }, 1000);
+
+                        });
+                    });
+                });</script>
 </body>
 
 </html>

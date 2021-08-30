@@ -310,7 +310,6 @@ namespace WebBDS.Controllers
             Dictionary<string, object> data = new Dictionary<string, object>();
             using (var client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5000/api/BDSmark/");
                 client.BaseAddress = new Uri(CommonConstants.URL + "BDSmark/");
                 var deleteJob = client.DeleteAsync(id.ToString());
 
@@ -320,10 +319,15 @@ namespace WebBDS.Controllers
                     check = true;
                     List<BDSmark> listbdsmark = CommonConstants.getlistBDSmark();
                     CommonConstants.listBDSmark = listbdsmark;
+                    data.Add("mgs", check);
+                    return JsonConvert.SerializeObject(data);
                 }
-            }
-            data.Add("mgs", check);
-            return JsonConvert.SerializeObject(data);
+                else
+                {
+                    data.Add("mgs", check);
+                    return JsonConvert.SerializeObject(data);
+                }
+            }           
         }
 
 

@@ -32,7 +32,7 @@
     <link rel="icon" type="image/png" href="~/images/favicon.ico">
     <style>
         .content-w3ls .content-agile1{
-            height:800px;
+            height:950px;
         }
     </style>
 </head>
@@ -40,8 +40,7 @@
     <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Thêm Bất Động Sản</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
-        <div class="content-agile1">
-            <h2 class="agileits1"></h2>
+        <div id="imageSelector" style="width:45%;float: left;height: 1000px;padding:5px; overflow:scroll">
         </div>
         <div class="content-agile2">
             <form action="#" method="post" enctype="multipart/form-data">
@@ -107,6 +106,26 @@
 
 <script>
     $(document).ready(function () {
+        document.getElementById("firstname").onchange = function () {
+            var arr = event.target.files;
+            for (let i = 0; i < arr.length; i++) {
+                //const className = "imgBDSselect" + i;
+                //console.log(className);
+                var file = event.target.files[i];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var elem = document.createElement("img");
+                    elem.setAttribute("src", e.target.result);
+                    elem.setAttribute("alt", "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png");
+                    document.getElementById("imageSelector").appendChild(elem);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+
+
+
         var mess = '@mess';
         if (mess !== "") {         
             var action = setTimeout(function () {

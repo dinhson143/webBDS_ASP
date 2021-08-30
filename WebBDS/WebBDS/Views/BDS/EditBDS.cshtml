@@ -58,22 +58,21 @@
     <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Cập Nhật Bất Động Sản</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
-        <div class="content-agile1">
-            <h2 class="agileits1"></h2>
+        <div id="imageSelector" style="width:45%;float: left;height: 1000px;padding:5px; overflow:scroll">
         </div>
         <div class="content-agile2">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="form-control w3layouts">
-                    <input type="file" id="firstname" class="" name="file">
+                    <input type="file" id="firstname" class="" name="file" multiple accept="image/*">
                 </div>
 
                 <div class="form-control agileinfo" style="display:flex;color:red;justify-content:space-evenly">
 
                     <input type="radio" checked id="cb1" name="luachon" value="Khong">
-                    <label for="cb1">Không Ghi Đè Image</label><br>
+                    <label style="color:#fff; font-weight:bold" for="cb1">Không Ghi Đè Image</label><br>
 
                     <input type="radio" id="cb2" name="luachon" value="Co">
-                    <label for="cb2">Ghi Đè Image</label><br>
+                    <label style="color:#fff;font-weight:bold" for="cb2">Ghi Đè Image</label><br>
                 </div>
 
                 <div class="form-control w3layouts">
@@ -81,15 +80,15 @@
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="text" class="lock motaBDS" name="Mota" placeholder="Mô tả ngắn" id="address1" title="Please enter a valid mota" required="">
+                    <input type="text" class="lock motaBDS" name="Mota" placeholder="Mô tả bất động sản" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="text" class="lock vitriBDS" name="Vitri" placeholder="Mô tả chi tiết" id="address1" title="Please enter a valid mota" required="">
+                    <input type="text" class="lock vitriBDS" name="Vitri" placeholder="Vị trí bất động sản" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="number" class="lock dientichBDS" name="Dientich" placeholder="Mô tả chi tiết" id="address1" title="Please enter a valid mota" required="">
+                    <input type="number" class="lock dientichBDS" name="Dientich" placeholder="Diện tích" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
                 <div class="form-control agileinfo">
@@ -141,6 +140,30 @@
 </html>
 <script>
     $(document).ready(function () {
+
+
+        document.getElementById("firstname").onchange = function () {
+            var arr = event.target.files;          
+            for (let i = 0; i < arr.length; i++) {
+                //const className = "imgBDSselect" + i;
+                //console.log(className);
+                var file = event.target.files[i];
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var elem = document.createElement("img");
+                    elem.setAttribute("src", e.target.result);              
+                    elem.setAttribute("alt", "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png");
+                    document.getElementById("imageSelector").appendChild(elem);
+                };
+                reader.readAsDataURL(file);                     
+            }
+        };
+
+
+
+
+
+
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
         var image = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(image)'.replace(/&quot;/g, "\""));
         var id = '@id';
@@ -154,7 +177,6 @@
         var kinhdo = '@kinhdo';
         var vido = '@vido';
 
-        alert(kinhdo);
 
         if (status == "Mua") {
             $(".statusBDS").val("Mua");
@@ -178,12 +200,12 @@
         $(".nameBDS").val(name);
         $(".motaBDS").val(mota);
         $(".vitriBDS").val(vitri);
-        $(".dientichBDS").val(dientich);
+        $(".dientichBDS").val("Diện tích: "+dientich+"m2/hecta");
 
-        $(".giaBDS").val(gia);
+        $(".giaBDS").val("Giá: "+gia+" $");
 
-        $(".kdBDS").val(kinhdo);
-        $(".vdBDS").val(vido);
+        $(".kdBDS").val("Kinh độ: "+kinhdo);
+        $(".vdBDS").val("Vĩ độ: "+vido);
 
         $(".statusBDS").val(status);
         // array[i]._id.localeCompare(id)
