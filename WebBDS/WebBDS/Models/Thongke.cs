@@ -9,6 +9,8 @@ namespace WebBDS.Models
     {
         public string _id { get; set; }
         public string NameBDS { get; set; }
-        public int Soluong { get; set; }
+
+        public int Soluong = 0;
+        public DateTime Date { get; set; }
     }
 }

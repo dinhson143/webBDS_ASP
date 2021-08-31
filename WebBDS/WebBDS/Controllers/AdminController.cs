@@ -250,37 +250,29 @@ namespace WebBDS.Controllers
         {
             // bds
             List<BDS> listBDS = CommonConstants.listBDS;
-         
-            
 
-            /// bds mark
-            List<BDSmark> listBDSmark = CommonConstants.getlistBDSmark();
-            CommonConstants.listBDSmark = listBDSmark;
+
+
+            /// list lich
+            List<Lich> listLich = CommonConstants.getlistLich();
+            CommonConstants.listLich = listLich;
 
             // 
             List<Thongke> listThongke = new List<Thongke>();
             foreach (var x in listBDS)
             {
-                var dem = 0;
-                foreach (var y in listBDSmark)
+                foreach (var y in listLich)
                 {
                     if (String.Compare(x._id,y.IDbds)==0)
                     {
-                        dem++;
+                        Thongke tk = new Thongke();
+                        tk.NameBDS = x.Name;
+                        tk.Soluong = 1;
+                        tk.Date = DateTime.Parse(y.Date);
+                        listThongke.Add(tk);
                     }
                 }
-                if (dem > 0)
-                {
-                    Thongke tk = new Thongke();
-                    tk.NameBDS = x.Name;
-                    tk.Soluong = dem;
-                    listThongke.Add(tk);
-                }
             }
-
-
-
-
             return View(listThongke);
         }
     }

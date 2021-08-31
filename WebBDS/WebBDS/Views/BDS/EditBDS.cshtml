@@ -52,13 +52,24 @@
         .content-w3ls .content-agile1{
             height:800px;
         }
+        .lbEdit {
+            width: 300px;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 200;
+            background-color: transparent;
+            margin: 0 auto 10px;
+            display: block;
+            outline: none;
+        }
     </style>
 </head>
 <body>
     <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Cập Nhật Bất Động Sản</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
-        <div id="imageSelector" style="width:45%;float: left;height: 1000px;padding:5px; overflow:scroll">
+        <div id="imageSelector" style="width:45%;float: left;height: 1727px;padding:5px; overflow:scroll">
         </div>
         <div class="content-agile2">
             <form action="#" method="post" enctype="multipart/form-data">
@@ -75,30 +86,52 @@
                     <label style="color:#fff;font-weight:bold" for="cb2">Ghi Đè Image</label><br>
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Tên BDS</label>
                 <div class="form-control w3layouts">
                     <input type="text" id="email" class="nameBDS" name="Name" placeholder="Tên BDS" title="Please enter a valid name" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Mô tả bất động sản</label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock motaBDS" name="Mota" placeholder="Mô tả bất động sản" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Vị trí</label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock vitriBDS" name="Vitri" placeholder="Vị trí bất động sản" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Diện tích</label>
                 <div class="form-control agileinfo">
                     <input type="number" class="lock dientichBDS" name="Dientich" placeholder="Diện tích" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Giá</label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock giaBDS" name="Gia" placeholder="Giá" id="password1" title="Please enter a valid gia" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Kinh độ</label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock kdBDS" name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
                 </div>
 
+
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Vĩ độ</label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock vdBDS" name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
                 </div>
@@ -111,6 +144,9 @@
                     <input type="text" class="lock idBDS" name="_id" placeholder="" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Trạng thái</label>
                 <div class="form-control agileinfo">
                     <select class="statusBDS" name="Status" id="address1" style="width:330px">
                         <option style="color:#000" name="Status" value="Mua">Mua</option>
@@ -118,6 +154,9 @@
                     </select>
                 </div>
 
+                <br>
+                <br>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Loại bất động sản</label>
                 <div class="form-control agileinfo">
                     <select name="maloaiBDS" id="address1" class="loaiBDS" style="width:330px">
                         @foreach (var item in list)
@@ -140,10 +179,25 @@
 </html>
 <script>
     $(document).ready(function () {
+        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
+        var image = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(image)'.replace(/&quot;/g, "\""));
+
+        for (let i = 0; i < image.length; i++) {
+            var elem = document.createElement("img");
+            elem.setAttribute("src", image[i]);
+            elem.setAttribute("alt", "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png");
+            document.getElementById("imageSelector").appendChild(elem);
+        }
+
+
+
+
+
+
 
 
         document.getElementById("firstname").onchange = function () {
-            var arr = event.target.files;          
+            var arr = event.target.files;
             for (let i = 0; i < arr.length; i++) {
                 //const className = "imgBDSselect" + i;
                 //console.log(className);
@@ -151,27 +205,22 @@
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var elem = document.createElement("img");
-                    elem.setAttribute("src", e.target.result);              
+                    elem.setAttribute("src", e.target.result);
                     elem.setAttribute("alt", "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png");
                     document.getElementById("imageSelector").appendChild(elem);
                 };
-                reader.readAsDataURL(file);                     
+                reader.readAsDataURL(file);
             }
         };
 
 
 
-
-
-
-        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
-        var image = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(image)'.replace(/&quot;/g, "\""));
         var id = '@id';
         var idLoai = '@idLoai';
         var name = '@name';
         var mota = '@data.Mota';
         var vitri = '@data.Vitri';
-        var dientich = '@data.Dientich';
+        var dientich = '@dientich';
         var status = '@status';
         var gia = '@data.Gia';
         var kinhdo = '@kinhdo';
@@ -200,12 +249,12 @@
         $(".nameBDS").val(name);
         $(".motaBDS").val(mota);
         $(".vitriBDS").val(vitri);
-        $(".dientichBDS").val("Diện tích: "+dientich+"m2/hecta");
+        $(".dientichBDS").val(dientich);
 
-        $(".giaBDS").val("Giá: "+gia+" $");
+        $(".giaBDS").val(gia);
 
-        $(".kdBDS").val("Kinh độ: "+kinhdo);
-        $(".vdBDS").val("Vĩ độ: "+vido);
+        $(".kdBDS").val(kinhdo);
+        $(".vdBDS").val(vido);
 
         $(".statusBDS").val(status);
         // array[i]._id.localeCompare(id)

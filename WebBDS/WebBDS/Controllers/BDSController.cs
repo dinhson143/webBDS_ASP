@@ -230,7 +230,7 @@ namespace WebBDS.Controllers
             }
             else if(file[0] != null && luachon=="Co")
             {
-                listLink = null;
+                listLink = new List<string>(); ;
                     // upload ảnh lên firebase
                     for (var i = 0; i < file.Length; i++)
                     {
@@ -243,8 +243,12 @@ namespace WebBDS.Controllers
                             stream = new FileStream(Path.Combine(path), FileMode.Open);
                             // await Task.Run(() => (link = Upload(stream, file.FileName)));
                             link = await Upload(stream, file[i].FileName);
+                            
                         }
-                        listLink.Add(link);
+                        if (link != null)
+                        {
+                            listLink.Add(link);
+                        }
                     }
             }
             duan.Image = listLink;

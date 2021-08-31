@@ -100,6 +100,93 @@
         .dataTables_info {
             display: none;
         }
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 30%;
+            height: 40%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            color: #000;
+            font-size: 25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+            .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+                cursor: pointer;
+                opacity: 0.8;
+                color: #000;
+            }
+
+        .btnLoad {
+            padding: 10px;
+            border-radius: 5px;
+            margin: auto 0;
+            color: #000;
+            margin-left: 30px;
+            background-color: #fff;
+            font-weight: bold
+        }
+
+        .btnLoad:hover {
+            color: #fff;
+            background-color: #ccc;
+        }
     </style>
 </head>
 
@@ -155,7 +242,8 @@
                             <p>Lịch hẹn</p>
                         </a>
                     </li>
-                    <li class="nav-item active">`
+                    <li class="nav-item active">
+                        `
                         <a class="nav-link" href="#">
                             <i class="material-icons">content_paste</i>
                             <p>Thống kê</p>
@@ -166,16 +254,25 @@
         </div>
         <div class="main-panel">
             <!-- Navbar -->
-            <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-                <div class="container-fluid">
-                    <div class="navbar-wrapper">
-                    </div>
-                    <div class="collapse navbar-collapse justify-content-end">
-                    </div>
-                </div>
-            </nav>
             <!-- End Navbar -->
             <div class="content">
+                <div style="display:flex;position:absolute;z-index:999">
+                    <div style="display:flex;">
+                        <select name="year" id="year" size="1">
+                        </select>
+
+                        <label style="margin:auto 0; color:#fff;margin-left:10px"> Từ :</label>
+                        <select name="month" id="month" size="1">
+                        </select>
+
+
+                        <label style="margin:auto 0; color:#fff;margin-left:10px"> Đến :</label>
+                        <select name="month" id="monthend" size="1">
+                        </select>
+
+                        <label class="btnLoad" onclick="getSelectNam(); return false"> LOAD</label>
+                    </div>
+                </div>
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
@@ -201,11 +298,117 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
 
+    <script>
+        $(function () {
+            //Năm tự động điền vào select
+            var seYear = $('#year');
+            var date = new Date();
+            var cur = date.getFullYear();
 
+            seYear.append('<option value="">-- Year --</option>');
+            for (i = cur; i >= 1900; i--) {
+                seYear.append('<option value="' + i + '">' + i + '</option>');
+            };
+
+            //Tháng tự động điền vào select
+            var seMonth = $('#month');
+            var date = new Date();
+
+            var month = new Array();
+            month[1] = "January";
+            month[2] = "February";
+            month[3] = "March";
+            month[4] = "April";
+            month[5] = "May";
+            month[6] = "June";
+            month[7] = "July";
+            month[8] = "August";
+            month[9] = "September";
+            month[10] = "October";
+            month[11] = "November";
+            month[12] = "December";
+
+            seMonth.append('<option value="">-- Month --</option>');
+            for (i = 12; i > 0; i--) {
+                seMonth.append('<option value="' + i + '">' + month[i] + '</option>');
+            };
+            //Tháng tự động điền vào select
+            var seMonth2 = $('#monthend');
+            var date = new Date();
+            seMonth2.append('<option value="">-- Month --</option>');
+            for (i = 12; i > 0; i--) {
+                seMonth2.append('<option value="' + i + '">' + month[i] + '</option>');
+            };
+
+        });
+    </script>
     <script type="text/javascript">
 
+        function strcmp(a, b) {
+            return (a < b ? -1 : (a > b ? 1 : 0));
+        }
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listThongke)'.replace(/&quot;/g, "\""));
-        changeDataChart(array);
+        function getSelectNam() {
+            var arr = [];
+            var nam = document.getElementById("year").value;
+            var thangstart = document.getElementById("month").value;
+
+            var thangend = document.getElementById("monthend").value;
+            if (nam == "" || thangstart == "" || thangend == "") {
+                $(".thongbao__des h3").text('Vui lòng chọn ngày tháng năm');
+                $(".thongbao__des").css('color', 'green');
+                $(".overlay").show();
+                $(".thongbao").show();
+                $(".thongbao__btn").show();
+                $(".thongbao__btn--ok").hide();
+                $(".thongbao__btn--huy").click(function () {
+                    $(".overlay").hide();
+                    $(".thongbao").hide();
+                    return;
+                })
+            }
+            if (parseInt(thangstart) > parseInt(thangend)) {
+                $(".thongbao__des h3").text('Tháng sau phải lớn hơn tháng trước');
+                $(".thongbao__des").css('color', 'green');
+                $(".overlay").show();
+                $(".thongbao").show();
+                $(".thongbao__btn").show();
+                $(".thongbao__btn--ok").hide();
+                $(".thongbao__btn--huy").click(function () {
+                    $(".overlay").hide();
+                    $(".thongbao").hide();
+                    return;
+                })
+            }
+
+            for (let i = 0; i < array.length; i++) {
+                const dt = new Date(array[i].Date);
+                if (parseInt(nam) == dt.getFullYear()) {
+                    if (((dt.getMonth() + 1) >= parseInt(thangstart)) && ((dt.getMonth() + 1) <= parseInt(thangend))) {
+                        arr.push(array[i]);
+                    }
+                }
+            }
+
+            /*console.log(arr);*/
+            var a = [], b = [], prev="";
+            for (var i = 0; i < arr.length; i++) {
+                if (strcmp(arr[i].NameBDS, prev) != 0) {
+                    a.push(arr[i]);
+                    b.push(1);
+                }
+                else {
+                    b[b.length - 1]++;
+                }
+                prev = arr[i].NameBDS;
+            }
+
+            for (var i = 0; i < a.length; i++) {
+                a[i].Soluong = b[i];
+            }
+
+             changeDataChart(a);
+        }
 
 
         function getRandomColor() {
@@ -217,7 +420,6 @@
             return color;
         }
         function changeDataChart(arr) {
-            console.log(arr);
             var xValues = [];
             var yValues = [];
             var barColors = [];
