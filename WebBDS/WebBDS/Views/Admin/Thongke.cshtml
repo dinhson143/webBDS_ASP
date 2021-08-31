@@ -259,11 +259,19 @@
                         </select>
 
                         <label style="margin:auto 0; color:#fff;margin-left:10px"> Từ :</label>
+
+                        <select name="day" id="daystart" size="1">
+                            <option value=" " selected="selected">-- Day --</option>
+                        </select>
                         <select name="month" id="month" size="1">
                         </select>
 
 
+
                         <label style="margin:auto 0; color:#fff;margin-left:10px"> Đến :</label>
+                        <select name="day" id="dayend" size="1">
+                            <option value=" " selected="selected">-- Day --</option>
+                        </select>
                         <select name="month" id="monthend" size="1">
                         </select>
 
@@ -355,7 +363,45 @@
             for (i = 12; i > 0; i--) {
                 seMonth2.append('<option value="' + i + '">' + month[i] + '</option>');
             };
-          
+
+            //Ngày tự động điền vào select
+            function dayList(month, year) {
+                var day = new Date(year, month, 0);
+                return day.getDate();
+            }
+
+            $('#year, #month, #monthend').change(function () {
+                //Đoạn code lấy id không viết bằng jQuery để phù hợp với đoạn code bên dưới
+                var y = document.getElementById('year');
+                var m = document.getElementById('month');
+                var me = document.getElementById('monthend');
+                var d = document.getElementById('daystart');
+                var de = document.getElementById('dayend');
+
+                var year = y.options[y.selectedIndex].value;
+
+                var month = m.options[m.selectedIndex].value;
+                var monthe = me.options[me.selectedIndex].value;
+
+                var day = d.options[d.selectedIndex].value;
+                var daye = de.options[de.selectedIndex].value;
+
+                if (day == ' ') {
+                    var days = (year == ' ' || month == ' ') ? 31 : dayList(month, year);
+                    d.options.length = 0;
+                    d.options[d.options.length] = new Option('-- Day --', ' ');
+                    for (var i = 1; i <= days; i++)
+                        d.options[d.options.length] = new Option(i, i);
+                }
+                if (daye == ' ') {
+                    var days = (year == ' ' || monthe == ' ') ? 31 : dayList(monthe, year);
+                    de.options.length = 0;
+                    de.options[de.options.length] = new Option('-- Day --', ' ');
+                    for (var i = 1; i <= days; i++)
+                        de.options[de.options.length] = new Option(i, i);
+                }
+            });
+
         });
     </script>
     <script type="text/javascript">
@@ -364,12 +410,15 @@
         }
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listThongke)'.replace(/&quot;/g, "\""));
         function getSelectNam() {
-            var arr = [];        
+            var arr = [];
             var nam = document.getElementById("year").value;
             var thangstart = document.getElementById("month").value;
+            var ngaystart = document.getElementById("daystart").value;
 
             var thangend = document.getElementById("monthend").value;
-            if (nam == "" || thangstart == "" || thangend == "") {
+            var ngayend = document.getElementById("dayend").value;
+
+            if (nam == "" || thangstart == "" || thangend == "" || ngaystart == "" || ngayend=="") {
                 $(".thongbao__des h3").text('Vui lòng chọn ngày tháng năm');
                 $(".thongbao__des").css('color', 'green');
                 $(".overlay").show();
@@ -382,6 +431,7 @@
                     return;
                 })
             }
+
             if (parseInt(thangstart) > parseInt(thangend)) {
                 $(".thongbao__des h3").text('Tháng sau phải lớn hơn tháng trước');
                 $(".thongbao__des").css('color', 'green');
@@ -394,18 +444,56 @@
                     $(".thongbao").hide();
                     return;
                 })
-            }           
-
-            for (let i = 0; i < array.length; i++) {
-                const dt = new Date(array[i].Date);
-                if (parseInt(nam) == dt.getFullYear()) {
-                    if (((dt.getMonth() + 1) >= parseInt(thangstart)) && ((dt.getMonth() + 1) <= parseInt(thangend))) {
-                        arr.push(array[i]);
-                    }
+            }
+            if (parseInt(thangstart) == parseInt(thangend)) {
+                if (parseInt(ngaystart) > parseInt(ngayend)) {
+                    $(".thongbao__des h3").text('Ngày không hợp lệ');
+                    $(".thongbao__des").css('color', 'green');
+                    $(".overlay").show();
+                    $(".thongbao").show();
+                    $(".thongbao__btn").show();
+                    $(".thongbao__btn--ok").hide();
+                    $(".thongbao__btn--huy").click(function () {
+                        $(".overlay").hide();
+                        $(".thongbao").hide();
+                        return;
+                    })
                 }
             }
 
-            /*console.log(arr);*/
+            var dstart = new Date();
+            dstart.setDate(parseInt(ngaystart));
+            dstart.setMonth(parseInt(thangstart-1));
+            dstart.setFullYear(parseInt(nam));
+
+            var dend = new Date();
+            dend.setDate(parseInt(ngayend));
+            dend.setMonth(parseInt(thangend-1));
+            dend.setFullYear(parseInt(nam));
+
+            for (let i = 0; i < array.length; i++) {
+                var dt = new Date(array[i].Date);
+                var dcp = new Date();
+                dcp.setDate(dt.getDate());
+                dcp.setMonth(dt.getMonth());
+                dcp.setFullYear(dt.getFullYear());
+
+                //console.log(array[i].NameBDS);
+                //console.log(dstart);
+                //console.log(dend);
+                //console.log(dcp);
+                //console.log("----------------------------------------");
+                if ((dstart.getTime() <= dcp.getTime()) && (dend.getTime() >= dcp.getTime() )) {
+                    arr.push(array[i]);
+                }
+                //if (parseInt(nam) == dt.getFullYear()) {
+                //    if (((dt.getMonth() + 1) >= parseInt(thangstart)) && ((dt.getMonth() + 1) <= parseInt(thangend))) {
+                //        arr.push(array[i]);
+                //    }
+                //}
+            }
+
+            console.log(arr);
             var a = [], b = [], prev="";
             for (var i = 0; i < arr.length; i++) {
                 if (strcmp(arr[i].NameBDS, prev) != 0) {

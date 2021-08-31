@@ -90,12 +90,23 @@ namespace WebBDS.Controllers
             lich.IDuser = user._id;
 
 
-            foreach (var item in list)
+            for (var i=0; i<list.Count;i++)
             {
-                if (item.IDbds == lich.IDbds && item.IDuser == lich.IDuser)
+                var item = list[i];
+                if (item.IDbds == lich.IDbds && item.IDuser == lich.IDuser )
                 {
-                    ViewData["mess"] = "Bạn đã có lịch cho bds này";
-                    return View();
+                    DateTime x = DateTime.Parse(item.Date);
+                    DateTime y = DateTime.Parse(lich.Date);
+                    if (item.Xacnhan == false)
+                    {
+                        ViewData["mess"] = "Bạn đã đặt lịch cho dự án này";
+                        return View();
+                    }
+                    else if (x.Date.Day == y.Date.Day && x.Date.Month == y.Date.Month && x.Date.Year == y.Date.Year)
+                    {
+                        ViewData["mess"] = "Ngày bạn chọn đã có cuôc hẹn";
+                        return View();
+                    }
                 }              
                 else if(item.IDuser == lich.IDuser)
                 {
