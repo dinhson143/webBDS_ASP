@@ -145,4 +145,3 @@ E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csproj.CoreCompileInputs.cache
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csproj.CopyComplete
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.dll
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.pdb
-E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csprojAssemblyReference.cache

@@ -63,6 +63,14 @@
             display: block;
             outline: none;
         }
+        .kvDo {
+            text-decoration:none;
+            color:#fff;
+        }
+        .kvDo:hover{
+            opacity:0.8;
+            cursor:pointer;
+        }
     </style>
 </head>
 <body>
@@ -123,7 +131,9 @@
 
                 <br>
                 <br>
-                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Kinh độ</label>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">
+                    Kinh độ <a class="kvDo" href="https://www.google.com/maps" target="_blank">( Lấy kinh độ )</a>
+                </label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock kdBDS" name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
                 </div>
@@ -131,7 +141,9 @@
 
                 <br>
                 <br>
-                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">Vĩ độ</label>
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">
+                    Vĩ độ   <a class="kvDo" href="https://www.google.com/maps" target="_blank">( Lấy vĩ độ )</a>
+                </label>
                 <div class="form-control agileinfo">
                     <input type="text" class="lock vdBDS" name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
                 </div>
