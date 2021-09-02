@@ -64,6 +64,11 @@
                         expiresIn = gup(url, 'expires_in');
 
                         win.close();
+                        $(".thongbao__des").css('color', 'green');
+                        $(".overlay").show();
+                        $(".thongbao").show();
+                        $(".thongbao__des h3").text('Loading . . .');
+                        $(".thongbao__btn").hide();
                         /*debugger;*/
                         validateToken(acToken);
                     }
@@ -86,18 +91,14 @@
         }
 
         function validateToken(token) {
-
             getUserInfo();
             $.ajax(
                 {
                     url: VALIDURL + token,
                     data: null,
-                    success: function (responseText) {
-                        
+                    success: function (responseText) {                       
                     },
-
                 });
-
         }
 
         function getUserInfo() {
@@ -120,8 +121,8 @@
                             email: user.email,
                             name: user.name
                         },
-                        success: function () {
-                            window.location.href = "/Admin/Index/";
+                        success: function () {                          
+                            window.location = '/Customer/Index';
                         },
 
                         //dataType: "jsonp"
@@ -155,7 +156,7 @@
                 <a href="/Login/Create">
                     <input class="register" type="button" value="Register">
                 </a>
-                <a href="/Auth/Facebook">
+                <a id="loginFB"  href="/Auth/Facebook">
                     <input class="register" type="button" value="Facebook">
                 </a>
                 <input class="register" type="button" id="GoogleLogin" onclick="login()" value="Google">
@@ -165,6 +166,13 @@
                 </a>
             </form>
             <script type="text/javascript">
+                $("#loginFB").on("click", function () {
+                    $(".thongbao__des").css('color', 'green');
+                    $(".overlay").show();
+                    $(".thongbao").show();
+                    $(".thongbao__des h3").text('Loading . . .');
+                    $(".thongbao__btn").hide();
+                });
                 function checkLogin() {
                     $(".thongbao__des").css('color', 'green');
                     $(".overlay").show();

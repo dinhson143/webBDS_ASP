@@ -91,21 +91,6 @@ namespace WebBDS.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [Route("Login/Create")]
         [HttpGet]
         public ActionResult Create()
@@ -194,7 +179,6 @@ namespace WebBDS.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(CommonConstants.URL + "auth/login");
-                //client.BaseAddress = new Uri("http://localhost:2000/api/auth/login");
                 var postJob = client.PostAsJsonAsync<Login>("login", login);
                 postJob.Wait();
 

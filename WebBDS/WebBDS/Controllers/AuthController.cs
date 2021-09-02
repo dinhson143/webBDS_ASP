@@ -10,11 +10,21 @@ using System.Web.Security;
 using System.Net.Http;
 using WebBDS.Models;
 using WebBDS.Common;
+using System.Net.Http.Headers;
 
 namespace WebBDS.Controllers
 {
     public class AuthController : Controller
     {
+        public class Login
+        {
+            public Login()
+            {
+
+            }
+            public string Email { get; set; }
+            public string Password { get; set; }
+        }
         // GET: Auth
         [Route("Auth")]
         public ActionResult Index()
@@ -94,11 +104,42 @@ namespace WebBDS.Controllers
             {
                 if (id == item.Email)
                 {
-                    Session.Add(CommonConstants.USER_SESSION, id);
-                    return RedirectToAction("Index", "Customer");
+                    Login login = new Login();
+                    login.Email = id;
+                    login.Password = id;
+
+                    // login get token
+                    Dictionary<string, string> tokenDetails = null;
+                    var client2 = new HttpClient();
+                    client2.BaseAddress = new Uri(CommonConstants.URL + "auth/login");
+                    var postJob = client2.PostAsJsonAsync<Login>("login", login);
+                    postJob.Wait();
+
+                    // get token
+                    if (postJob.IsCompleted)
+                    {
+                        if (postJob.Result.Content.ReadAsStringAsync().Result.Contains("accessToken"))
+                        {
+                            tokenDetails = JsonConvert.DeserializeObject<Dictionary<string, string>>(postJob.Result.Content.ReadAsStringAsync().Result);
+                        }
+                    }
+                    string token = "";
+                    if (tokenDetails != null)
+                    {
+                        Session.Add(CommonConstants.AccessToken_SESSION, tokenDetails["accessToken"]);
+                        token = (string)Session[CommonConstants.AccessToken_SESSION];
+                        Session.Add(CommonConstants.USER_SESSION, id);
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
             }
 
+
+
+
+
+
+            // chưa có tạo tài khoản
             var tempUser = new tempUser();
             tempUser.Name = name;
             tempUser.Password = id;
@@ -109,7 +150,6 @@ namespace WebBDS.Controllers
 
             using (var client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5000/api/auth/register");
                 client.BaseAddress = new Uri(CommonConstants.URL+"auth/register");
                 var postJob = client.PostAsJsonAsync<tempUser>("register", tempUser);
                 postJob.Wait();
@@ -117,8 +157,33 @@ namespace WebBDS.Controllers
                 var postResult = postJob.Result;
                 if (postResult.IsSuccessStatusCode)
                 {
-                    Session.Add(CommonConstants.USER_SESSION, id);
-                    return RedirectToAction("Index", "Customer");
+                    Login login = new Login();
+                    login.Email = id;
+                    login.Password = id;
+
+                    // login get token
+                    Dictionary<string, string> tokenDetails = null;
+                    var client2 = new HttpClient();
+                    client2.BaseAddress = new Uri(CommonConstants.URL + "auth/login");
+                    postJob = client2.PostAsJsonAsync<Login>("login", login);
+                    postJob.Wait();
+
+                    // get token
+                    if (postJob.IsCompleted)
+                    {
+                        if (postJob.Result.Content.ReadAsStringAsync().Result.Contains("accessToken"))
+                        {
+                            tokenDetails = JsonConvert.DeserializeObject<Dictionary<string, string>>(postJob.Result.Content.ReadAsStringAsync().Result);
+                        }
+                    }
+                    string token = "";
+                    if (tokenDetails != null)
+                    {
+                        Session.Add(CommonConstants.AccessToken_SESSION, tokenDetails["accessToken"]);
+                        token = (string)Session[CommonConstants.AccessToken_SESSION];
+                        Session.Add(CommonConstants.USER_SESSION, id);
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
             }
             ModelState.AddModelError(string.Empty, "Server occured error. Please check width admin!");
@@ -153,16 +218,46 @@ namespace WebBDS.Controllers
                     return View();
                 }
             }
+
+
+
             foreach (var item in list)
             {
                 if (email == item.Email)
                 {
-                    Session.Add(CommonConstants.USER_SESSION, email);
-                    return RedirectToAction("Index", "User");
+                    Login login = new Login();
+                    login.Email = email;
+                    login.Password = email;
+
+                    // login get token
+                    Dictionary<string, string> tokenDetails = null;
+                    var client2 = new HttpClient();
+                    client2.BaseAddress = new Uri(CommonConstants.URL + "auth/login");
+                     var postJob = client2.PostAsJsonAsync<Login>("login", login);
+                    postJob.Wait();
+
+                    // get token
+                    if (postJob.IsCompleted)
+                    {
+                        if (postJob.Result.Content.ReadAsStringAsync().Result.Contains("accessToken"))
+                        {
+                            tokenDetails = JsonConvert.DeserializeObject<Dictionary<string, string>>(postJob.Result.Content.ReadAsStringAsync().Result);
+                        }
+                    }
+                    string token = "";
+                    if (tokenDetails != null)
+                    {
+                        Session.Add(CommonConstants.AccessToken_SESSION, tokenDetails["accessToken"]);
+                        token = (string)Session[CommonConstants.AccessToken_SESSION];
+                        Session.Add(CommonConstants.USER_SESSION, email);
+                        return RedirectToAction("Index", "Customer");
+                    }
                 }
             }
 
 
+
+            // chưa có tài khoản
 
             var tempUser = new tempUser();
             tempUser.Name = name;
@@ -174,7 +269,6 @@ namespace WebBDS.Controllers
 
             using (var client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5000/api/auth/register");
                 client.BaseAddress = new Uri(CommonConstants.URL + "auth/register");
                 var postJob = client.PostAsJsonAsync<tempUser>("register", tempUser);
                 postJob.Wait();
@@ -182,8 +276,34 @@ namespace WebBDS.Controllers
                 var postResult = postJob.Result;
                 if (postResult.IsSuccessStatusCode)
                 {
-                    Session.Add(CommonConstants.USER_SESSION, email);
-                    return RedirectToAction("Index", "User");
+                    Login login = new Login();
+                    login.Email = email;
+                    login.Password = email;
+
+
+                    // login get token
+                    Dictionary<string, string> tokenDetails = null;
+                    var client2 = new HttpClient();
+                    client2.BaseAddress = new Uri(CommonConstants.URL + "auth/login");
+                    postJob = client2.PostAsJsonAsync<Login>("login", login);
+                    postJob.Wait();
+
+                    // get token
+                    if (postJob.IsCompleted)
+                    {
+                        if (postJob.Result.Content.ReadAsStringAsync().Result.Contains("accessToken"))
+                        {
+                            tokenDetails = JsonConvert.DeserializeObject<Dictionary<string, string>>(postJob.Result.Content.ReadAsStringAsync().Result);
+                        }
+                    }
+                    string token = "";
+                    if (tokenDetails != null)
+                    {
+                        Session.Add(CommonConstants.AccessToken_SESSION, tokenDetails["accessToken"]);
+                        token = (string)Session[CommonConstants.AccessToken_SESSION];
+                        Session.Add(CommonConstants.USER_SESSION, email);
+                        return RedirectToAction("Index", "Customer");
+                    }                                 
                 }
             }
             ModelState.AddModelError(string.Empty, "Server occured error. Please check width admin!");

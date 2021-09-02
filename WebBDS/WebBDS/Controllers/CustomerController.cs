@@ -205,6 +205,7 @@ namespace WebBDS.Controllers
             {
                 Session[CommonConstants.USER_SESSION] = null;
                 CommonConstants.User = new User();
+                CommonConstants.listUser = new List<User>();
             }
             return JsonConvert.SerializeObject(data);
         }
@@ -221,11 +222,8 @@ namespace WebBDS.Controllers
             }
 
             List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
-            if (CommonConstants.listBDSmark.Count == 0)
-            {
-                listBDSmark = CommonConstants.getlistBDSmark();
-                CommonConstants.listBDSmark = listBDSmark;
-            }
+            listBDSmark = CommonConstants.getlistBDSmark();
+            CommonConstants.listBDSmark = listBDSmark;
 
             List<User> listUser = CommonConstants.listUser;
            

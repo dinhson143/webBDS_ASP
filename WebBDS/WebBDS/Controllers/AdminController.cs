@@ -27,10 +27,10 @@ namespace WebBDS.Controllers
 
         public string userID { get; set; }
         public string mess { get; set; }
-        private static string ApiKey = "AIzaSyDsIhxUtoEuX-GsYhTCd3T6tSUr2VA2MiA";
-        private static string Bucket = "bds-asp-mvc.appspot.com";
-        private static string AuthEmail = "dinhson14399@gmail.com";
-        private static string AuthPassword = "tranthingocyen";
+        //private static string ApiKey = "AIzaSyDsIhxUtoEuX-GsYhTCd3T6tSUr2VA2MiA";
+        //private static string Bucket = "bds-asp-mvc.appspot.com";
+        //private static string AuthEmail = "dinhson14399@gmail.com";
+        //private static string AuthPassword = "tranthingocyen";
 
         public ActionResult Index()
         {
@@ -144,11 +144,8 @@ namespace WebBDS.Controllers
         public ActionResult ListBDSmark()
         {
             List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
-            if (CommonConstants.listBDSmark.Count == 0)
-            {
-                listBDSmark = CommonConstants.getlistBDSmark();
-                CommonConstants.listBDSmark = listBDSmark;
-            }
+            listBDSmark = CommonConstants.getlistBDSmark();
+            CommonConstants.listBDSmark = listBDSmark;
 
             List<User> listUser = CommonConstants.listUser;
 
@@ -223,7 +220,6 @@ namespace WebBDS.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(CommonConstants.URL + "auth/register");
-                //client.BaseAddress = new Uri("http://localhost:5000/api/auth/register");
                 var postJob = client.PostAsJsonAsync<tempUser>("register", tempUser);
                 postJob.Wait();
 
