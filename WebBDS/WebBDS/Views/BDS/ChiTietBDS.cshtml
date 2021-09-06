@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_BaseLayout_Empty_Trangchu.cshtml";
 }
@@ -12,13 +11,13 @@
     var j = 0;
 }
 <script>
-    var kinhdo = parseInt('@kinhdo');
+    const kinhdo = parseFloat('@kinhdo');
 
-    var vido = parseInt('@vido');
+    const vido = parseFloat('@vido');
     function initMap() {
 
         // The location of Uluru
-        const uluru = { lat: kinhdo, lng: vido };
+        const uluru = { lat: vido, lng: kinhdo };
         // The map, centered at Uluru
         const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 12,
@@ -35,23 +34,20 @@
 @Html.Partial("_TrangChu_MenuRow")
 <!-- main -->
 <div class="main" id="_TrangChu_Banner">
-        <div class="swiper-container mySwiper sliderHead">
-            <div class="swiper-wrapper">
-                @foreach (var item in bds.Image)
-                {
-                    <div class="swiper-slide item">
-                        <img src="@item" alt="">
-                    </div>
-                }
-            </div>
-            <div class="swiper-pagination"></div>
+    <div class="swiper-container mySwiper sliderHead">
+        <div class="swiper-wrapper">
+            @foreach (var item in bds.Image)
+            {
+                <div class="swiper-slide item">
+                    <img src="@item" alt="">
+                </div>
+            }
         </div>
+        <div class="swiper-pagination"></div>
+    </div>
 </div>
 
-
-
-
-    <!-- list -->
+<!-- list -->
 <div class="content">
     <div class="row bietthuRow bdsKCNrow loaiBDSrow">
         <div class="SelectaName">
@@ -105,11 +101,8 @@
             </div>
         </div>
         <div class="bietthuItem bdsKCNItem kcnThue">
-
         </div>
     </div>
-    
-
 
     <div class="row contentFooter col l-4 m-4 c-12"></div>
     <div class="khachhang">
@@ -137,188 +130,74 @@
     </div>
 </div>
 
-    @Html.Partial("_TrangChu_FooterRow")
+@Html.Partial("_TrangChu_FooterRow")
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3gIi0RSsSqFQHqlW_dICB5idZj7xIaI&callback=initMap&libraries=&v=weekly"
         async></script>
 
-    <script>
-        $(document).ready(function () {
-            // click mua thuê biethtu
-            const blockThue = $('.thue');
-            const blockMua = $('.mua');
-            blockThue.hide();
-            const btnThue = $('.thueBietthu');
-            const btnMua = $('.muaBietthu');
-            btnThue.click(() => {
-                blockMua.hide();
-                blockThue.show();
-                btnThue.css("background-color", "#E59933");
-                btnMua.css("background-color", "#fff");
-            })
-            btnMua.click(() => {
-                blockThue.hide();
-                blockMua.show();
-                btnMua.css("background-color", "#E59933");
-                btnThue.css("background-color", "#fff");
-            })
-            // click mua thuê BDS KCN
-            const blockThueKCN = $('.kcnThue');
-            const blockMuaKCN = $('.kcnMua');
-            blockThueKCN.hide();
-            const btnThueKCN = $('.thueKCN');
-            const btnMuaKCN = $('.muaKCN');
-            btnThueKCN.click(() => {
-                blockMuaKCN.hide();
-                blockThueKCN.show();
-                btnThueKCN.css("background-color", "#E59933");
-                btnMuaKCN.css("background-color", "#fff");
-          kinhdo })
-            btnMuaKCN.click(() => {
-                blockThueKCN.hide();
-                blockMuaKCN.show();
-                btnMuaKCN.css("background-color", "#E59933");
-                btnThueKCN.css("background-color", "#fff");
-            })
-            // click heart
-            const heart = $('.fa-heart');
-            $(document).on("click", ".fa-heart", function (e) {
-                if (event.target.classList.contains('clickHeart')) {
-                    $(this).removeClass('clickHeart');
-                }
-                else {
-                    e.currentTarget.classList.add("clickHeart");
-                }
-            });
-            // show more tin tuc
-            $(".rowTintucMore").hide();
-            $(".iconUp").hide();
-            var btnXemThem = $(".btnMoreTinTuc");
-            btnXemThem.click(() => {
-                if ($('.btnMoreTinTuc .iconUp').css('display') == 'none') {
-                    $(".btnMoreTinTuc .iconUp").show();
-                    $(".btnMoreTinTuc .iconDown").hide();
-                    $(".btnMoreTinTuc .btnMore__des").text("Thu Gọn");
-                }
-                else {
-                    $(".btnMoreTinTuc .iconUp").hide();
-                    $(".btnMoreTinTuc .iconDown").show();
-                    $(".btnMoreTinTuc .btnMore__des").text("Xem Thêm");
-                }
-                $(".rowTintucMore").toggle();
-            })
-            // show more bds KCN
-            $(".rowKCNmore").hide();
-            var btnXemThemKCN = $(".btnMoreKCN");
-            btnXemThemKCN.click(() => {
-                if ($('.btnMoreKCN .iconUp').css('display') == 'none') {
-                    $(".btnMoreKCN .iconUp").show();
-                    $(".btnMoreKCN .iconDown").hide();
-                    $(".btnMoreKCN .btnMore__des").text("Thu Gọn");
-                }
-                else {
-                    $(".btnMoreKCN .iconUp").hide();
-                    $(".btnMoreKCN .iconDown").show();
-                    $(".btnMoreKCN .btnMore__des").text("Xem Thêm");
-                }
-                $(".rowKCNmore").toggle();
-            })
-            //show more biệt thự
-            $(".rowBietThumore").hide();
-            var btnXemThemBT = $(".btnMoreBietThu");
-            btnXemThemBT.click(() => {
-                if ($('.btnMoreBietThu .iconUp').css('display') == 'none') {
-                    $(".btnMoreBietThu .iconUp").show();
-                    $(".btnMoreBietThu .iconDown").hide();
-                    $(".btnMoreBietThu .btnMore__des").text("Thu Gọn");
-                }
-                else {
-                    $(".btnMoreBietThu .iconUp").hide();
-                    $(".btnMoreBietThu .iconDown").show();
-                    $(".btnMoreBietThu .btnMore__des").text("Xem Thêm");
-                }
-                $(".rowBietThumore").toggle();
-            })
-            //show more Duan
-            $(".rowDuanmore").hide();
-            var btnXemThemDA = $(".btnMoreDuan");
-            btnXemThemDA.click(() => {
-                if ($('.btnMoreDuan .iconUp').css('display') == 'none') {
-                    $(".btnMoreDuan .iconUp").show();
-                    $(".btnMoreDuan .iconDown").hide();
-                    $(".btnMoreDuan .btnMore__des").text("Thu Gọn");
-                }
-                else {
-                    $(".btnMoreDuan .iconUp").hide();
-                    $(".btnMoreDuan .iconDown").show();
-                    $(".btnMoreDuan .btnMore__des").text("Xem Thêm");
-                }
-                $(".rowDuanmore").toggle();
-            })
-            //
-            const nextIcon = '<i class="fas fa-caret-right"></i>';
-            const prevIcon = '<i class="fas fa-caret-left"></i>';
+<script>
+    $(document).ready(function () {
 
-            var swiper = new Swiper(".mySwiper", {
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                    renderBullet: function (index, className) {
-                        return '<span class="' + className + '">' + (index + 1) + "</span>";
-                    },
+        //
+        const nextIcon = '<i class="fas fa-caret-right"></i>';
+        const prevIcon = '<i class="fas fa-caret-left"></i>';
+
+        var swiper = new Swiper(".mySwiper", {
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                renderBullet: function (index, className) {
+                    return '<span class="' + className + '">' + (index + 1) + "</span>";
                 },
-            });
-            //
-            $('.slider2').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                navText: [
-                    prevIcon,
-                    nextIcon
-                ],
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 2
-                    },
-                    1000: {
-                        items: 4
-                    }
-                }
-            })
-            $('.slider3').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                navText: [
-                    prevIcon,
-                    nextIcon
-                ],
-                responsive: {
-                    0: {
-                        items: 3
-                    },
-                    600: {
-                        items: 5
-                    },
-                    1000: {
-                        items: 7
-                    }
-                }
-            })
+            },
         });
-    </script>
+        //
+        $('.slider2').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+        $('.slider3').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            navText: [
+                prevIcon,
+                nextIcon
+            ],
+            responsive: {
+                0: {
+                    items: 3
+                },
+                600: {
+                    items: 5
+                },
+                1000: {
+                    items: 7
+                }
+            }
+        })
+    });
+</script>
 
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
-
-
-    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">

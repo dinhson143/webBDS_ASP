@@ -34,7 +34,7 @@ namespace WebBDS.Controllers
         private static string Bucket = "bds-asp-mvc.appspot.com";
         private static string AuthEmail = "dinhson14399@gmail.com";
         private static string AuthPassword = "tranthingocyen";
-        IFirebaseClient client;
+        //IFirebaseClient client;
         public ActionResult Index()
         {
             return View();
@@ -193,23 +193,28 @@ namespace WebBDS.Controllers
             string[] Images = Image[0].Split(',');
             List<String> listLink = new List<string>();
 
+
+            // delete kí tự trong string image
             for(int i = 0; i < Images.Length; i++)
             {
                 string rs = Images[i].Replace("amp;", "");
                 listLink.Add(rs);
             }
+            
             List<BDS> list = CommonConstants.listBDS;         
             // kiem tra tên bds đã tồn tại
             foreach (var item in list)
             {
                 if (item.Name == duan.Name && item._id != duan._id)
                 {
-                    mess = "Bất Động Sản Đã Tồn Tại";
+                    mess = "Tên Bất Động Sản Đã Tồn Tại";
                     ViewData["mess"] = mess;
                     return View();
                 }
             }
 
+
+            // add image vào list image có sẵn 
             if (luachon == "Khong" && file[0] != null)
             {
                     // upload ảnh lên firebase
@@ -252,11 +257,14 @@ namespace WebBDS.Controllers
                     }
             }
             duan.Image = listLink;
+           
+            
+            
             // update
+          
             Dictionary<string, object> data = new Dictionary<string, object>();
             using (var client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5000/api/BDS/");
                 client.BaseAddress = new Uri(CommonConstants.URL + "BDS/");
                 var postJob = client.PutAsJsonAsync<BDS>(duan._id.ToString(), duan);
                 postJob.Wait();
@@ -289,9 +297,23 @@ namespace WebBDS.Controllers
         {
             bool check = false;
             Dictionary<string, object> data = new Dictionary<string, object>();
+            // get list lịch 
+            List<Lich> listLich = CommonConstants.getlistLich();
+            CommonConstants.listLich = listLich;
+            foreach(var item in listLich)
+            {
+                if(item.IDbds == id)
+                {
+                    data.Add("mgs", check);
+                    return JsonConvert.SerializeObject(data);
+                }
+            }
+
+
+           
+            // nếu ko có lịch hẹn thì mới xóa
             using (var client = new HttpClient())
             {
-                //client.BaseAddress = new Uri("http://localhost:5000/api/BDS/");
                 client.BaseAddress = new Uri(CommonConstants.URL + "BDS/");
                 var deleteJob = client.DeleteAsync(id.ToString());
 
@@ -377,6 +399,7 @@ namespace WebBDS.Controllers
             userID = (string)Session[CommonConstants.USER_SESSION];
             User user = new User();
 
+            // kiểm tra user đã login
             if (userID == null)
             {
                 check = false;
@@ -388,7 +411,7 @@ namespace WebBDS.Controllers
                 user = CommonConstants.User;
             }
 
-
+            // get list BDS mark
             List<BDSmark> list = null;
             using (var client = new HttpClient())
             {
@@ -405,7 +428,7 @@ namespace WebBDS.Controllers
                 }              
             }
 
-
+            // kiểm tra xem user đã thích BDS hay chưa
             if (list != null)
             {
                 foreach (var item in list)
@@ -425,7 +448,7 @@ namespace WebBDS.Controllers
 
 
 
-
+            // nếu chưa thì add
             BDSmark x = new BDSmark();
             x.IDuser = user._id;
             x.IDbds = id;
@@ -446,6 +469,8 @@ namespace WebBDS.Controllers
         }
 
 
+
+        // 
 
         [HttpPost]
         public String DatlichBDSmark(string id)

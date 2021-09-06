@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model  WebBDS.Models.AdminListBDSmark_Model
@@ -213,63 +212,48 @@
                         </div>
                         <div class="col-md-12">
                             <div class="card card-profile">
-                                @foreach (var us in listUser)
-                                {
-                                    var dem = 0;
-                                    if (checkExist(us._id) == true)
-                                    {
-                                        <table id="example" class="table table-striped table-bordered table-sm infor-table"
-                                               data-show-export="true"
-                                               data-show-toggle="true"
-                                               data-show-columns="true"
-                                               data-export-data-type="excel"
-                                               data-click-to-select="true"
-                                               data-height="450"
-                                               data-pagination="true"
-                                               data-export-types=['excel']
-                                               data-page-list="[10, 25, 50, 100, 200, All]">
-                                            <thead class="thead-dark">
-                                                <tr>
-                                                    <th>Image</th>
-                                                    <th>Name</th>
-                                                    <th>Mô Tả</th>
-                                                    <th>Vị trí</th>
-                                                    <th>Diện tích</th>
-                                                    <th>Status</th>
-                                                    <th>Giá</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in listBDSmark)
-                                                {
-                                                    if (us._id == item.IDuser)
-                                                    {
-                                                        dem++;
-                                                        var bds = getBDS(item.IDbds);
-                                                        var user = getUser(item.IDuser);
-
-                                                        if (dem == 1)
-                                                        {
-                                                            <h3 style="font-weight:600;color:#000;box-shadow: 0 2px #000">Name: @user.UserInfor.Name</h3>
-                                                        }
-                                                        <tr>
-                                                            <td>
-                                                                <img class="" style="width:200px;height:100px;margin:5px 0;" src="@bds.Image[0]" />
-                                                            </td>
-                                                            <td>@bds.Name</td>
-                                                            <td>@bds.Mota</td>
-                                                            <td>@bds.Vitri</td>
-                                                            <td>@bds.Dientich</td>
-                                                            <td>@bds.Status</td>
-                                                            <td>@bds.Gia</td>
-                                                        </tr>
-                                                    }
-                                                }
-                                            </tbody>
-                                        </table>
-                                    }
-
-                                }
+                                <table id="example" class="table table-striped table-bordered table-sm infor-table"
+                                       data-show-export="true"
+                                       data-show-toggle="true"
+                                       data-show-columns="true"
+                                       data-export-data-type="excel"
+                                       data-click-to-select="true"
+                                       data-height="450"
+                                       data-pagination="true"
+                                       data-export-types=['excel']
+                                       data-page-list="[10, 25, 50, 100, 200, All]">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Khách hàng</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Mô Tả</th>
+                                            <th>Vị trí</th>
+                                            <th>Diện tích</th>
+                                            <th>Status</th>
+                                            <th>Giá</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in listBDSmark)
+                                        {
+                                            var bds = getBDS(item.IDbds);
+                                            var user = getUser(item.IDuser);
+                                            <tr>
+                                                <td>@user.UserInfor.Name</td>
+                                                <td>
+                                                    <img class="" style="width:200px;height:100px;margin:5px 0;" src="@bds.Image[0]" />
+                                                </td>
+                                                <td>@bds.Name</td>
+                                                <td>@bds.Mota</td>
+                                                <td>@bds.Vitri</td>
+                                                <td>@bds.Dientich</td>
+                                                <td>@bds.Status</td>
+                                                <td>@bds.Gia</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -285,13 +269,11 @@
 
     <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 
-
     <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
 
         $('#example').DataTable();
-
 
         (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
@@ -368,7 +350,6 @@
             this.terCtx.lineTo(0, this.points[0]);
             this.terCtx.fill();
         }
-
 
         // Second canvas used for the stars
         bgCtx.fillStyle = '#05004c';
@@ -471,7 +452,6 @@
         }
         animate();
 
-
         ////////////////
         $(".loaiBDS").hide();
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listBDSmark)'.replace(/&quot;/g, "\""));
@@ -499,7 +479,6 @@
         var dientich= "";
         var gia = "";
         var image = "";
-
     </script>
     <script>
         $(document).ready(function () {
@@ -571,7 +550,6 @@
 
                     $(this).parent('li').siblings().removeClass('active');
                     $(this).parent('li').addClass('active');
-
 
                     var new_image = $(this).find("img").attr('src');
 
@@ -672,5 +650,4 @@
             });
         });</script>
 </body>
-
 </html>

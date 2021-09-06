@@ -534,6 +534,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\ads.mp4" />
     <Content Include="images\bn1.jpg" />
+    <Content Include="images\bn1.png" />
     <Content Include="images\bn2.jpg" />
     <Content Include="images\bn3.jpg" />
     <Content Include="images\favicon.ico" />

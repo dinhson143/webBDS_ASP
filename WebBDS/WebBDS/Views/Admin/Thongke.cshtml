@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model  List<WebBDS.Models.Thongke>
@@ -34,14 +33,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
-
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
-
-
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.css">
-    @*<link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">*@
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
@@ -100,6 +95,7 @@
         .dataTables_info {
             display: none;
         }
+
         .overlay {
             background-color: grey;
             opacity: 0.8;
@@ -167,11 +163,12 @@
             margin: 0 5px;
         }
 
-        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
-            cursor: pointer;
-            opacity: 0.8;
-            color: #000;
-        }
+            .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+                cursor: pointer;
+                opacity: 0.8;
+                color: #000;
+            }
+
         .btnLoad {
             padding: 10px;
             border-radius: 5px;
@@ -181,9 +178,18 @@
             background-color: #fff;
             font-weight: bold
         }
-        .btnLoad:hover{
-            color:#fff;
-            background-color:#ccc;
+
+            .btnLoad:hover {
+                color: #fff;
+                background-color: #ccc;
+            }
+
+        .btnLuachon {
+            margin-left: 5px;
+        }
+
+        .table .thead-dark th {
+            background-color: #fff !important;
         }
     </style>
 </head>
@@ -253,7 +259,7 @@
             <!-- Navbar -->
             <!-- End Navbar -->
             <div class="content">
-                <div style="display:flex;position:absolute;z-index:999">
+                <div style="display:flex;position:absolute;z-index:999;justify-content:space-between; width:90%">
                     <div style="display:flex;">
                         <select name="year" id="year" size="1">
                         </select>
@@ -266,8 +272,6 @@
                         <select name="month" id="month" size="1">
                         </select>
 
-
-
                         <label style="margin:auto 0; color:#fff;margin-left:10px"> Đến :</label>
                         <select name="day" id="dayend" size="1">
                             <option value=" " selected="selected">-- Day --</option>
@@ -277,14 +281,42 @@
 
                         <label class="btnLoad" onclick="getSelectNam(); return false"> LOAD</label>
                     </div>
+                    <div style="display:flex;position:absolute;right:0">
+                        <label class="btnLoad btnLuachon btnBieudo" onclick="xembieudo(); return false"> Xem biểu đồ</label>
+                        <label class="btnLoad btnLuachon btnAll" onclick="xemAll(); return false"> Xem tất cả</label>
+                    </div>
                 </div>
 
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card card-profile">
-                                <div class="thongke table" style="height:400px;">
+                                @*// thống kê*@
+                                <div class="thongke table bieudo10" style="height:400px;">
                                     <canvas id="myChart" style="width:100%;height:400px"></canvas>
+                                </div>
+
+                                @*//table*@
+                                <div class="thongke table tableAll" style="height:400px;">
+                                    <table id="example" class="table table-striped table-bordered table-sm infor-table"
+                                           data-show-export="true"
+                                           data-show-toggle="true"
+                                           data-show-columns="true"
+                                           data-export-data-type="excel"
+                                           data-click-to-select="true"
+                                           data-height="450"
+                                           data-pagination="true"
+                                           data-export-types=['excel']
+                                           data-page-list="[10, 25, 50, 100, 200, All]">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Tên BDS</th>
+                                                <th>Số lần được đặt</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -318,8 +350,6 @@
     <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-
-
 
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
     <script>
@@ -404,11 +434,26 @@
 
         });
     </script>
+
+    @* xữ lí*@
     <script type="text/javascript">
+  /*  $('#example').DataTable();*/
+
+    $('.tableAll').hide();
+        function xembieudo() {
+            $('.bieudo10').show();
+            $('.tableAll').hide();
+        }
+        function xemAll() {
+            $('.bieudo10').hide();
+            $('.tableAll').show();
+        }
+        ////////////
         function strcmp(a, b) {
             return (a < b ? -1 : (a > b ? 1 : 0));
         }
-        var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listThongke)'.replace(/&quot;/g, "\""));
+    var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listThongke)'.replace(/&quot;/g, "\""));
+
         function getSelectNam() {
             var arr = [];
             var nam = document.getElementById("year").value;
@@ -478,19 +523,9 @@
                 dcp.setMonth(dt.getMonth());
                 dcp.setFullYear(dt.getFullYear());
 
-                //console.log(array[i].NameBDS);
-                //console.log(dstart);
-                //console.log(dend);
-                //console.log(dcp);
-                //console.log("----------------------------------------");
                 if ((dstart.getTime() <= dcp.getTime()) && (dend.getTime() >= dcp.getTime() )) {
                     arr.push(array[i]);
                 }
-                //if (parseInt(nam) == dt.getFullYear()) {
-                //    if (((dt.getMonth() + 1) >= parseInt(thangstart)) && ((dt.getMonth() + 1) <= parseInt(thangend))) {
-                //        arr.push(array[i]);
-                //    }
-                //}
             }
 
             console.log(arr);
@@ -510,7 +545,28 @@
                 a[i].Soluong = b[i];
             }
 
-             changeDataChart(a);
+            // 10 giá trị đầu
+            const slicedArray = a.slice(0, 10);
+            // chart
+            changeDataChart(slicedArray);
+
+            // table All
+            $("#example").dataTable().fnDestroy();
+            if (a.length > 0) {
+                $('#example').dataTable({
+                    //  data: myData,
+                    aoColumns: [
+                        { mData: 'NameBDS' },
+                        { mData: 'Soluong' },
+                    ]
+                });
+
+                $('#example').dataTable().fnClearTable();
+                $('#example').dataTable().fnAddData(a);
+            }
+            else {
+                $('#example').dataTable().fnClearTable();
+            }
         }
 
         function getRandomColor() {
@@ -520,7 +576,8 @@
                 color += letters[Math.floor(Math.random() * 16)];
             }
             return color;
-        }
+    }
+
         function changeDataChart(arr) {
             var xValues = [];
             var yValues = [];
@@ -561,17 +618,8 @@
             });
             console.log()
         }
-
-
-
-
-
-
-
-
-
-
     </script>
+
     <script type="text/javascript">
         (function () {
             var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame || function (callback) {
@@ -648,7 +696,6 @@
             this.terCtx.lineTo(0, this.points[0]);
             this.terCtx.fill();
         }
-
 
         // Second canvas used for the stars
         bgCtx.fillStyle = '#05004c';
@@ -822,7 +869,6 @@
                     $(this).parent('li').siblings().removeClass('active');
                     $(this).parent('li').addClass('active');
 
-
                     var new_image = $(this).find("img").attr('src');
 
                     if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
@@ -922,5 +968,4 @@
             });
         });</script>
 </body>
-
 </html>

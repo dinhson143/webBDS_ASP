@@ -1,5 +1,4 @@
-﻿
-using Firebase.Auth;
+﻿using Firebase.Auth;
 using Firebase.Storage;
 using FireSharp.Config;
 using FireSharp.Interfaces;
@@ -55,7 +54,7 @@ namespace WebBDS.Controllers
                 CommonConstants.listBDS = listbds;
             }
             // listBDSmark
-            
+
             // listLich
             if (CommonConstants.listLich.Count == 0)
             {
@@ -63,27 +62,26 @@ namespace WebBDS.Controllers
                 CommonConstants.listLich = listLich;
             }
 
-
-
             //user
             userID = (string)Session[CommonConstants.USER_SESSION];
             string token = (string)Session[CommonConstants.AccessToken_SESSION];
             if (CommonConstants.User.Email != userID)
             {
-                List<User> getUser = CommonConstants.getlistUserID(userID,token);
+                List<User> getUser = CommonConstants.getlistUserID(userID, token);
                 if (getUser.Count > 0)
                 {
                     CommonConstants.User = getUser[0];
                 }
-            }                 
+            }
             return View(CommonConstants.User);
         }
+
         [Route("Admin/ListUser")]
         [HttpGet]
         public ActionResult ListUser()
         {
             List<User> list = null;
-            list = CommonConstants.listUser;        
+            list = CommonConstants.listUser;
             return View(list);
         }
 
@@ -96,7 +94,6 @@ namespace WebBDS.Controllers
             return View(list);
         }
 
-
         [Route("Admin/ListBDS")]
         [HttpGet]
         public ActionResult ListBDS()
@@ -105,7 +102,6 @@ namespace WebBDS.Controllers
             // List Loại BDS
             List<LoaiBDS> listLoaiBDS = CommonConstants.listLoaiBDS;
 
-
             AdminListBDS_Model obj = new AdminListBDS_Model();
             obj.BDS = listBDS;
             obj.loaiBDS = listLoaiBDS;
@@ -113,12 +109,10 @@ namespace WebBDS.Controllers
             return View(obj);
         }
 
-
-
         [HttpPost]
-        public string EditBDS(string id,string idLoai , string name,string mota,string vitri, string dientich, string gia,string kinhdo,string vido,string status,string image)
+        public string EditBDS(string id, string idLoai, string name, string mota, string vitri, string dientich, string gia, string kinhdo, string vido, string status, string image)
         {
-            string[] Image  = image.Split(',');
+            string[] Image = image.Split(',');
             Dictionary<string, object> data = new Dictionary<string, object>();
             BDS dt = new BDS();
             dt._id = id;
@@ -136,9 +130,6 @@ namespace WebBDS.Controllers
             return JsonConvert.SerializeObject(data);
         }
 
-
-
-
         [Route("Admin/ListBDSmark")]
         [HttpGet]
         public ActionResult ListBDSmark()
@@ -151,7 +142,7 @@ namespace WebBDS.Controllers
 
             //
             List<BDS> listBDS = CommonConstants.listBDS;
-           
+
             AdminListBDSmark_Model list = new AdminListBDSmark_Model();
             list.User = listUser;
             list.BDSmark = listBDSmark;
@@ -159,7 +150,6 @@ namespace WebBDS.Controllers
 
             return View(list);
         }
-
 
         [Route("Admin/Lichhenyeucau")]
         [HttpGet]
@@ -170,8 +160,9 @@ namespace WebBDS.Controllers
             List<Lich> listLich = CommonConstants.getlistLich();
             CommonConstants.listLich = listLich;
 
+            var listLichSort = (List<Lich>)listLich.OrderBy(x => x.Date).ToList();
 
-            List<BDS> listBDS = CommonConstants.listBDS;          
+            List<BDS> listBDS = CommonConstants.listBDS;
 
             AdminListLich_Model list = new AdminListLich_Model();
             list.User = listUser;
@@ -180,12 +171,6 @@ namespace WebBDS.Controllers
 
             return View(list);
         }
-
-
-
-
-
-
 
         [Route("Admin/CreateUser")]
         [HttpGet]
@@ -197,7 +182,7 @@ namespace WebBDS.Controllers
         [HttpPost]
         public ActionResult CreateUser(User user, InforUser infor)
         {
-            List<User> list = CommonConstants.listUser;         
+            List<User> list = CommonConstants.listUser;
             foreach (var item in list)
             {
                 if (user.Email == item.Email)
@@ -208,8 +193,7 @@ namespace WebBDS.Controllers
                 }
             }
 
-
-            user.UserInfor=infor;
+            user.UserInfor = infor;
             var tempUser = new tempUser();
             tempUser.Name = user.UserInfor.Name;
             tempUser.Password = user.Password;
@@ -238,28 +222,24 @@ namespace WebBDS.Controllers
             ViewData["mess"] = mess;
             return View();
         }
-        
-        
-        
+
         [Route("Admin/Thongke")]
         public ActionResult Thongke()
         {
             // bds
             List<BDS> listBDS = CommonConstants.listBDS;
 
-
-
             /// list lich
             List<Lich> listLich = CommonConstants.getlistLich();
             CommonConstants.listLich = listLich;
 
-            // 
+            //
             List<Thongke> listThongke = new List<Thongke>();
             foreach (var x in listBDS)
             {
                 foreach (var y in listLich)
                 {
-                    if (String.Compare(x._id,y.IDbds)==0)
+                    if (String.Compare(x._id, y.IDbds) == 0)
                     {
                         Thongke tk = new Thongke();
                         tk.NameBDS = x.Name;

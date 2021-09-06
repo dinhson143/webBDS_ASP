@@ -221,7 +221,7 @@
         }
 
             .MenuBlock ul .itemMua:hover {
-                border-bottom: 5px solid #ccc;
+                /*border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemMua:hover ul {
@@ -278,7 +278,7 @@
         }
 
             .MenuBlock ul .itemThue:hover {
-                border-bottom: 5px solid #ccc;
+               /* border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemThue:hover ul {
@@ -335,7 +335,7 @@
         }
 
             .MenuBlock ul .itemThongtin:hover {
-                border-bottom: 5px solid #ccc;
+                /*border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemThongtin:hover ul {
@@ -392,7 +392,7 @@
         }
 
             .MenuBlock ul .itemTienich:hover {
-                border-bottom: 5px solid #ccc;
+                /*border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemTienich:hover ul {
@@ -449,7 +449,7 @@
         }
 
             .MenuBlock ul .itemDuan:hover {
-                border-bottom: 5px solid #ccc;
+                /*border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemDuan:hover ul {
@@ -506,7 +506,7 @@
         }
 
             .MenuBlock ul .itemBDSnuocngoai:hover {
-                border-bottom: 5px solid #ccc;
+                /*border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemBDSnuocngoai:hover ul {
@@ -561,7 +561,7 @@
         }
 
             .MenuBlock ul .itemBanThue:hover {
-                border-bottom: 5px solid #ccc;
+               /* border-bottom: 5px solid #ccc;*/
             }
 
                 .MenuBlock ul .itemBanThue:hover ul {
@@ -857,7 +857,7 @@ body {
     .main .sliderHead .item img, .main .sliderHead .item video {
         width: 100%;
         height: 100%;
-        max-height: 829px;
+         max-height: 829px;
     }
 
 .content {
@@ -1002,7 +1002,7 @@ body {
 
                 .content .danhmucnoibat__list .danhmucnoibat__item:hover p {
                     color: #121A66;
-                    font-weight:900;
+                    font-weight: 900;
                 }
 
             .content .danhmucnoibat__list .danhmucnoibat__item img {
@@ -1101,22 +1101,23 @@ body {
                 font-size: 40px;
                 color: #fff;
             }
-                .content .duanRow .duan1 .duan1__item .duan1__itemLeft i:hover{
-                    color:red;
-                    cursor:pointer;
+
+                .content .duanRow .duan1 .duan1__item .duan1__itemLeft i:hover {
+                    color: red;
+                    cursor: pointer;
                 }
 
-                .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan {
-                    position: absolute;
-                    margin: 0 12px;
-                    left: 0;
-                    right: 0;
-                    bottom: 0;
-                    top: 70%;
-                    border-radius: 20px;
-                    background-color: #ccc;
-                    opacity: 0.4;
-                }
+            .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan {
+                position: absolute;
+                margin: 0 12px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 70%;
+                border-radius: 20px;
+                background-color: #ccc;
+                opacity: 0.4;
+            }
 
             .content .duanRow .duan1 .duan1__item .duan1__itemLeft .duan1__itemTenduan--content {
                 position: absolute;
@@ -1405,7 +1406,7 @@ body {
                         right: 2%;
                         padding: 10px 0;
                         background-color: #fff;
-                        opacity:0.85;
+                        opacity: 0.85;
                         border-radius: 10px;
                     }
 
@@ -1441,23 +1442,24 @@ body {
                     color: #fff;
                     font-size: 30px;
                 }
-                    .content .bietthuRow .bietthuItem .bietthuItem__item .heart:hover{
-                        cursor:pointer;
-                        color:red;
+
+                    .content .bietthuRow .bietthuItem .bietthuItem__item .heart:hover {
+                        cursor: pointer;
+                        color: red;
                     }
 
-                    .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--title {
-                        margin-top: 10px;
-                        color: #121A66;
-                        font-weight: 700;
-                        font-size: 20px;
-                        text-shadow: 0 0 1px #ccc;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        -webkit-line-clamp: 2;
-                        -webkit-box-orient: vertical;
-                        display: -webkit-box;
-                    }
+                .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--title {
+                    margin-top: 10px;
+                    color: #121A66;
+                    font-weight: 700;
+                    font-size: 20px;
+                    text-shadow: 0 0 1px #ccc;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    -webkit-line-clamp: 2;
+                    -webkit-box-orient: vertical;
+                    display: -webkit-box;
+                }
 
                     .content .bietthuRow .bietthuItem .bietthuItem__item .bietthuItem__item--title a {
                         text-decoration: none;
@@ -1712,7 +1714,7 @@ body {
 
             .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem .tintucItem__Infor {
                 border-bottom: 3px solid #ccc;
-                position:relative;
+                position: relative;
             }
 
                 .content .tintucRow .tintucItem .tintucItemRow .tintucItem__left .tintucItem__leftItem .tintucItem__Infor h3 {
@@ -1740,9 +1742,9 @@ body {
                     -ms-flex-pack: justify;
                     justify-content: space-between;
                     margin-bottom: 3%;
-                    position:absolute;
-                    width:100%;
-                    bottom:3%;
+                    position: absolute;
+                    width: 100%;
+                    bottom: 3%;
                     /*margin-top:90%;*/
                 }
 
@@ -1891,52 +1893,61 @@ body {
                 -webkit-clip-path: polygon(35% 90%, 65% 90%, 70% 0%, 100% 0, 100% 100%, 0 100%, 0 0, 30% 0);
                 clip-path: polygon(35% 90%, 65% 90%, 70% 0%, 100% 0, 100% 100%, 0 100%, 0 0, 30% 0);
             }
-    .imgFooter{
-        position:relative;
-    }
-        .content .endBody img {
-            width: 100%;
-            max-height: 500px;
-        }
-.content .endBody .imgFooter .btnApp{
-    display: flex;
-    position:absolute;
-    bottom:20%;
-    right:15%;
-}   
-.content .endBody .imgFooter .btnApp .appStore {
-    display: flex;
-    width: max-content;
-    padding: 5px 20px 5px 5px;
-    background-color: #000;
-    border-radius: 10px;
-    color: #fff;
-    margin: 0 20px;
-    text-decoration:none;
+
+.imgFooter {
+    position: relative;
 }
-    .content .endBody .imgFooter .btnApp .appStore:hover{
-        cursor:pointer;
-        opacity:0.8;
-    }
-    .content .endBody .imgFooter .btnApp .appStore i {
-        margin: auto 15px;
-        font-size: 45px;
-    }
-    .content .endBody .imgFooter .btnApp .appStore img {
-        max-width: 45px;
-        height: 45px;
-        margin: auto 15px;
-    }
-    .content .endBody .imgFooter .btnApp .appStore .appStore__name  h3{
-        margin:5px 0;
-    }
-    .content .endBody .imgFooter .btnApp .appStore .appStore__name p {
-        margin: 0;
+
+.content .endBody img {
+    width: 100%;
+    max-height: 500px;
+}
+
+.content .endBody .imgFooter .btnApp {
+    display: flex;
+    position: absolute;
+    bottom: 20%;
+    right: 15%;
+}
+
+    .content .endBody .imgFooter .btnApp .appStore {
+        display: flex;
+        width: max-content;
+        padding: 5px 20px 5px 5px;
+        background-color: #000;
+        border-radius: 10px;
+        color: #fff;
+        margin: 0 20px;
+        text-decoration: none;
     }
 
-    .footer {
-        background-image: url(./footer8x.png);
-    }
+        .content .endBody .imgFooter .btnApp .appStore:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .content .endBody .imgFooter .btnApp .appStore i {
+            margin: auto 15px;
+            font-size: 45px;
+        }
+
+        .content .endBody .imgFooter .btnApp .appStore img {
+            max-width: 45px;
+            height: 45px;
+            margin: auto 15px;
+        }
+
+        .content .endBody .imgFooter .btnApp .appStore .appStore__name h3 {
+            margin: 5px 0;
+        }
+
+        .content .endBody .imgFooter .btnApp .appStore .appStore__name p {
+            margin: 0;
+        }
+
+.footer {
+    background-image: url(./footer8x.png);
+}
 
     .footer .containerFooter {
         height: 100%;
@@ -2047,8 +2058,9 @@ body {
             .footer .containerFooter .rightFooter .rightFooter__content .footer-links {
                 margin-top: 40px;
             }
-                .footer .containerFooter .rightFooter .rightFooter__content .footer-links a{
-                    text-decoration:none;
+
+                .footer .containerFooter .rightFooter .rightFooter__content .footer-links a {
+                    text-decoration: none;
                 }
 
                 .footer .containerFooter .rightFooter .rightFooter__content .footer-links .link_footer {
@@ -2059,9 +2071,10 @@ body {
                     list-style: none;
                     margin: 15px 0;
                 }
+
                     .footer .containerFooter .rightFooter .rightFooter__content .footer-links .link_footer:hover {
                         color: #E59933;
-                        cursor:pointer;
+                        cursor: pointer;
                     }
 
                     .footer .containerFooter .rightFooter .rightFooter__content .footer-links .link_footer i {
@@ -2111,21 +2124,23 @@ body {
                     color: #fff;
                     font-size: 2.5em;
                 }
+
                     .footer .footerOFooter .social-footer .center-block .center-block__share a i:hover {
                         color: #E59933;
                         cursor: pointer;
                     }
 
-                    .footer .footerOFooter .DKKD {
-                        margin-left: auto;
-                    }
+    .footer .footerOFooter .DKKD {
+        margin-left: auto;
+    }
 
         .footer .footerOFooter .DKKD .content p {
             color: #fff;
             font-size: 15px;
         }
-.clickHeart{
-    color:red !important;
+
+.clickHeart {
+    color: red !important;
 }
 
 
@@ -2166,7 +2181,7 @@ body {
     }
 
 .swiper-pagination-bullet {
-/*    width: 20px;
+    /*    width: 20px;
     height: 20px;
     text-align: center;
     line-height: 20px;*/

@@ -79,6 +79,10 @@ namespace WebBDS.Controllers
 
             //FormsAuthentication.SetAuthCookie(email, false);
 
+
+
+
+            // kiểm tra facebook đã dc login
             List<User> list = null;
             using (var client = new HttpClient())
             {

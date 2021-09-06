@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model  WebBDS.Models.AdminListBDSmark_Model
@@ -44,6 +43,8 @@
     <link href="~/Content/custom/User/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/Content/custom/User/assets/demo/demo.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
     <style>
         body, html {
             background-color: #000;
@@ -141,11 +142,32 @@
             padding: 5px 20px;
             margin: 0 5px;
         }
+            .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+                cursor: pointer;
+                opacity: 0.8;
+                color: #000;
+            }
+        #example_filter, .dataTables_length {
+            margin-top: 20px !important;
+        }
 
-        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
-            cursor: pointer;
-            opacity: 0.8;
+        .thead-dark th {
+            color: #000 !important;
+        }
+        .dataTables_paginate {
+            position: fixed;
+            bottom: -20px;
+            right: 20px;
+            background-color: aquamarine;
+        }
+
+        .paginate_button:hover {
+            background-color: #ccc;
             color: #000;
+        }
+
+        .dataTables_info {
+            display: none;
         }
     </style>
 </head>
@@ -209,42 +231,55 @@
                         </div>
                         <div class="col-md-12">
                             <div class="card card-profile">
-                                <table class="">
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Mô Tả</th>
-                                        <th>Vị trí</th>
-                                        <th>Diện tích</th>
-                                        <th>Status</th>
-                                        <th>Giá</th>
-                                    </tr>
-                                    <h3 style="font-weight:600;color:#000;box-shadow: 0 2px #000">Name: @listUser[0].UserInfor.Name</h3>
-                                    @foreach (var item in listBDSmark)
-                                    {
-                                        var bds = getBDS(item.IDbds);
+                                <table id="example" class="table table-striped table-bordered table-sm infor-table"
+                                       data-show-export="true"
+                                       data-show-toggle="true"
+                                       data-show-columns="true"
+                                       data-export-data-type="excel"
+                                       data-click-to-select="true"
+                                       data-height="450"
+                                       data-pagination="true"
+                                       data-export-types=['excel']
+                                       data-page-list="[10, 25, 50, 100, 200, All]">
+                                    <thead class="thead-dark">
                                         <tr>
-                                            <td>
-                                                <img class="" style="width:200px;height:100px;margin:5px 0;" src="@bds.Image[0]" />
-                                            </td>
-                                            <td>@bds.Name</td>
-                                            <td>@bds.Mota</td>
-                                            <td>@bds.Vitri</td>
-                                            <td>@bds.Dientich</td>
-                                            <td>@bds.Status</td>
-                                            <td>@bds.Gia</td>
-                                            <td>
-                                                <div class="btn__group">
-                                                    <div class="btn btn--delete" onclick="return datlich('@item.IDbds')">
-                                                        <p style="margin-bottom:0;">Đặt lịch</p>
-                                                    </div>
-                                                    <div class="btn btn--delete" onclick="return deleteBDSmark('@item._id')">
-                                                        <p style="margin-bottom:0;">Delete</p>
-                                                    </div>
-                                                </div>
-                                            </td>
+                                            <th>Image</th>
+                                            <th>Name</th>
+                                            <th>Mô Tả</th>
+                                            <th>Vị trí</th>
+                                            <th>Diện tích</th>
+                                            <th>Status</th>
+                                            <th>Giá</th>
+                                            <th>Chức năng</th>
                                         </tr>
-                                    }
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in listBDSmark)
+                                        {
+                                            var bds = getBDS(item.IDbds);
+                                            <tr>
+                                                <td>
+                                                    <img class="" style="width:200px;height:100px;margin:5px 0;" src="@bds.Image[0]" />
+                                                </td>
+                                                <td>@bds.Name</td>
+                                                <td>@bds.Mota</td>
+                                                <td>@bds.Vitri</td>
+                                                <td>@bds.Dientich</td>
+                                                <td>@bds.Status</td>
+                                                <td>@bds.Gia</td>
+                                                <td>
+                                                    <div class="btn__group">
+                                                        <div class="btn btn--delete" onclick="return datlich('@item.IDbds')">
+                                                            <p style="margin-bottom:0;">Đặt lịch</p>
+                                                        </div>
+                                                        <div class="btn btn--delete" onclick="return deleteBDSmark('@item._id')">
+                                                            <p style="margin-bottom:0;">Delete</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -279,8 +314,10 @@
     <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
     <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
+    <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
+        $('#example').DataTable();
         ////////////////
         $(".loaiBDS").hide();
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(listBDSmark)'.replace(/&quot;/g, "\""));
@@ -308,7 +345,6 @@
         var dientich= "";
         var gia = "";
         var image = "";
-
 
         function datlich(id) {
             $.ajax({
@@ -351,7 +387,7 @@
                                 $(".thongbao__des h3").text('Loading ...');
                                 $(".thongbao__btn").hide();
                                 window.location = '/Customer/ListBDSmark';
-                            })                            
+                            })
                         } else {
                             $(".thongbao__des h3").text('Xóa User thất bại');
                             $(".thongbao__des").css('color', 'red');
@@ -373,7 +409,7 @@
                 $(".overlay").hide();
                 $(".thongbao").hide();
             });
-            
+
         }
     </script>
     <script type="text/javascript">
@@ -453,7 +489,6 @@
             this.terCtx.lineTo(0, this.points[0]);
             this.terCtx.fill();
         }
-
 
         // Second canvas used for the stars
         bgCtx.fillStyle = '#05004c';
@@ -627,7 +662,6 @@
                     $(this).parent('li').siblings().removeClass('active');
                     $(this).parent('li').addClass('active');
 
-
                     var new_image = $(this).find("img").attr('src');
 
                     if ($sidebar_img_container.length != 0 && $('.switch-sidebar-image input:checked').length != 0) {
@@ -727,5 +761,4 @@
             });
         });</script>
 </body>
-
 </html>

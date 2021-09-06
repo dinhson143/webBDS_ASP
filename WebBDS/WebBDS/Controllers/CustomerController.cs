@@ -91,6 +91,7 @@ namespace WebBDS.Controllers
                             List<User> listus = CommonConstants.getlistUser();
                             CommonConstants.listUser = listus;
                             string token = (string)Session[CommonConstants.AccessToken_SESSION];
+                            // load lại thông tin khi update
                             List<User> getUser = CommonConstants.getlistUserID(userID,token);
                             if (getUser.Count > 0)
                             {
@@ -177,7 +178,7 @@ namespace WebBDS.Controllers
                 }
             }
 
-
+            // delete user và userinfor
             bool check = false;
             Dictionary<string, object> data = new Dictionary<string, object>();
             using (var client = new HttpClient())
@@ -221,12 +222,15 @@ namespace WebBDS.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
+            // get listBDSmark
             List<BDSmark> listBDSmark = CommonConstants.listBDSmark;
             listBDSmark = CommonConstants.getlistBDSmark();
             CommonConstants.listBDSmark = listBDSmark;
 
             List<User> listUser = CommonConstants.listUser;
            
+
+            //get user từ storage
             List<User> listUser_end = new List<User>() ;
             foreach (var item in listUser)
             {
@@ -236,6 +240,8 @@ namespace WebBDS.Controllers
                 }
             }
 
+
+            // get ra listBDSmark của user
             List<BDSmark> listBDSmarkOfUser = new List<BDSmark>();
 
             foreach (var item in listBDSmark)

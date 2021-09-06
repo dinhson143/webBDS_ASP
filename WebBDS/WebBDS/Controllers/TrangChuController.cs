@@ -67,6 +67,8 @@ namespace WebBDS.Controllers
         [HttpPost]
         public string CheckDangNhap(string id, string pw)
         {
+
+            // chưa login 
             Dictionary<string, object> data = new Dictionary<string, object>();
             userID = (string)Session[CommonConstants.USER_SESSION];
             if (userID == null)
@@ -74,6 +76,10 @@ namespace WebBDS.Controllers
                 data.Add("value", "");
                 return JsonConvert.SerializeObject(data);
             }
+
+
+
+            // get thông tin user và về profile 
             List<User> list = new List<User>();
             using (var client = new HttpClient())
             {

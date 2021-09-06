@@ -375,18 +375,7 @@
         var duan = null;
         var loaiBDS = null;
         var idFilterLoai = 0;
-        // Loai BDs
-        $(".btnAllBDS").click(() => {
-            $("table").hide();
-            $(".AllBDS").show();
-        })
-        function handlerFilterLoai(id) {
-            idFilterLoai = id;
-            $("table").hide();
-            let className = "." + id;
-            $(className).toggle();
-            $(".AllBDS").hide();
-        }
+
         // BDS
         var idDuAn = "";
         var name = "";
@@ -399,7 +388,7 @@
         var status = "";
         var image = "";
 
-    function xemChiTiet(item) {
+        function xemChiTiet(item) {
         duan = array[parseInt(item)];
         var idBDS = duan._id;
         $.ajax({
@@ -416,25 +405,11 @@
         });
 
     }
+
+
+
         function handlerEditBDS(item) {
-            if (idFilterLoai != 0) {
-                var dem = 0;
-                for (let i = 0; i < array.length; i++) {
-                    if (array[i].maloaiBDS.localeCompare(idFilterLoai) == 0) {
-                        if (parseInt(dem) === parseInt(item)) {
-                            var vt = parseInt(i);
-                            duan = array[vt];
-                            break;
-                        }
-                        else {
-                            dem++;
-                        }
-                    }
-                }
-            }
-            else {
-                duan = array[parseInt(item)];
-            }
+             duan = array[parseInt(item)];
            /* debugger;*/
             /*image = duan.Image.replace("amp", "");*/
             image = duan.Image;
@@ -456,6 +431,9 @@
                 }
             });
         }
+
+
+
         function deleteBDS(item) {
             $(".thongbao__des h3").text('Xác nhận xóa BDS');
             $(".thongbao__des").css('color', 'green');
@@ -486,7 +464,7 @@
                                 window.location = '/Admin/ListBDS';
                             })
                         } else {
-                            $(".thongbao__des h3").text('Xóa BDS thất bại');
+                            $(".thongbao__des h3").text('Xóa BDS thất bại. Hãy check lịch hẹn');
                             $(".thongbao__des").css('color', 'red');
                             $(".overlay").show();
                             $(".thongbao").show();

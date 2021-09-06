@@ -1,7 +1,17 @@
-﻿
-
+﻿@model  WebBDS.Models.User
 @{
+
     Layout = null;
+    //
+    string name = "", email = "", address = "", pw = "", id = "", role = "", phone = "", idIF = "";
+    var user = Model;
+    if (user.Email != null)
+    {
+        name = user.UserInfor.Name;
+        email = user.Email;
+        phone = user.UserInfor.Phone;
+    }
+    //
     string mess = ViewData["mess"]?.ToString();
     var now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
     var min = DateTime.Now.AddDays(2).ToString("yyyy-MM-dd HH:mm:ss").Replace(' ', 'T');
@@ -50,7 +60,7 @@
                     </span>
 
                     <div class="wrap-input100 validate-input" data-validate="Name is required">
-                        <input class="input100" type="text" name="Name" placeholder="Name">
+                        <input class="input100" type="text" id="name" name="Name" placeholder="Name">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-user" aria-hidden="true"></i>
@@ -58,14 +68,14 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input class="input100" type="text" name="Email" placeholder="Email">
+                        <input class="input100" type="text" id="email" name="Email" placeholder="Email">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fa fa-envelope" aria-hidden="true"></i>
                         </span>
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                        <input pattern="[0][0-9]{9}" class="input100" type="text" name="Sdt" placeholder="SDT" title="Phone number with 0 and remaing 9 digit with 0-9">
+                        <input pattern="[0][0-9]{9}" class="input100" id="phone" type="text" name="Sdt" placeholder="SDT" title="Phone number with 0 and remaing 9 digit with 0-9">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
                             <i class="fas fa-phone-square-alt"></i>
@@ -90,17 +100,12 @@
                     </div>
 
                     <a class="container-contact100-form-btn" href="/Trangchu/Index">
-                         <input type="button" class="contact100-form-btn" value="Trở về">
+                        <input type="button" class="contact100-form-btn" value="Trở về">
                     </a>
-
-                    
                 </form>
             </div>
         </div>
     </div>
-
-
-
 
     <!--===============================================================================================-->
     <script src="~/Content/custom/Form/vendor/jquery/jquery-3.2.1.min.js"></script>
@@ -112,6 +117,14 @@
     <!--===============================================================================================-->
     <script src="~/Content/custom/Form/vendor/tilt/tilt.jquery.min.js"></script>
     <script>
+        var name = '@name';
+        var phone = '@phone';
+        var email = '@email';
+
+        $('#name').val(name);
+        $('#email').val(email);
+        $('#phone').val(phone);
+
         $('.js-tilt').tilt({
             scale: 1.1
         })
@@ -124,19 +137,11 @@
     <script>
         var mess = '@mess';
 
-
-
-
-
-
-
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
         gtag('config', 'UA-23581568-13');
     </script>
-
 </body>
 </html>
-

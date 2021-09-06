@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
     string mess = ViewData["mess"]?.ToString();
 }
@@ -30,13 +29,113 @@
     <link href="~/Content/custom/Login/css/style.css" rel='stylesheet' type='text/css' media="all" />
     <!-- /css -->
     <link rel="icon" type="image/png" href="~/images/favicon.ico">
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+        function initMap() {
+            const uluru = { lat: 10.762622, lng: 106.660172 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: { lat: 10.762622, lng: 106.660172 },
+            });
+            //const marker = new google.maps.Marker({
+            //    position: uluru,
+            //    map: map,
+            //});
+            const geocoder = new google.maps.Geocoder();
+            document.getElementById("submit").addEventListener("click", () => {
+                geocodeAddress(geocoder, map);
+            });
+        }
+        function geocodeAddress(geocoder, resultsMap) {            
+            const address = document.getElementById("diachi").value;
+            geocoder
+                .geocode({ address: address })
+                .then(({ results }) => {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location,
+                    });
+
+                    $(".vido").val(results[0].geometry.location.lat());
+                    $(".kinhdo").val(results[0].geometry.location.lng());
+                })
+                .catch((e) =>
+                    alert("Geocode was not successful for the following reason: " + e)
+                );
+        }
+    </script>
+
     <style>
-        .content-w3ls .content-agile1{
-            height:950px;
+        .content-w3ls .content-agile1 {
+            height: 950px;
+        }
+
+        .lbEdit {
+            width: 300px;
+            padding: 0 15px;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 200;
+            background-color: transparent;
+            margin: 0 auto 10px;
+            display: block;
+            outline: none;
+        }
+
+        .kvDo {
+            text-decoration: none;
+            color: #fff;
+        }
+
+            .kvDo:hover {
+                opacity: 0.8;
+                cursor: pointer;
+            }
+
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
+        }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 60%;
+            height: 40%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+        #floating-panel {
+            height: 40px !important;
+        }
+
+        #diachi {
+            margin: 5px;
+            height: 20px;
+            width: 600px;
+            font-size: 18px;
+        }
+
+        #submit {
+            padding: 5px !important;
+            font-weight: 700 !important;
         }
     </style>
 </head>
-<body>
+<body style="position:relative">
     <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Thêm Bất Động Sản</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
@@ -57,7 +156,7 @@
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="text" class="lock" name="Vitri" placeholder="Vị trí" id="address1" title="Please enter a valid mota" required="">
+                    <input type="text" class="lock vitri" name="Vitri" placeholder="Vị trí" id="address1" title="Please enter a valid mota" required="">
                 </div>
 
                 <div class="form-control agileinfo">
@@ -68,12 +167,15 @@
                     <input type="text" class="lock" name="Gia" placeholder="Gia" id="password1" title="Please enter a valid gia" required="">
                 </div>
 
+                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">
+                    Lấy Kinh độ và Vĩ độ <a class="kvDo" onclick="showGoogle()">( Click )</a>
+                </label>
                 <div class="form-control agileinfo">
-                    <input type="text"  class="lock" name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
+                    <input type="text" class="lock kinhdo" name="KinhDo" readonly placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
                 </div>
 
                 <div class="form-control agileinfo">
-                    <input type="text"  class="lock" name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
+                    <input type="text" class="lock vido" name="ViDo" readonly placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
                 </div>
 
                 <div class="form-control agileinfo">
@@ -100,10 +202,37 @@
         </div>
         <div class="clear"></div>
     </div>
+
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div id="floating-panel">
+            <input id="diachi" type="text" value="Ho Chi Minh City" />
+            <input id="submit" type="button" value="Get lat & lng" />
+            <input id="exit" type="button" value="Đóng" />
+        </div>
+        <div id="map" style="height:100%;width:100%"></div>
+    </div>
+
     <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3gIi0RSsSqFQHqlW_dICB5idZj7xIaI&callback=initMap&libraries=&v=weekly"
+            async></script>
 </body>
 </html>
 
+<script>
+
+    function showGoogle() {
+        $(".overlay").toggle();
+        $(".thongbao").toggle();
+        $('#diachi').val($('.vitri').val());
+    }
+    $('#exit').click(function () {
+        $(".overlay").toggle();
+        $(".thongbao").toggle();
+    })
+</script>
 <script>
     $(document).ready(function () {
         document.getElementById("firstname").onchange = function () {
@@ -123,11 +252,8 @@
             }
         };
 
-
-
-
         var mess = '@mess';
-        if (mess !== "") {         
+        if (mess !== "") {
             var action = setTimeout(function () {
                 window.location = '/Admin/ListBDS';
             }, 1000);

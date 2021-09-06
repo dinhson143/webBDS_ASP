@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
     string mess = ViewData["mess"]?.ToString();
 }
@@ -45,13 +44,62 @@
     <link href="~/Content/custom/Login/css/style.css" rel='stylesheet' type='text/css' media="all" />
     <!-- /css -->
     <link rel="icon" type="image/png" href="~/images/favicon.ico">
-    <style>
-        @*.content-w3ls .content-agile1{
-            background:url(@image);
-        }*@
-        .content-w3ls .content-agile1{
-            height:800px;
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script>
+        function initMap() {
+            const uluru = { lat: 10.762622, lng: 106.660172 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: { lat: 10.762622, lng: 106.660172 },
+            });
+            //const marker = new google.maps.Marker({
+            //    position: uluru,
+            //    map: map,
+            //});
+            const geocoder = new google.maps.Geocoder();
+            document.getElementById("submit").addEventListener("click", () => {
+                geocodeAddress(geocoder, map);
+            });
         }
+        function geocodeAddress(geocoder, resultsMap) {
+            const address = document.getElementById("diachi").value;
+            geocoder
+                .geocode({ address: address })
+                .then(({ results }) => {
+                    resultsMap.setCenter(results[0].geometry.location);
+                    new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location,
+                    });
+
+                    $(".vido").val(results[0].geometry.location.lat());
+                    $(".kinhdo").val(results[0].geometry.location.lng());
+                })
+                .catch((e) =>
+                    alert("Geocode was not successful for the following reason: " + e)
+                );
+        }
+    </script>
+    <style>
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: "Roboto", "sans-serif";
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        .content-w3ls .content-agile1 {
+            height: 800px;
+        }
+
         .lbEdit {
             width: 300px;
             padding: 0 15px;
@@ -63,17 +111,121 @@
             display: block;
             outline: none;
         }
+
         .kvDo {
-            text-decoration:none;
-            color:#fff;
+            text-decoration: none;
+            color: #fff;
         }
-        .kvDo:hover{
-            opacity:0.8;
-            cursor:pointer;
+
+            .kvDo:hover {
+                opacity: 0.8;
+                cursor: pointer;
+            }
+
+        .overlay {
+            background-color: grey;
+            opacity: 0.8;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            z-index: 998;
         }
+
+        .thongbao {
+            display: none;
+            position: absolute;
+            width: 60%;
+            height: 30%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        #floating-panel {
+            height: 40px !important;
+        }
+
+        #diachi {
+            margin: 5px;
+            height: 20px;
+            width: 300px;
+            font-size: 18px;
+        }
+
+        #submit {
+            padding: 5px !important;
+            font-weight: 700 !important;
+        }
+
+        .thongbao2 {
+            display: none;
+            position: absolute;
+            width: 30%;
+            height: 20%;
+            background-color: #fff;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 5px;
+            z-index: 999;
+        }
+
+        .thongbao__title {
+            text-align: center;
+            padding: 5px;
+            font-weight: bold;
+            color: #000;
+            font-size: 25px;
+        }
+
+        .thongbao__des {
+            text-align: center;
+            padding: 10px;
+            color: green
+        }
+
+        .thongbao__btn {
+            text-align: center;
+            margin-top: 30px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+        }
+
+        .thongbao__btn--ok {
+            background-color: green;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+            color: #fff;
+        }
+
+        .thongbao__btn--huy {
+            color: #fff;
+            background-color: red;
+            width: max-content;
+            height: max-content;
+            border-radius: 5px;
+            padding: 5px 20px;
+            margin: 0 5px;
+        }
+
+            .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+                cursor: pointer;
+                opacity: 0.8;
+                color: #000;
+            }
     </style>
 </head>
-<body>
+<body style="position:relative">
     <h1 class="w3ls" style="font-weight:600"><a href="#" style="color:#fff">Cập Nhật Bất Động Sản</a></h1>
     <span class="thongbaoloi">@mess</span>
     <div class="content-w3ls">
@@ -132,20 +284,13 @@
                 <br>
                 <br>
                 <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">
-                    Kinh độ <a class="kvDo" href="https://www.google.com/maps" target="_blank">( Lấy kinh độ )</a>
+                    Lấy Kinh độ và Vĩ độ <a class="kvDo" onclick="showGoogle()">( Click )</a>
                 </label>
                 <div class="form-control agileinfo">
-                    <input type="text" class="lock kdBDS" name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
+                    <input type="text" class="lock kdBDS kinhdo" readonly name="KinhDo" placeholder="Kinh Độ" id="address1" title="Please enter a valid kinh do" required="">
                 </div>
-
-
-                <br>
-                <br>
-                <label style="color:#fff; font-weight:bold" for="email" class="lbEdit">
-                    Vĩ độ   <a class="kvDo" href="https://www.google.com/maps" target="_blank">( Lấy vĩ độ )</a>
-                </label>
                 <div class="form-control agileinfo">
-                    <input type="text" class="lock vdBDS" name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
+                    <input type="text" class="lock vdBDS vido" readonly name="ViDo" placeholder="Vĩ Độ" id="address1" title="Please enter a valid vĩ độ" required="">
                 </div>
 
                 <div class="form-control agileinfo">
@@ -178,17 +323,74 @@
                     </select>
                 </div>
 
-                <input type="submit" class="register" value="Update">
+                <input type="submit" class="register update" value="Update">
                 <a href="/Admin/ListBDS">
-                    <input class="register" type="button" value="Trở Về">
+                    <input class="register exit" type="button" value="Trở Về">
                 </a>
             </form>
         </div>
         <div class="clear"></div>
     </div>
-    <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>  
+
+    @*thông báo overlay*@
+    <div class="overlay">
+    </div>
+    <div class="thongbao">
+        <div id="floating-panel">
+            <input id="diachi" type="text" value="Ho Chi Minh City" />
+            <input id="submit" type="button" value="Get lat & lng" />
+            <input id="exit" type="button" value="Đóng" />
+        </div>
+        <div id="map" style="height:100%;width:100%"></div>
+    </div>
+
+    <div class="thongbao2">
+        <div class="thongbao__title">
+            <h1>Thông báo</h1>
+        </div>
+        <div class="thongbao__des">
+            <h3>Đăng nhập thành công !!!</h3>
+        </div>
+        <div class="thongbao__btn">
+            <div class="thongbao__btn--ok">
+                <p class="btn--ok">OK</p>
+            </div>
+            <div class="thongbao__btn--huy">
+                <p class="btn--ok">Hủy</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDs3gIi0RSsSqFQHqlW_dICB5idZj7xIaI&callback=initMap&libraries=&v=weekly"
+            async></script>
+    <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
 </body>
 </html>
+<script>
+
+    $('.update').click(function () {
+        $(".overlay").show();
+        $(".thongbao2").show();
+        $(".thongbao__des h3").text('Loading ...');
+        $(".thongbao__btn").hide();
+    })
+    $('.exit').click(function () {
+        $(".overlay").show();
+        $(".thongbao2").show();
+        $(".thongbao__des h3").text('Loading ...');
+        $(".thongbao__btn").hide();
+    })
+
+    function showGoogle() {
+        $(".overlay").toggle();
+        $(".thongbao").toggle();
+        $('#diachi').val($('.vitriBDS').val());
+    }
+    $('#exit').click(function () {
+        $(".overlay").toggle();
+        $(".thongbao").toggle();
+    })
+</script>
 <script>
     $(document).ready(function () {
         var array = JSON.parse('@Newtonsoft.Json.JsonConvert.SerializeObject(list)'.replace(/&quot;/g, "\""));
@@ -200,13 +402,6 @@
             elem.setAttribute("alt", "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png");
             document.getElementById("imageSelector").appendChild(elem);
         }
-
-
-
-
-
-
-
 
         document.getElementById("firstname").onchange = function () {
             var arr = event.target.files;
@@ -225,8 +420,6 @@
             }
         };
 
-
-
         var id = '@id';
         var idLoai = '@idLoai';
         var name = '@name';
@@ -238,7 +431,6 @@
         var kinhdo = '@kinhdo';
         var vido = '@vido';
 
-
         if (status == "Mua") {
             $(".statusBDS").val("Mua");
         }
@@ -248,15 +440,12 @@
 
         /*$('.content-w3ls .content-agile1').css("background", "url(" + image + ")");*/
 
-
         $(".imageBDS").val(image);
 
         $(".imageBDS").hide();
 
         $(".idBDS").val(id);
         $(".idBDS").hide();
-
-
 
         $(".nameBDS").val(name);
         $(".motaBDS").val(mota);
@@ -273,6 +462,3 @@
         $(".loaiBDS").val(idLoai);
     })
 </script>
-
-
-

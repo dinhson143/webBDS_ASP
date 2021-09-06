@@ -38,6 +38,12 @@
                     expiresIn = gup(url, 'expires_in');
 
                     win.close();
+
+                    $(".thongbao__des").css('color', 'green');
+                    $(".overlay").show();
+                    $(".thongbao").show();
+                    $(".thongbao__des h3").text('Loading . . .');
+                    $(".thongbao__btn").hide();
                     /*debugger;*/
                     validateToken(acToken);
                 }
@@ -113,7 +119,7 @@
             </a>
             <div class="Menu__navContact">
                 <div class="Menu__navContact--Icon">
-                    <a href="/Auth/Facebook">
+                    <a id="loginFB" href="/Auth/Facebook">
                         <img src="~/images/trangchu/img/fb.png" alt="">
                     </a>
                     <a href="#" onclick="login()">
@@ -279,6 +285,14 @@
     </div>
     <div class="Menu__nav"></div>
     <script type="text/javascript">
+        $("#loginFB").on("click", function () {
+            $(".thongbao__des").css('color', 'green');
+            $(".overlay").show();
+            $(".thongbao").show();
+            $(".thongbao__des h3").text('Loading . . .');
+            $(".thongbao__btn").hide();
+        });
+
         function checkDangnhap() {
             $.ajax({
                 url: '/Trangchu/CheckDangNhap',

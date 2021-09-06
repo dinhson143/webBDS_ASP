@@ -12,11 +12,11 @@ using System.Net;
 
 namespace WebBDS.Controllers
 {
-
     public class LichController : Controller
     {
         public string userID { get; set; }
         public string idBDS { get; set; }
+
         // GET: Lich
         [Route("Lich")]
         public ActionResult Index()
@@ -33,15 +33,16 @@ namespace WebBDS.Controllers
             {
                 return RedirectToAction("Index", "Login");
             }
-            return View();
+
+            User user = CommonConstants.User;
+            return View(user);
         }
-
-
 
         [HttpPost]
         public ActionResult CreateLich(Lich lich)
         {
             userID = (string)Session[CommonConstants.USER_SESSION];
+            User userLogin = CommonConstants.User;
             lich.IDuser = userID;
             lich.Xacnhan = false;
             idBDS = (string)Session[CommonConstants.IDbds_SESSION];
@@ -69,11 +70,6 @@ namespace WebBDS.Controllers
                 }
             }
 
-
-
-
-
-
             string token = (string)Session[CommonConstants.AccessToken_SESSION];
             if (CommonConstants.User.Email != userID)
             {
@@ -86,43 +82,41 @@ namespace WebBDS.Controllers
             User user = new User();
             user = CommonConstants.User;
 
-
             lich.IDuser = user._id;
 
-
-            for (var i=0; i<list.Count;i++)
+            for (var i = 0; i < list.Count; i++)
             {
                 var item = list[i];
-                if (item.IDbds == lich.IDbds && item.IDuser == lich.IDuser )
+                if (item.IDbds == lich.IDbds && item.IDuser == lich.IDuser)
                 {
                     DateTime x = DateTime.Parse(item.Date);
                     DateTime y = DateTime.Parse(lich.Date);
                     if (item.Xacnhan == false)
                     {
                         ViewData["mess"] = "Bạn đã đặt lịch cho dự án này";
-                        return View();
+                        return View(userLogin);
                     }
                     else if (x.Date.Day == y.Date.Day && x.Date.Month == y.Date.Month && x.Date.Year == y.Date.Year)
                     {
                         ViewData["mess"] = "Ngày bạn chọn đã có cuôc hẹn";
-                        return View();
+                        return View(userLogin);
                     }
-                }              
-                else if(item.IDuser == lich.IDuser)
+                }
+                else if (item.IDuser == lich.IDuser)
                 {
                     DateTime x = DateTime.Parse(item.Date);
                     DateTime y = DateTime.Parse(lich.Date);
-                    if (x.Date.Day == y.Date.Day && x.Date.Month == y.Date.Month && x.Date.Year ==y.Date.Year)
+                    if (x.Date.Day == y.Date.Day && x.Date.Month == y.Date.Month && x.Date.Year == y.Date.Year)
                     {
                         ViewData["mess"] = "Ngày bạn chọn đã có cuôc hẹn";
-                        return View();
+                        return View(userLogin);
                     }
                 }
             }
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(CommonConstants.URL+"Lich");
+                client.BaseAddress = new Uri(CommonConstants.URL + "Lich");
                 var postJob = client.PostAsJsonAsync<Lich>("", lich);
                 postJob.Wait();
 
@@ -137,9 +131,8 @@ namespace WebBDS.Controllers
                 }
             }
 
-            return View();
+            return View(userLogin);
         }
-
 
         [HttpPost]
         public String DeleteLich(string id)
@@ -148,7 +141,7 @@ namespace WebBDS.Controllers
             Dictionary<string, object> data = new Dictionary<string, object>();
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(CommonConstants.URL+"Lich/");
+                client.BaseAddress = new Uri(CommonConstants.URL + "Lich/");
                 var deleteJob = client.DeleteAsync(id.ToString());
 
                 var result = deleteJob.Result;
@@ -168,19 +161,17 @@ namespace WebBDS.Controllers
             }
         }
 
-
         [HttpPost]
         public String XacnhanLich(string id)
         {
-
-
+            // get lịch hẹn cần xác nhận
             bool check = false;
             Dictionary<string, object> data = new Dictionary<string, object>();
 
             List<Lich> list = null;
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(CommonConstants.URL+"Get/");
+                client.BaseAddress = new Uri(CommonConstants.URL + "Get/");
                 var responseTask = client.GetAsync(id.ToString());
                 responseTask.Wait();
 
@@ -193,20 +184,15 @@ namespace WebBDS.Controllers
                 }
             }
 
-
-
             Lich x = new Lich();
             if (list != null)
             {
                 x = list[0];
             }
-          
+
             x.Xacnhan = true;
 
-
-
-
-
+            // gửi mail xác nhận lịch
             Gmail model = new Gmail();
             MailMessage mm = new MailMessage("dinhson14399@gmail.com", x.Email);
 
@@ -227,20 +213,10 @@ namespace WebBDS.Controllers
             smtp.Credentials = nc;
             smtp.Send(mm);
 
-
-
-
-
-
-
-
-
-
-
+            // call api update lịch
             using (var client = new HttpClient())
             {
-
-                client.BaseAddress = new Uri(CommonConstants.URL+"Lich/");
+                client.BaseAddress = new Uri(CommonConstants.URL + "Lich/");
                 var postJob = client.PutAsJsonAsync<Lich>(id.ToString(), x);
                 postJob.Wait();
 

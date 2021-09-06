@@ -45,49 +45,7 @@ namespace WebBDS.Controllers
             return View();
         }
 
-        //
-        public static async Task<string> GetAuthorizeToken(string id, string pw)
-        {
-            // Initialization.  
-            string responseObj = string.Empty;
-
-            // Posting.  
-            Login login = new Login();
-            login.Email = id;
-            login.Password = pw;
-            Dictionary<string, object> data = new Dictionary<string, object>();
-            using (var client = new HttpClient())
-            {
-
-                // Setting Base address.  
-                client.BaseAddress = new Uri("http://localhost:2000/api/auth/login");
-
-                // Setting content type.  
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-                // Initialization.  
-                HttpResponseMessage response = new HttpResponseMessage();
-                List<KeyValuePair<string, string>> allIputParams = new List<KeyValuePair<string, string>>();
-
-                // Convert Request Params to Key Value Pair.  
-
-                // URL Request parameters.  
-                HttpContent requestParams = new FormUrlEncodedContent(allIputParams);
-
-                // HTTP POST  
-                response = await client.PostAsync("Token", requestParams).ConfigureAwait(false);
-
-                // Verification  
-                if (response.IsSuccessStatusCode)
-                {
-                    // Reading Response.  
-
-                }
-            }
-
-            return responseObj;
-        }
-        //
+       //
 
 
 
@@ -122,6 +80,8 @@ namespace WebBDS.Controllers
                     return View();
                 }
             }
+
+            // kiem tra gmail đã được đăng kí
             foreach (var item in list)
             {
                 if (user.Email == item.Email)
@@ -167,6 +127,9 @@ namespace WebBDS.Controllers
         [HttpPost]
         public string CheckLogin(string id, string pw)
         {
+
+
+            // login và kiểm tra phân quyền login
             List<User> user = null;
             User temp = new User();
             Login login = new Login();
@@ -201,7 +164,6 @@ namespace WebBDS.Controllers
                         {
                             client2.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
                             client2.BaseAddress = new Uri(CommonConstants.URL + "user/" + id);
-                            //client2.BaseAddress = new Uri("http://localhost:2000/api/user/" + id);
                             var responseTask = client2.GetAsync("");
                             responseTask.Wait();
 
@@ -219,10 +181,11 @@ namespace WebBDS.Controllers
                         }
                     }
                 }
-                //
-                //
 
             }
+
+
+
             if (user != null) temp = user[0];
             bool check = true;
             string loai = "";
@@ -271,7 +234,7 @@ namespace WebBDS.Controllers
             Random r = new Random();
             var x = r.Next(0, 1000000);
             string s = x.ToString("000000");
-            // kiếm user
+            // kiểm tra email da dc dki
             List<User> listus = CommonConstants.getlistUser();
             User us = new User();
             foreach(var item in listus)
