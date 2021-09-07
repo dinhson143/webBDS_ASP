@@ -237,14 +237,6 @@
                                             var bds = getBDS(item.IDbds);
                                             var user = getUser(item.IDuser);
                                             var confirm = "";
-                                            if (@item.Xacnhan == true)
-                                            {
-                                                confirm = "Đã lên lịch";
-                                            }
-                                            else
-                                            {
-                                                confirm = "Chưa lên lịch";
-                                            }
                                             <tr>
                                                 <td>
                                                     @item.Name
@@ -253,7 +245,16 @@
                                                 <td>@item.Sdt</td>
                                                 <td>@item.Date</td>
                                                 <td>@bds.Name</td>
-                                                <td>@confirm</td>
+                                                @if (@item.Xacnhan == true)
+                                                {
+                                                    confirm = "Đã lên lịch";
+                                                    <td style="color:green">@confirm</td>
+                                                }
+                                                else
+                                                {
+                                                    confirm = "Chưa lên lịch";
+                                                    <td>@confirm</td>
+                                                }
                                             </tr>
                                         }
                                     </tbody>

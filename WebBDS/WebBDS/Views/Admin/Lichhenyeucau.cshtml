@@ -318,38 +318,41 @@
                                             var bds = getBDS(item.IDbds);
                                             var user = getUser(item.IDuser);
                                             var confirm = "";
-                                            if (@item.Xacnhan == true)
+                                            
+
+                                        <tr>
+                                            <td>
+                                                @item.Name
+                                            </td>
+                                            <td>@item.Email</td>
+                                            <td>@item.Sdt</td>
+                                            <td>@item.Date</td>
+                                            <td>@bds.Name</td>
+                                            @if (@item.Xacnhan == true)
                                             {
                                                 confirm = "Đã lên lịch";
+                                                <td style="color:green">@confirm</td>
                                             }
                                             else
                                             {
                                                 confirm = "Chưa lên lịch";
+                                                <td>@confirm</td>
                                             }
 
-                                            <tr>
+                                            @if (@item.Xacnhan == false)
+                                            {
                                                 <td>
-                                                    @item.Name
-                                                </td>
-                                                <td>@item.Email</td>
-                                                <td>@item.Sdt</td>
-                                                <td>@item.Date</td>
-                                                <td>@bds.Name</td>
-                                                <td>@confirm</td>
-                                                @if (@item.Xacnhan == false)
-                                                {
-                                                    <td>
-                                                        <div class="btn__group">
-                                                            <div class="btn btn--delete" onclick="return xacnhanLich('@item._id')">
-                                                                <p style="margin-bottom:0;">Xác nhận</p>
-                                                            </div>
-                                                            <div class="btn btn--delete" onclick="return deleteLich('@item._id')">
-                                                                <p style="margin-bottom:0;">Delete</p>
-                                                            </div>
+                                                    <div class="btn__group">
+                                                        <div class="btn btn--delete" onclick="return xacnhanLich('@item._id')">
+                                                            <p style="margin-bottom:0;">Xác nhận</p>
                                                         </div>
-                                                    </td>
-                                                }
-                                            </tr>
+                                                        <div class="btn btn--delete" onclick="return deleteLich('@item._id')">
+                                                            <p style="margin-bottom:0;">Delete</p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            }
+                                        </tr>
                                         }
                                     </tbody>
                                 </table>

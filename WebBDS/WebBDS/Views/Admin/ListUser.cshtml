@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model  List<WebBDS.Models.User>
@@ -27,7 +26,6 @@
     <link href="~/Content/custom/User/assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="~/Content/custom/User/assets/demo/demo.css" rel="stylesheet" />
-
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
 
@@ -154,11 +152,11 @@
             margin: 0 5px;
         }
 
-        .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
-            cursor: pointer;
-            opacity: 0.8;
-            color: #000;
-        }
+            .thongbao__btn--huy:hover, .thongbao__btn--ok:hover {
+                cursor: pointer;
+                opacity: 0.8;
+                color: #000;
+            }
     </style>
 </head>
 
@@ -318,7 +316,19 @@
                                                 <td>@item.UserInfor.Address</td>
                                                 <td>@item.UserInfor.Phone</td>
                                                 @*<td>@item.Password</td>*@
-                                                <td>@item.UserInfor.Role</td>
+                                                @if (item.UserInfor.Role == "admin")
+                                                {
+                                                    <td style="color:green;font-weight:500">@item.UserInfor.Role</td>
+                                                }
+                                                else if (item.UserInfor.Role == "user")
+                                                {
+                                                    <td style="color:blue;font-weight:500">@item.UserInfor.Role</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>@item.UserInfor.Role</td>
+                                                }
+
                                                 <td>
                                                     <div class="btn__group">
                                                         <div class="btn btn--edit" onclick="return handlerEditUser('@dem')">
@@ -362,20 +372,15 @@
         </div>
     </div>
 
-
     <!--   Core JS Files   -->
     <script src="~/Content/custom/User/assets/js/core/jquery.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/popper.min.js"></script>
     <script src="~/Content/custom/User/assets/js/core/bootstrap-material-design.min.js"></script>
     <script src="~/Content/custom/User/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-
     <script src="~/Content/custom/User/assets/js/material-dashboard.js?v=2.1.2" type="text/javascript"></script>
 
-
-
     <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
-
 
     <script type="text/javascript">
         $('#example').DataTable();
@@ -481,7 +486,7 @@
                             $(".thongbao").hide();
                         })
                     }
-                                      
+
                 }, error: function (er) {
                     $(".thongbao__des h3").text('Failed: '+er);
                     $(".thongbao__des").css('color', 'red');
@@ -492,7 +497,7 @@
                     $(".thongbao__btn--ok").click(function () {
                         $(".overlay").hide();
                         $(".thongbao").hide();
-                    })     
+                    })
                 }
             });
         }
@@ -526,7 +531,7 @@
                                 $(".thongbao__des h3").text('Loading ...');
                                 $(".thongbao__btn").hide();
                                 window.location = '/Admin/ListUser';
-                            })                           
+                            })
                         } else {
                             $(".thongbao__des h3").text('Xóa user thất bại');
                             $(".thongbao__des").css('color', 'red');
@@ -537,17 +542,17 @@
                             $(".thongbao__btn--huy").click(function () {
                                 $(".overlay").hide();
                                 $(".thongbao").hide();
-                            }); 
+                            });
                         }
                     }, error: function (er) {
                         alert("Fail: " + er);
                     }
                 });
-            })           
+            })
             $(".thongbao__btn--huy").click(function () {
                 $(".overlay").hide();
                 $(".thongbao").hide();
-            }); 
+            });
         }
     </script>
     <script type="text/javascript">
@@ -626,7 +631,6 @@
             this.terCtx.lineTo(0, this.points[0]);
             this.terCtx.fill();
         }
-
 
         // Second canvas used for the stars
         bgCtx.fillStyle = '#05004c';
@@ -729,10 +733,7 @@
         }
         animate();
 
-
-
-
-        //////////////////////////////      
+        //////////////////////////////
     </script>
     <script>
         $(document).ready(function () {
@@ -804,7 +805,6 @@
 
                     $(this).parent('li').siblings().removeClass('active');
                     $(this).parent('li').addClass('active');
-
 
                     var new_image = $(this).find("img").attr('src');
 
@@ -905,5 +905,4 @@
             });
         });</script>
 </body>
-
 </html>
