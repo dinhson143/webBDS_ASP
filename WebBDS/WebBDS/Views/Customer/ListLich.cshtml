@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 @model  WebBDS.Models.AdminListLich_Model
@@ -46,6 +45,9 @@
     <link href="~/Content/custom/User/assets/demo/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
     <style>
+        .table .thead-dark th{
+            background-color:#fff !important;
+        }
         body, html {
             background-color: #000;
             color: #fff;
@@ -168,8 +170,9 @@
         .dataTables_info {
             display: none;
         }
-        #example_filter{
-            margin-top:10px;
+
+        #example_filter {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -251,6 +254,7 @@
                                             <th>Date</th>
                                             <th>Tên dự án</th>
                                             <th>Trạng thái</th>
+                                            <th>Chức năng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -258,14 +262,6 @@
                                         {
                                             var bds = getBDS(item.IDbds);
                                             var confirm = "";
-                                            if (@item.Xacnhan == true)
-                                            {
-                                                confirm = "Đã lên lịch";
-                                            }
-                                            else
-                                            {
-                                                confirm = "Chưa lên lịch";
-                                            }
                                             <tr>
                                                 <td>
                                                     @item.Name
@@ -274,7 +270,17 @@
                                                 <td>@item.Sdt</td>
                                                 <td>@item.Date</td>
                                                 <td>@bds.Name</td>
-                                                <td>@confirm</td>
+                                                @if (@item.Xacnhan == true)
+                                                {
+                                                    confirm = "Đã lên lịch";
+                                                    <td style="color:green">@confirm</td>
+                                                }
+                                                else
+                                                {
+                                                    confirm = "Chưa lên lịch";
+                                                    <td>@confirm</td>
+                                                }
+                                                <td class="tamTD"></td>
                                                 @if (item.Xacnhan == false)
                                                 {
                                                     <td>
@@ -285,7 +291,6 @@
                                                         </div>
                                                     </td>
                                                 }
-
                                             </tr>
                                         }
                                     </tbody>
@@ -327,6 +332,7 @@
     <script src="~/Content/custom/User/assets/js/core/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
+        $('.tamTD').hide();
         $('#example').DataTable();
         ////////////////
         $(".loaiBDS").hide();
@@ -500,7 +506,6 @@
             this.terCtx.fill();
         }
 
-
         // Second canvas used for the stars
         bgCtx.fillStyle = '#05004c';
         bgCtx.fillRect(0, 0, width, height);
@@ -601,7 +606,6 @@
             requestAnimationFrame(animate);
         }
         animate();
-
     </script>
     <script>
         $(document).ready(function () {
@@ -673,7 +677,6 @@
 
                     $(this).parent('li').siblings().removeClass('active');
                     $(this).parent('li').addClass('active');
-
 
                     var new_image = $(this).find("img").attr('src');
 
@@ -774,5 +777,4 @@
             });
         });</script>
 </body>
-
 </html>
