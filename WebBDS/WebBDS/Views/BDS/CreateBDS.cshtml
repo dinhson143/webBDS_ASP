@@ -47,7 +47,7 @@
                 geocodeAddress(geocoder, map);
             });
         }
-        function geocodeAddress(geocoder, resultsMap) {            
+        function geocodeAddress(geocoder, resultsMap) {
             const address = document.getElementById("diachi").value;
             geocoder
                 .geocode({ address: address })
@@ -118,6 +118,7 @@
             border-radius: 5px;
             z-index: 999;
         }
+
         #floating-panel {
             height: 40px !important;
         }

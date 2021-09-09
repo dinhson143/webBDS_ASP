@@ -1,3 +1,5 @@
+E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Collections.Immutable.dll
+E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\WebBDS.dll.config
 E:\ASP MVC 5\WebBDS\WebBDS\bin\WebBDS.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\WebBDS.pdb
@@ -20,7 +22,6 @@ E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\Microsoft.Managed.Core.targets
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\Microsoft.VisualBasic.Core.targets
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\Microsoft.Win32.Primitives.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.AppContext.dll
-E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Collections.Immutable.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Console.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
@@ -38,7 +39,6 @@ E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Security.Cryptography.Algorithms.dl
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Security.Cryptography.Encoding.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Security.Cryptography.Primitives.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
-E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Text.Encoding.CodePages.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Threading.Tasks.Extensions.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.ValueTuple.dll
 E:\ASP MVC 5\WebBDS\WebBDS\bin\roslyn\System.Xml.ReaderWriter.dll
@@ -145,4 +145,3 @@ E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csproj.CoreCompileInputs.cache
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csproj.CopyComplete
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.dll
 E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.pdb
-E:\ASP MVC 5\WebBDS\WebBDS\obj\Debug\WebBDS.csprojAssemblyReference.cache
